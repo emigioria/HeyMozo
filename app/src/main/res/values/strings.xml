@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Hey, Mozo!</string>
     <string name="title_activity_maps">Map</string>
+    <string name="ver_mapa">Ver mapa</string>
+    <string name="ver_carta">Ver carta</string>
+    <string name="codigo_no_escaneado">Código no escaneado</string>
 </resources>
