@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == BARCODE_READER_REQUEST_CODE) {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
-                    Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
-                    Point[] p = barcode.cornerPoints;
-                    resultadoTextView.setText(barcode.displayValue);
+                    //Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                    //Point[] p = barcode.cornerPoints;
+                    resultadoTextView.setText(data.getStringExtra("carta"));
                 } else resultadoTextView.setText(getString(R.string.codigo_no_escaneado));
             }
         }

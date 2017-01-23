@@ -44,7 +44,15 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.camera.CameraSource;
@@ -93,10 +101,38 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     @Override
     public void onDetectedQrCode(Barcode barcode) {
         if (barcode != null) {
+            solicitarCarta(barcode.displayValue);
+        }
+    }
+
+
+
+    public void solicitarCarta(String mesa){
+        HttpURLConnection urlConnection = null;
+        try {
+            URL url = new URL("http://192.168.0.100:3000/carta/"+mesa);
+            urlConnection= (HttpURLConnection) url.openConnection();
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            InputStreamReader isw = new InputStreamReader(in);
+            StringBuilder sb = new StringBuilder();
+            int data = isw.read();
+            while (data != -1) {
+                char current = (char) data;
+                sb.append(current);
+                data = isw.read();
+            }
+            JSONObject carta = new JSONObject(sb.toString());
             Intent intent = new Intent();
-            intent.putExtra(BarcodeObject, barcode);
+            intent.putExtra("carta",carta.getString("entrada"));
             setResult(CommonStatusCodes.SUCCESS, intent);
             finish();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } finally {
+            if(urlConnection!=null) urlConnection.disconnect();
         }
     }
 
