@@ -1,4 +1,4 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -24,12 +24,17 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.util.List;
+
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.Restaurante;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, BusquedaRestaurantesListener<Restaurante> {
 
 	private GoogleMap mMap;
 	private boolean flagPermisoPedido;
 	private static final int PERMISSION_REQUEST_ACCESS = 899;
-
+	private static String TAG = "MAP";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,16 +48,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	@Override
 	public void onMapReady(GoogleMap googleMap) {
 		mMap = googleMap;
-		Log.d("MAP", "Mapa cargado");
+		Log.d(TAG, "Mapa cargado");
 
 		askForPermission();
 
-		//TODO pedir al servidor la lista de ubicaciones
-		LatLng rest1 = new LatLng(-31.6387288,-60.6936089);
-		LatLng rest2 = new LatLng(-31.6366443,-60.699605);
-		mMap.addMarker(new MarkerOptions().position(rest1).title("Paladar Negro"));
-		mMap.addMarker(new MarkerOptions().position(rest2).title("1980"));
-		Log.d("MAP", "Ubicaciones de restaurantes cargadas");
+		new ListarRestaurantesTask(this).execute();
 	}
 
 	public void askForPermission() {
@@ -119,10 +119,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
 		if (location != null) {
 			CameraPosition cameraPosition = new CameraPosition.Builder()
-					.target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
-					.zoom(14)                   // Sets the zoom
-					.build();                   // Creates a CameraPosition from the builder
+					.target(new LatLng(location.getLatitude(), location.getLongitude()))
+					.zoom(14)
+					.build();
 			mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 		}
+	}
+
+	@Override
+	public void busquedaFinalizada(List<Restaurante> restaurantes) {
+		for(Restaurante x : restaurantes){
+			LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
+			mMap.addMarker(new MarkerOptions().position(rest1).title(x.getNombre()));
+		}
+		Log.d(TAG, "Ubicaciones de restaurantes cargadas");
+	}
+
+	@Override
+	public void busquedaIniciada() {
 	}
 }

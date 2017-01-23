@@ -1,0 +1,6 @@
+{
+	"restaurantes":[
+		{"_id": 1, "nombre": "Paladar Negro", "latitud": -31.6387288, "longitud": -60.6936089},
+		{"_id": 1, "nombre": "1980", "latitud": -31.6366443, "longitud": -60.699605}
+	]
+}

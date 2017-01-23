@@ -1,7 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo;
 
 import android.content.Intent;
-import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,9 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.vision.barcode.Barcode;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.MapsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
