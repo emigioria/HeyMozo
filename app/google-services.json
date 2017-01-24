@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "538556518000",
+    "firebase_url": "https://heymozo-156218.firebaseio.com",
+    "project_id": "heymozo-156218",
+    "storage_bucket": "heymozo-156218.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538556518000:android:9fe88bd6cb221e49",
+        "android_client_info": {
+          "package_name": "ar.edu.utn.frsf.isi.dam.del2016.heymozo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538556518000-lg755ntn19lvkjdumla7aj8k9ujlm3le.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZlQhDZ7NcF2bLGlCQihMOGBBQfWDaYRw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

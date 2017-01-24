@@ -1,8 +1,11 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,6 +14,8 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.MapsActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.FirebaseService;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.MyFirebaseMessagingService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +29,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Intent intent = new Intent(MainActivity.this, FirebaseService.class);
+        startService(intent);
+        intent = new Intent(MainActivity.this, MyFirebaseMessagingService.class);
+        startService(intent);
+
+	    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+	    Log.d("APP", preferences.getString("registration_id", "no id"));
 
         btnVerMapa = (Button) findViewById(R.id.btn_ver_mapa);
         btnVerCarta = (Button) findViewById(R.id.btn_ver_carta);
