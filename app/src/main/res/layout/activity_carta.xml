@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.CartaActivity">
+    tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

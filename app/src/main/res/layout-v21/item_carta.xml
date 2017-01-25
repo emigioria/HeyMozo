@@ -31,5 +31,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/precio_textview"
         android:textSize="24sp"
-        android:layout_gravity="right" />
+        android:layout_gravity="end" />
 </LinearLayout>

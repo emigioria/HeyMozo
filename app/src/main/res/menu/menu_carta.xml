@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.CartaActivity">
+    tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

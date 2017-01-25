@@ -72,7 +72,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     // Constants used to pass extra data in the intent
     public static final String BarcodeObject = "Barcode";
 
-    private static String IP_SERVER = "192.168.0.103";
+    private static String IP_SERVER = "192.168.0.104";
     private static String PORT_SERVER = "3000";
 
     private CameraSource mCameraSource;

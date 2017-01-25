@@ -1,8 +1,7 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -11,7 +10,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,14 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ListView;
-import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
 public class CartaActivity extends AppCompatActivity {
 
@@ -45,8 +39,7 @@ public class CartaActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
-    private JSONObject carta;
-    private JSONArray secciones;
+    public static Carta carta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +47,14 @@ public class CartaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carta);
 
         try {
-            carta = new JSONObject(getIntent().getStringExtra("carta"));
-            String nombreRestaurant = carta.getString(CartaMetaData.NOMBRE_RESTAURANT);
-            setTitle(nombreRestaurant);
-            secciones = (JSONArray) carta.get(CartaMetaData.SECCIONES);
+            carta = new Carta(getIntent().getStringExtra("carta"));
         } catch (JSONException e) {
             e.printStackTrace();
             //TODO
         }
+
+        setTitle(carta.getNombreRestaurant());
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -139,8 +132,15 @@ public class CartaActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_carta, container, false);
             ListView seccionListView = (ListView) rootView.findViewById(R.id.seccion_listview);
-            //seccionListView.setAdapter(new SeccionAdapter());
-            getArguments().getInt(ARG_SECTION_NUMBER);
+
+
+            try {
+                seccionListView.setAdapter(new SeccionAdapter(getContext(), carta.getProductosSeccion(getArguments().getInt(ARG_SECTION_NUMBER)-1)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+                //TODO
+            }
+
             return rootView;
         }
     }
@@ -151,7 +151,7 @@ public class CartaActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -164,20 +164,14 @@ public class CartaActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // depende de la cantidad de secciones que contenga la carta
-            return secciones.length();
+            //Cantidad de secciones que contenga la carta
+            return carta.getSecciones().size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            // retorna los nombres de cada seccion según el orden en el que se escribió la carta
-            try {
-                return (CharSequence) secciones.getJSONObject(position).get(CartaMetaData.NOMBRE_SECCION);
-            } catch (JSONException e) {
-                e.printStackTrace();
-                //TODO
-            }
-            return null;
+            // retorna los titulos de cada seccion según el orden en el que se escribió la carta
+            return carta.getSecciones().get(position);
         }
     }
 }
