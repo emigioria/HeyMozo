@@ -65,10 +65,13 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == BARCODE_READER_REQUEST_CODE) {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
-                    //Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
-                    //Point[] p = barcode.cornerPoints;
-                    resultadoTextView.setText(data.getStringExtra("carta"));
-                } else resultadoTextView.setText(getString(R.string.codigo_no_escaneado));
+                    Intent i = new Intent(this,CartaActivity.class);
+                    i.putExtra("carta",data.getStringExtra("carta"));
+                    startActivity(i);
+                }
+                else {
+                    resultadoTextView.setText(R.string.codigo_no_escaneado); //TODO presentar cartel
+                }
             }
         }
         else super.onActivityResult(requestCode, resultCode, data);

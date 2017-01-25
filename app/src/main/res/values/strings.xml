@@ -4,4 +4,6 @@
     <string name="ver_mapa">Ver mapa</string>
     <string name="ver_carta">Ver carta</string>
     <string name="codigo_no_escaneado">Código no escaneado</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_carta">CartaActivity</string>
 </resources>

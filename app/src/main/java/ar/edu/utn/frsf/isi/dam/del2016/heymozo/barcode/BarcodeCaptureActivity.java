@@ -72,6 +72,9 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     // Constants used to pass extra data in the intent
     public static final String BarcodeObject = "Barcode";
 
+    private static String IP_SERVER = "192.168.0.103";
+    private static String PORT_SERVER = "3000";
+
     private CameraSource mCameraSource;
     private CameraSourcePreview mPreview;
 
@@ -101,16 +104,16 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     @Override
     public void onDetectedQrCode(Barcode barcode) {
         if (barcode != null) {
-            solicitarCarta(barcode.displayValue);
+            solicitarCarta();
         }
     }
 
 
 
-    public void solicitarCarta(String mesa){
+    public void solicitarCarta(){
         HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL("http://192.168.0.100:3000/carta/"+mesa);
+            URL url = new URL("http://" + IP_SERVER + ":" + PORT_SERVER + "/db");
             urlConnection= (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);
@@ -121,15 +124,12 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
                 sb.append(current);
                 data = isw.read();
             }
-            JSONObject carta = new JSONObject(sb.toString());
             Intent intent = new Intent();
-            intent.putExtra("carta",carta.getString("entrada"));
+            intent.putExtra("carta",sb.toString());
             setResult(CommonStatusCodes.SUCCESS, intent);
             finish();
         }
         catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
             e.printStackTrace();
         } finally {
             if(urlConnection!=null) urlConnection.disconnect();
