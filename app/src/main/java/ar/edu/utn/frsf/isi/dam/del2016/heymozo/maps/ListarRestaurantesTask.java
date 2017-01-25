@@ -25,7 +25,7 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.Restaurante;
  */
 public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaurante>>{
 	private BusquedaRestaurantesListener<Restaurante> listener;
-	private static String IP_SERVER = "192.168.1.103";
+	private static String IP_SERVER = "192.168.1.101";
 	private static String PORT_SERVER = "3000";
 
 	public ListarRestaurantesTask(BusquedaRestaurantesListener<Restaurante> dListener){
@@ -37,6 +37,10 @@ public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaur
 		listener.busquedaIniciada() ;
 	}
 
+	@Override
+	protected void onCancelled(){
+		listener.busquedaCancelada();
+	}
 	@Override
 	protected void onPostExecute(List<Restaurante> restaurantes) {
 		listener.busquedaFinalizada(restaurantes);
@@ -64,8 +68,10 @@ public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaur
 			Type datasetListType = new TypeToken<Collection<Restaurante>>() {}.getType();
 			restaurantes = gson.fromJson(sb.toString(), datasetListType);
 		} catch (MalformedURLException e) {
+			cancel(true);
 			e.printStackTrace();
 		} catch (IOException e) {
+			cancel(true);
 			e.printStackTrace();
 		} finally {
 			if (urlConnection != null) urlConnection.disconnect();

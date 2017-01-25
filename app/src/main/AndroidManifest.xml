@@ -39,7 +39,8 @@
 
         <activity
             android:name=".maps.MapsActivity"
-            android:label="@string/title_activity_maps">
+            android:label="@string/title_activity_maps"
+            android:theme="@style/Theme.AppCompat">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ar.edu.utn.frsf.isi.dam.del2016.heymozo.MainActivity" />
