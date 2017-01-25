@@ -42,6 +42,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	private static final int PERMISSION_REQUEST_ACCESS = 899;
 	private static String TAG = "MAP";
 	private RelativeLayout loadingPanel;
+	private ListarRestaurantesTask listarRestaurantesTask;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,6 +61,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 					.build();
 		}
 	}
+	@Override
+	protected void onPause() {
+		if(listarRestaurantesTask != null){
+			listarRestaurantesTask.cancel(true);
+		}
+		super.onPause();
+	}
 
 	@Override
 	public void onMapReady(GoogleMap googleMap) {
@@ -68,7 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 		askForPermission();
 
-		new ListarRestaurantesTask(this).execute();
+		listarRestaurantesTask = new ListarRestaurantesTask(this);
+		listarRestaurantesTask.execute();
 	}
 
 	public void askForPermission() {
@@ -134,11 +143,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	}
 
 	@Override
-	public void busquedaFinalizada(List<Restaurante> restaurantes) {
-		for (Restaurante x : restaurantes) {
-			LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
-			mMap.addMarker(new MarkerOptions().position(rest1).title(x.getNombre()));
+	public void busquedaFinalizada(List<Restaurante> restaurantes, int resultCode) {
+		switch (resultCode){
+			//Correcto
+			case 0:
+				for (Restaurante x : restaurantes) {
+					LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
+					mMap.addMarker(new MarkerOptions().position(rest1).title(x.getNombre()));
+				}
+				break;
+			//Cancelado
+			case 1:
+				break;
+
+			//Error de conexión
+			case 2:
+				loadingPanel.setVisibility(View.GONE);
+				Toast.makeText(this, getString(R.string.error_servidor), Toast.LENGTH_LONG).show();
+				break;
 		}
+
 		if(restaurantes.size() != 0){
 			loadingPanel.setVisibility(View.GONE);
 			Toast.makeText(this, getString(R.string.ubicaciones_cargadas), Toast.LENGTH_LONG).show();
@@ -149,12 +173,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	public void busquedaIniciada() {
 		loadingPanel.setVisibility(View.VISIBLE);
 		Toast.makeText(this, getString(R.string.cargando_ubicaciones), Toast.LENGTH_LONG).show();
-	}
-
-	@Override
-	public void busquedaCancelada() {
-		loadingPanel.setVisibility(View.GONE);
-		Toast.makeText(this, getString(R.string.error_servidor), Toast.LENGTH_LONG).show();
 	}
 
 	@Override

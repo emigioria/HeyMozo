@@ -7,7 +7,6 @@ import java.util.List;
  */
 
 public interface BusquedaRestaurantesListener<T> {
-	void busquedaFinalizada(List<T> restaurantes);
+	void busquedaFinalizada(List<T> restaurantes, int resultCode);
 	void busquedaIniciada();
-	void busquedaCancelada();
 }

@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +26,11 @@ public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaur
 	private BusquedaRestaurantesListener<Restaurante> listener;
 	private static String IP_SERVER = "192.168.1.101";
 	private static String PORT_SERVER = "3000";
+	private HttpURLConnection urlConnection = null;
+	private int status = 0;
+	private static int CANCELADO = 1;
+	private static int ERROR = 2;
+
 
 	public ListarRestaurantesTask(BusquedaRestaurantesListener<Restaurante> dListener){
 		this.listener = dListener;
@@ -38,19 +42,17 @@ public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaur
 	}
 
 	@Override
-	protected void onCancelled(){
-		listener.busquedaCancelada();
-	}
-	@Override
 	protected void onPostExecute(List<Restaurante> restaurantes) {
-		listener.busquedaFinalizada(restaurantes);
+		if(isCancelled()){
+			status = CANCELADO;
+		}
+		listener.busquedaFinalizada(restaurantes, status);
 	}
 
 	@Override
 	protected List<Restaurante> doInBackground(String... urls) {
 		final StringBuilder sb = new StringBuilder();
 		ArrayList<Restaurante> restaurantes = new ArrayList<>();
-		HttpURLConnection urlConnection = null;
 		try {
 			URL url = new URL("http://" + IP_SERVER + ":" + PORT_SERVER + "/restaurantes/");
 			urlConnection = (HttpURLConnection) url.openConnection();
@@ -67,15 +69,12 @@ public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaur
 			// create the type for the collection. In this case define that the collection is of type Dataset
 			Type datasetListType = new TypeToken<Collection<Restaurante>>() {}.getType();
 			restaurantes = gson.fromJson(sb.toString(), datasetListType);
-		} catch (MalformedURLException e) {
-			cancel(true);
-			e.printStackTrace();
-		} catch (IOException e) {
-			cancel(true);
+		}  catch (IOException e) {
+			status = ERROR;
 			e.printStackTrace();
 		} finally {
 			if (urlConnection != null) urlConnection.disconnect();
+			return restaurantes;
 		}
-		return restaurantes;
 	}
 }
