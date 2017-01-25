@@ -9,4 +9,5 @@ import java.util.List;
 public interface BusquedaRestaurantesListener<T> {
 	void busquedaFinalizada(List<T> restaurantes);
 	void busquedaIniciada();
+	void busquedaCancelada();
 }
