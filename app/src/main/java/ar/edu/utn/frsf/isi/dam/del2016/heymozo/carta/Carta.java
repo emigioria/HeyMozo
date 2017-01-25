@@ -70,6 +70,7 @@ class Carta {
     }
 
     class Producto {
+        private Integer cantidad;
         private String nombre;
         private Double precio;
         private Carta carta;
@@ -77,11 +78,21 @@ class Carta {
         Producto(JSONObject itemJSON) throws JSONException {
             this.nombre = itemJSON.getString(NOMBRE_PRODUCTO);
             this.precio = itemJSON.getDouble(PRECIO);
+            this.cantidad = 0;
+        }
+
+        public Producto setCantidad(Integer cantidad){
+            this.cantidad = cantidad;
+            return this;
         }
 
         public Producto setCarta(Carta carta){
             this.carta = carta;
             return this;
+        }
+
+        Integer getCantidad(){
+            return cantidad;
         }
 
         String getNombre(){

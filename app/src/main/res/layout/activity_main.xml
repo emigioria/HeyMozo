@@ -25,12 +25,11 @@
         android:id="@+id/btn_ver_mapa"
         android:layout_above="@+id/btn_ver_carta"/>
 
-    <TextView
-        android:text=""
+    <Button
+        android:text="No tengo un código QR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:id="@+id/resultado_textview"
-        android:layout_alignParentBottom="true" />
+        android:id="@+id/btn_sin_codigo"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

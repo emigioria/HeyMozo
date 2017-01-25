@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnVerMapa;
     Button btnVerCarta;
-    TextView resultadoTextView;
+    Button btnVerCartaSinCodigo;
 
     private static final int BARCODE_READER_REQUEST_CODE = 1;
 
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnVerMapa = (Button) findViewById(R.id.btn_ver_mapa);
         btnVerCarta = (Button) findViewById(R.id.btn_ver_carta);
-        resultadoTextView = (TextView) findViewById(R.id.resultado_textview);
+        btnVerCartaSinCodigo = (Button) findViewById(R.id.btn_sin_codigo);
 
         btnVerMapa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +58,109 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
             }
         });
+
+        btnVerCartaSinCodigo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this,CartaActivity.class);
+                i.putExtra("carta","{\n" +
+                        "\t\"nombre_restaurant\":{\"nombre_restaurant\":\"Bar-Resto 1980\"},\n" +
+                        "\t\"moneda\":{\"moneda\":\"$\"},\n" +
+                        "\t\"secciones\":[\n" +
+                        "\t\t{\"id\":1, \"nombre\":\"entradas\"},\n" +
+                        "\t\t{\"id\":2, \"nombre\":\"sandwiches\"},\n" +
+                        "\t\t{\"id\":3, \"nombre\":\"pizzas\"},\n" +
+                        "\t\t{\"id\":4, \"nombre\":\"postres\"},\n" +
+                        "\t\t{\"id\":5, \"nombre\":\"bebidas\"}\n" +
+                        "\t],\n" +
+                        "\t\"entradas\":[\n" +
+                        "\t\t{\"id\":1, \"nombre\":\"empanadas de carne\", \"precio\":12},\n" +
+                        "\t\t{\"id\":2, \"nombre\":\"empanadas de verdura\", \"precio\":23},\n" +
+                        "\t\t{\"id\":3, \"nombre\":\"empanadas árabes\", \"precio\":34},\n" +
+                        "\t\t{\"id\":4, \"nombre\":\"ensalada\", \"precio\":38},\n" +
+                        "\t\t{\"id\":5, \"nombre\":\"papas fritas\", \"precio\":86},\n" +
+                        "\t\t{\"id\":6, \"nombre\":\"empanadas de carne\", \"precio\":12},\n" +
+                        "\t\t{\"id\":7, \"nombre\":\"empanadas de verdura\", \"precio\":23},\n" +
+                        "\t\t{\"id\":8, \"nombre\":\"empanadas árabes\", \"precio\":34},\n" +
+                        "\t\t{\"id\":9, \"nombre\":\"ensalada\", \"precio\":38},\n" +
+                        "\t\t{\"id\":10, \"nombre\":\"papas fritas\", \"precio\":86},\n" +
+                        "\t\t{\"id\":11, \"nombre\":\"empanadas de carne\", \"precio\":12},\n" +
+                        "\t\t{\"id\":12, \"nombre\":\"empanadas de verdura\", \"precio\":23},\n" +
+                        "\t\t{\"id\":13, \"nombre\":\"empanadas árabes\", \"precio\":34},\n" +
+                        "\t\t{\"id\":14, \"nombre\":\"ensalada\", \"precio\":38},\n" +
+                        "\t\t{\"id\":15, \"nombre\":\"papas fritas\", \"precio\":86}\n" +
+                        "\t],\n" +
+                        "\t\"sandwiches\":[\n" +
+                        "\t\t{\"id\":1, \"nombre\":\"sandwiches\", \"precio\":12},\n" +
+                        "\t\t{\"id\":2, \"nombre\":\"triples\", \"precio\":67},\n" +
+                        "\t\t{\"id\":3, \"nombre\":\"jamon cocido\", \"precio\":24},\n" +
+                        "\t\t{\"id\":4, \"nombre\":\"sandwich con ananá\", \"precio\":56},\n" +
+                        "\t\t{\"id\":5, \"nombre\":\"sandwiches\", \"precio\":65},\n" +
+                        "\t\t{\"id\":6, \"nombre\":\"triples\", \"precio\":67},\n" +
+                        "\t\t{\"id\":7, \"nombre\":\"jamon cocido\", \"precio\":24},\n" +
+                        "\t\t{\"id\":8, \"nombre\":\"sandwich con ananá\", \"precio\":24},\n" +
+                        "\t\t{\"id\":9, \"nombre\":\"sandwiches\", \"precio\":14},\n" +
+                        "\t\t{\"id\":10, \"nombre\":\"triples\", \"precio\":67},\n" +
+                        "\t\t{\"id\":11, \"nombre\":\"jamon cocido\", \"precio\":24},\n" +
+                        "\t\t{\"id\":12, \"nombre\":\"sandwich con ananá\", \"precio\":24},\n" +
+                        "\t\t{\"id\":13, \"nombre\":\"sandwiches\", \"precio\":12},\n" +
+                        "\t\t{\"id\":14, \"nombre\":\"triples\", \"precio\":67},\n" +
+                        "\t\t{\"id\":15, \"nombre\":\"jamon cocido\", \"precio\":24},\n" +
+                        "\t\t{\"id\":16, \"nombre\":\"sandwich con ananá\", \"precio\":78}\n" +
+                        "\t],\n" +
+                        "\t\"pizzas\":[\n" +
+                        "\t\t{\"id\":1, \"nombre\":\"especial\", \"precio\":122},\n" +
+                        "\t\t{\"id\":2, \"nombre\":\"napolitana\", \"precio\":190},\n" +
+                        "\t\t{\"id\":3, \"nombre\":\"cebollada\", \"precio\":180},\n" +
+                        "\t\t{\"id\":4, \"nombre\":\"4 quesos\", \"precio\":172},\n" +
+                        "\t\t{\"id\":5, \"nombre\":\"especial\", \"precio\":122},\n" +
+                        "\t\t{\"id\":6, \"nombre\":\"napolitana\", \"precio\":190},\n" +
+                        "\t\t{\"id\":7, \"nombre\":\"cebollada\", \"precio\":180},\n" +
+                        "\t\t{\"id\":8, \"nombre\":\"4 quesos\", \"precio\":172},\n" +
+                        "\t\t{\"id\":9, \"nombre\":\"especial\", \"precio\":122},\n" +
+                        "\t\t{\"id\":10, \"nombre\":\"napolitana\", \"precio\":190},\n" +
+                        "\t\t{\"id\":11, \"nombre\":\"cebollada\", \"precio\":180},\n" +
+                        "\t\t{\"id\":12, \"nombre\":\"4 quesos\", \"precio\":172},\n" +
+                        "\t\t{\"id\":13, \"nombre\":\"especial\", \"precio\":122},\n" +
+                        "\t\t{\"id\":14, \"nombre\":\"napolitana\", \"precio\":190},\n" +
+                        "\t\t{\"id\":15, \"nombre\":\"cebollada\", \"precio\":180},\n" +
+                        "\t\t{\"id\":16, \"nombre\":\"4 quesos\", \"precio\":172}\n" +
+                        "\t],\n" +
+                        "\t\"postres\":[\n" +
+                        "\t\t{\"id\":1, \"nombre\":\"helado\", \"precio\":56},\n" +
+                        "\t\t{\"id\":2, \"nombre\":\"torta alemana\", \"precio\":56},\n" +
+                        "\t\t{\"id\":3, \"nombre\":\"tiramisú\", \"precio\":56},\n" +
+                        "\t\t{\"id\":4, \"nombre\":\"frutas\", \"precio\":56},\n" +
+                        "\t\t{\"id\":5, \"nombre\":\"helado\", \"precio\":56},\n" +
+                        "\t\t{\"id\":6, \"nombre\":\"torta alemana\", \"precio\":56},\n" +
+                        "\t\t{\"id\":7, \"nombre\":\"tiramisú\", \"precio\":56},\n" +
+                        "\t\t{\"id\":8, \"nombre\":\"frutas\", \"precio\":56},\n" +
+                        "\t\t{\"id\":9, \"nombre\":\"helado\", \"precio\":56},\n" +
+                        "\t\t{\"id\":10, \"nombre\":\"torta alemana\", \"precio\":56},\n" +
+                        "\t\t{\"id\":11, \"nombre\":\"tiramisú\", \"precio\":56},\n" +
+                        "\t\t{\"id\":12, \"nombre\":\"frutas\", \"precio\":56}\n" +
+                        "\t],\n" +
+                        "\t\"bebidas\":[\n" +
+                        "\t\t{\"id\":1, \"nombre\":\"fernet\", \"precio\":122},\n" +
+                        "\t\t{\"id\":2, \"nombre\":\"gancia\", \"precio\":122},\n" +
+                        "\t\t{\"id\":3, \"nombre\":\"wisky\", \"precio\":190},\n" +
+                        "\t\t{\"id\":4, \"nombre\":\"martini\", \"precio\":142},\n" +
+                        "\t\t{\"id\":5, \"nombre\":\"jarra loca\", \"precio\":200},\n" +
+                        "\t\t{\"id\":6, \"nombre\":\"fernet\", \"precio\":122},\n" +
+                        "\t\t{\"id\":7, \"nombre\":\"gancia\", \"precio\":122},\n" +
+                        "\t\t{\"id\":8, \"nombre\":\"wisky\", \"precio\":190},\n" +
+                        "\t\t{\"id\":9, \"nombre\":\"martini\", \"precio\":142},\n" +
+                        "\t\t{\"id\":10, \"nombre\":\"jarra loca\", \"precio\":200},\n" +
+                        "\t\t{\"id\":11, \"nombre\":\"fernet\", \"precio\":122},\n" +
+                        "\t\t{\"id\":12, \"nombre\":\"gancia\", \"precio\":122},\n" +
+                        "\t\t{\"id\":13, \"nombre\":\"wisky\", \"precio\":190},\n" +
+                        "\t\t{\"id\":14, \"nombre\":\"martini\", \"precio\":142},\n" +
+                        "\t\t{\"id\":15, \"nombre\":\"jarra loca\", \"precio\":200}\n" +
+                        "\t]\n" +
+                        "}");
+                startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -71,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(i);
                 }
                 else {
-                    resultadoTextView.setText(R.string.codigo_no_escaneado); //TODO presentar cartel
+                    //TODO presentar cartel informando error
                 }
             }
         }

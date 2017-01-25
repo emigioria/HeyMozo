@@ -1,35 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginEnd="20dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginStart="20dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
     android:elevation="1dp"
-    android:layout_marginTop="5dp">
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:text="10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cantidad_textview"
+        android:textSize="@dimen/tamañoLetraProducto"
+        android:layout_weight="0.05" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nombre_producto_textview"
         android:layout_weight="1"
-        android:textSize="24sp" />
+        android:textSize="@dimen/tamañoLetraProducto"
+        android:text="Empanadas" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/moneda_textview"
-        android:textSize="24sp"
-        android:layout_weight="0.09"
-        android:textAlignment="center" />
+        android:textSize="@dimen/tamañoLetraProducto"
+        android:layout_weight="0"
+        android:textAlignment="textEnd"
+        android:text="$" />
 
     <TextView
         android:layout_width="wrap_content"
+        android:minWidth="60dp"
         android:layout_height="wrap_content"
         android:id="@+id/precio_textview"
-        android:textSize="24sp"
-        android:layout_gravity="right" />
+        android:textSize="@dimen/tamañoLetraProducto"
+        android:layout_weight="0"
+        android:text="200"
+        android:textAlignment="textEnd"/>
+
+    <ImageButton
+        android:layout_width="21dp"
+        android:layout_height="20dp"
+        app:srcCompat="@android:drawable/ic_delete"
+        android:id="@+id/borrar_imagebtn"
+        android:background="@android:drawable/ic_delete"
+        android:layout_gravity="center" />
 </LinearLayout>
