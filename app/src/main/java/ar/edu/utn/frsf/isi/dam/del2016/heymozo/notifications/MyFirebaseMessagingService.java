@@ -11,6 +11,7 @@ import android.support.v7.app.NotificationCompat;
 import com.google.firebase.messaging.RemoteMessage;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.MainActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
 /**
  * Created by daniel on 23/01/17.
@@ -27,8 +28,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
 	private void sendNotification(String messageTitle,String messageBody) {
 	android.support.v4.app.NotificationCompat.Builder mBuilder =
 				new NotificationCompat.Builder(this)
-						//TODO agregar ícono
-						//.setSmallIcon(R.drawable.ic_stat_name)
+						.setSmallIcon(R.drawable.ic_stat_name)
 						.setContentTitle(messageTitle)
 						.setLights(Color.argb(1, 255, 128, 0), 100, 0)
 						.setVibrate(new long[] { 1000, 1000})
