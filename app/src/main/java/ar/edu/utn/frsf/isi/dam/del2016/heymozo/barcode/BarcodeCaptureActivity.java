@@ -44,9 +44,6 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -72,7 +69,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     // Constants used to pass extra data in the intent
     public static final String BarcodeObject = "Barcode";
 
-    private static String IP_SERVER = "192.168.0.104";
+    private static String IP_SERVER = "192.168.1.101";
     private static String PORT_SERVER = "3000";
 
     private CameraSource mCameraSource;
@@ -103,17 +100,18 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
 
     @Override
     public void onDetectedQrCode(Barcode barcode) {
+        Log.d(TAG, "onDetectedQrCode: " + barcode.displayValue);
         if (barcode != null) {
-            solicitarCarta();
+            solicitarCarta(barcode.displayValue);
         }
     }
 
 
 
-    public void solicitarCarta(){
+    public void solicitarCarta(String barcode){
         HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL("http://" + IP_SERVER + ":" + PORT_SERVER + "/db");
+            URL url = new URL("http://" + IP_SERVER + ":" + PORT_SERVER + "/cartas/" + barcode + "/");
             urlConnection= (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);
