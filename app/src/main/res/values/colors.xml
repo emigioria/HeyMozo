@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimary">#ff9800</color>
     <color name="colorPrimaryDark">#F57C00</color>
     <color name="colorAccent">#FFC107</color>
 
+
+    <color name="productoSeleccionado">#f57c00</color>
+    <item name="productoSeleccionado2" type="color">#b4f57c00</item>
     <item name="white" type="color">#ffffff</item>
-    <item name="productoSeleccionado" type="color">#94ede4</item>
     <item name="blue" type="color">#75bdd7</item>
     <item name="purple" type="color">#FFAA66CC</item>
     <item name="green" type="color">#FF99CC00</item>

@@ -9,4 +9,5 @@
     <string name="cargando_ubicaciones">Cargando ubicaciones...</string>
     <string name="ubicaciones_cargadas">Se han cargado las ubicaciones</string>
     <string name="error_servidor">No se ha podido establecer la conexión con el servidor</string>
+    <string name="colorProductoSeleccionado">0xFF00FF</string>
 </resources>

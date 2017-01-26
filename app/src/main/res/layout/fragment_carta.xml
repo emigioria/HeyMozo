@@ -11,8 +11,5 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/seccion_listview"
-        android:headerDividersEnabled="false"
-        android:footerDividersEnabled="false"
-        android:background="@color/white" />
+        android:id="@+id/seccion_listview"/>
 </RelativeLayout>
