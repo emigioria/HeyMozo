@@ -6,8 +6,17 @@
     <string name="codigo_no_escaneado">Código no escaneado</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_carta">CartaActivity</string>
-    <string name="cargando_ubicaciones">Cargando ubicaciones...</string>
+    <string name="cargando_ubicaciones">Cargando ubicaciones…</string>
     <string name="ubicaciones_cargadas">Se han cargado las ubicaciones</string>
     <string name="error_servidor">No se ha podido establecer la conexión con el servidor</string>
     <string name="colorProductoSeleccionado">0xFF00FF</string>
+    <string name="title_activity_pedido">Su pedido</string>
+    <string name="nombre_comedor">Restaurante familiar del tío Dani</string>
+    <string name="totalStr">Total</string>
+    <string name="total">$%d</string>
+    <string name="estadoStr">Estado de su pedido:</string>
+    <string name="estado">%s</string>
+    <string name="tiempo_esperaStr">Tiempo de espera estimado</string>
+    <string name="tiempo_espera">%s</string>
+    <string name="confirmar_pedido">CONFIRMAR PEDIDO</string>
 </resources>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity"
+    tools:showIn="@layout/activity_pedido">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@string/nombre_comedor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewNombreComedor"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textAlignment="center" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:id="@+id/layoutTotal">
+
+            <TextView
+                android:text="@string/totalStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTotalStr" />
+
+            <TextView
+                android:text="@string/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTotal"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentEnd="false" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:id="@+id/layoutEstado">
+
+            <TextView
+                android:text="@string/estadoStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewEstadoStr" />
+
+            <TextView
+                android:text="@string/estado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewEstado"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentEnd="false" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:id="@+id/layoutTiempo">
+
+            <TextView
+                android:text="@string/tiempo_esperaStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTiempoEsperaStr" />
+
+            <TextView
+                android:text="@string/tiempo_espera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTiempoEspera"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentEnd="false" />
+        </RelativeLayout>
+
+        <Button
+            android:text="@string/confirmar_pedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonConfirmar" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

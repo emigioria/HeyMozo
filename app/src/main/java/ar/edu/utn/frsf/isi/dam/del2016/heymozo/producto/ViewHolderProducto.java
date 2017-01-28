@@ -1,4 +1,4 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto;
 
 import android.media.Image;
 import android.view.View;
@@ -13,16 +13,16 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
  * Created by lucas on 25/01/17.
  */
 
-class ViewHolder {
-    TextView cantidad;
-    TextView nombreProducto;
-    TextView moneda;
-    TextView precio;
-    LinearLayout secondLayout;
-    ImageView agregar;
-    ImageView quitar;
+public class ViewHolderProducto {
+    public TextView cantidad;
+    public TextView nombreProducto;
+    public TextView moneda;
+    public TextView precio;
+    public LinearLayout secondLayout;
+    public ImageView agregar;
+    public ImageView quitar;
 
-    ViewHolder(View viewBase){
+    public ViewHolderProducto(View viewBase){
         this.cantidad = (TextView) viewBase.findViewById(R.id.cantidad_textview);
         this.nombreProducto = (TextView) viewBase.findViewById(R.id.nombre_producto_textview);
         this.moneda = (TextView) viewBase.findViewById(R.id.moneda_textview);

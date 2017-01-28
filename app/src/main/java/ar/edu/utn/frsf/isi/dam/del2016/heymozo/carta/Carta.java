@@ -6,29 +6,25 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
+
 /**
  * Created by lucas on 25/01/17.
  */
 
 class Carta {
+    //public static final String ID = "id";
+    private static final String NOMBRE_RESTAURANT = "nombre_restaurant";
+    private static final String SECCIONES = "secciones";
+    private static final String NOMBRE_SECCION = "nombre";
+
     private String nombreRestaurant;
-    private String moneda;
     private ArrayList<String> secciones;
     private ArrayList<ArrayList<Producto>> productosSecciones;
-
-    //Metadata
-    private static final String NOMBRE_RESTAURANT = "nombre_restaurant";
-    private static final String MONEDA = "moneda";
-    private static final String SECCIONES = "secciones";
-    //public static final String ID = "id";
-    private static final String NOMBRE_SECCION = "nombre";
-    private static final String NOMBRE_PRODUCTO = "nombre";
-    private static final String PRECIO = "precio";
 
     Carta(String cartaString) throws JSONException {
         JSONObject cartaJSON = new JSONObject(cartaString);
         this.nombreRestaurant = cartaJSON.getJSONObject(NOMBRE_RESTAURANT).getString(NOMBRE_RESTAURANT);
-        this.moneda = cartaJSON.getJSONObject(MONEDA).getString(MONEDA);
         secciones =  new ArrayList<>();
         productosSecciones = new ArrayList<>();
 
@@ -45,7 +41,6 @@ class Carta {
                 for (int j = 0; j < productosSeccionJSON.length(); j++) {
                     productosSeccion.add(
                             new Producto(productosSeccionJSON.getJSONObject(j))
-                            .setCarta(this)
                     );
                 }
                 productosSecciones.add(i,productosSeccion);
@@ -63,48 +58,5 @@ class Carta {
 
     String getNombreRestaurant(){
         return nombreRestaurant;
-    }
-
-    String getMoneda(){
-        return moneda;
-    }
-
-    class Producto {
-        private Integer cantidad;
-        private String nombre;
-        private Double precio;
-        private Carta carta;
-
-        Producto(JSONObject itemJSON) throws JSONException {
-            this.nombre = itemJSON.getString(NOMBRE_PRODUCTO);
-            this.precio = itemJSON.getDouble(PRECIO);
-            this.cantidad = 0;
-        }
-
-        public Producto setCantidad(Integer cantidad){
-            this.cantidad = cantidad;
-            return this;
-        }
-
-        public Producto setCarta(Carta carta){
-            this.carta = carta;
-            return this;
-        }
-
-        Integer getCantidad(){
-            return cantidad;
-        }
-
-        String getNombre(){
-            return nombre;
-        }
-
-        Double getPrecio(){
-            return precio;
-        }
-
-        public Carta getCarta(){
-            return carta;
-        }
     }
 }

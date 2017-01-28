@@ -1,4 +1,4 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -22,14 +22,14 @@ import static java.lang.String.valueOf;
  * Created by lucas on 24/01/17.
  */
 
-class SeccionAdapter extends ArrayAdapter<Producto> {
+class ProductoAdapter extends ArrayAdapter<Producto> {
 
     private LayoutInflater inflater;
     private LinearLayout secondLayoutAnterior;
     private Integer positionAnterior;
     private HashMap<Integer,Integer> selectedRows;
 
-    SeccionAdapter(Context context, ArrayList<Producto> productos) {
+    ProductoAdapter(Context context, ArrayList<Producto> productos) {
         super(context, R.layout.item_carta, productos);
         inflater = LayoutInflater.from(context);
         secondLayoutAnterior = new LinearLayout(context);
