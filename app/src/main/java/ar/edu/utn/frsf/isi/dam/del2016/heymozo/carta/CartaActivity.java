@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -10,38 +11,29 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
+
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.Pedido;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
 public class CartaActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
-
-    public static Carta carta;
+    private static Carta carta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +41,10 @@ public class CartaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carta);
 
         try {
-            carta = new Carta(getIntent().getStringExtra("carta"));
+            carta = new Carta(getIntent().getExtras().getString("carta"));
         } catch (JSONException e) {
             e.printStackTrace();
-            //TODO
+            CartaActivity.this.finish();
         }
 
         setTitle(carta.getNombreRestaurant());
@@ -61,10 +53,21 @@ public class CartaActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        /*
+      The {@link android.support.v4.view.PagerAdapter} that will provide
+      fragments for each of the sections. We use a
+      {@link FragmentPagerAdapter} derivative, which will keep every
+      loaded fragment in memory. If this becomes too memory intensive, it
+      may be best to switch to a
+      {@link android.support.v4.app.FragmentStatePagerAdapter}.
+     */
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        /*
+      The {@link ViewPager} that will host the section contents.
+     */
+        ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -74,7 +77,27 @@ public class CartaActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO al presionar el floatingButton podría ir al resumen de pedido
+                Pedido pedido = new Pedido()
+                        .setCodigoMesa(getIntent().getExtras().getString("mesa"))
+                        .setMoneda(getIntent().getExtras().getString("moneda"))
+                        .setNombreRestaurant(carta.getNombreRestaurant());
+                ArrayList<Producto> productosSeleccionados = new ArrayList<>();
+                int i = 0;
+                for (String seccion : carta.getSecciones()) {
+                    for (Producto p : carta.getProductosSeccion(i)) {
+                        if (p.getCantidad() != 0) {
+                            productosSeleccionados.add(p);
+                        }
+                    }
+                    i++;
+                }
+                pedido.setProductos(productosSeleccionados);
+
+                if (productosSeleccionados.size() > 0) {
+                    Intent intent = new Intent(CartaActivity.this, PedidoActivity.class);
+                    intent.putExtra("pedido", pedido.toJSONObject());
+                    startActivity(intent);
+                }
             }
         });
 
@@ -134,13 +157,7 @@ public class CartaActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_carta, container, false);
             ListView seccionListView = (ListView) rootView.findViewById(R.id.seccion_listview);
 
-
-            try {
-                seccionListView.setAdapter(new SeccionAdapter(getContext(), carta.getProductosSeccion(getArguments().getInt(ARG_SECTION_NUMBER)-1)));
-            } catch (JSONException e) {
-                e.printStackTrace();
-                //TODO
-            }
+            seccionListView.setAdapter(new SeccionAdapter(getContext(), carta.getProductosSeccion(getArguments().getInt(ARG_SECTION_NUMBER) - 1)));
 
             return rootView;
         }

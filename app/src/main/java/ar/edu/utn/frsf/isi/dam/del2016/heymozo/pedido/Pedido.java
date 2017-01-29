@@ -1,95 +1,110 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
-class Pedido {
-    //public static final String ID = "id";
-    private static final String NOMBRE_RESTAURANT = "nombre_restaurant";
-    private static final String MESA = "codigo_mesa";
-    private static final String CODIGO_MESA = "codigo_mesa";
-    private static final String PRODUCTOS = "productos";
-    private static final String FIN_ESPERA = "finaliza";
-
+public class Pedido {
     private String nombreRestaurant;
     private String codigoMesa;
     private ArrayList<Producto> productos;
-    private Date finaliza;
+    private Long finaliza;
     private String estado;
+    private String moneda;
+    private byte[] imagenRestaurante;
 
-    Pedido(){
+    public Pedido() {
         productos = new ArrayList<>();
     }
 
-    Pedido setNombreRestaurant(String nombreRestaurant){
+    public String toJSONObject() {
+        return new Gson().toJson(this);
+    }
+
+    public Pedido setNombreRestaurant(String nombreRestaurant) {
         this.nombreRestaurant = nombreRestaurant;
         return this;
     }
 
-    Pedido setCodigoMesa(String codigoMesa){
+    public String getNombreRestaurant() {
+        return nombreRestaurant;
+    }
+
+    public Pedido setCodigoMesa(String codigoMesa) {
         this.codigoMesa = codigoMesa;
         return this;
     }
 
-    Pedido setProductos(ArrayList<Producto> productos){
+    public String getCodigoMesa() {
+        return codigoMesa;
+    }
+
+    public Pedido setProductos(ArrayList<Producto> productos) {
         this.productos = productos;
         return this;
     }
 
-    Pedido setEstado(String estado){
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public Pedido setFinaliza(Date finaliza) {
+        if(finaliza!=null){
+            this.finaliza = finaliza.getTime();
+        }
+        return this;
+    }
+
+    public Pedido setFinaliza(Long finaliza) {
+        this.finaliza = finaliza;
+        return this;
+    }
+
+    public Long getFinaliza() {
+        return finaliza;
+    }
+
+    public Date getFinalizaDate() {
+        if(finaliza==null){
+            return null;
+        }
+        return new Date(finaliza);
+    }
+
+    public Pedido setEstado(String estado) {
         this.estado = estado;
         return this;
     }
 
-    Pedido setFinaliza(Date fin){
-        this.finaliza = fin;
-        return this;
-    }
-
-    Pedido(String pedidoString) throws JSONException {
-        JSONObject pedidoJSON = new JSONObject(pedidoString);
-        this.nombreRestaurant = pedidoJSON.getJSONObject(NOMBRE_RESTAURANT).getString(NOMBRE_RESTAURANT);
-        try {
-            this.codigoMesa = pedidoJSON.getJSONObject(MESA).getString(CODIGO_MESA);
-        }
-        catch (JSONException e){
-            this.codigoMesa = null;
-        }
-
-        //inicializar lista de titulos de secciones
-        JSONArray jsonArrayProductos = (JSONArray) pedidoJSON.get(PRODUCTOS);
-        if (jsonArrayProductos != null) {
-            for (int i = 0; i < jsonArrayProductos.length(); i++) {
-                productos.add(
-                        new Producto(jsonArrayProductos.getJSONObject(i))
-                );
-            }
-        }
-    }
-
-    String getNombreRestaurant() {
-        return nombreRestaurant;
-    }
-
-    String getCodigoMesa(){
-        return codigoMesa;
-    }
-
-    ArrayList<Producto> getProductos(int seccionID) throws JSONException {
-        return productos;
-    }
-
-    String getEstado(){
+    public String getEstado() {
         return estado;
     }
 
-    Date getFinaliza(){
-        return finaliza;
+    public Pedido setMoneda(String moneda) {
+        this.moneda = moneda;
+        return this;
+    }
+
+    public String getMoneda() {
+        return moneda;
+    }
+
+    public byte[] getImagenRestaurante() {
+        return imagenRestaurante;
+    }
+
+    public void setImagenRestaurante(byte[] imagenRestaurante) {
+        this.imagenRestaurante = imagenRestaurante;
     }
 }

@@ -9,14 +9,15 @@
     <string name="cargando_ubicaciones">Cargando ubicaciones…</string>
     <string name="ubicaciones_cargadas">Se han cargado las ubicaciones</string>
     <string name="error_servidor">No se ha podido establecer la conexión con el servidor</string>
-    <string name="colorProductoSeleccionado">0xFF00FF</string>
     <string name="title_activity_pedido">Su pedido</string>
-    <string name="nombre_comedor">Restaurante familiar del tío Dani</string>
     <string name="totalStr">Total</string>
-    <string name="total">$%d</string>
-    <string name="estadoStr">Estado de su pedido:</string>
-    <string name="estado">%s</string>
+    <string name="estadoStr">Estado de su pedido</string>
     <string name="tiempo_esperaStr">Tiempo de espera estimado</string>
-    <string name="tiempo_espera">%s</string>
     <string name="confirmar_pedido">CONFIRMAR PEDIDO</string>
+    <string name="imagen_del_restaurante">Imagen del restaurante</string>
+    <string name="pedidoNum">Pedido %d</string>
+    <string name="imagen_para_agregar_una_unidad">Imagen para agregar una unidad</string>
+    <string name="imagen_para_quitar_una_unidad">Imagen para quitar una unidad</string>
+    <string name="gracias_por_su_feedback">¡GRACIAS POR SU FEEDBACK!</string>
+    <string name="evalua_tu_experiencia">EVALÚA TU EXPERIENCIA</string>
 </resources>

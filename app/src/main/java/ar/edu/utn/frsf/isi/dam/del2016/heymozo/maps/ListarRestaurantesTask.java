@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.Restaurante;
-
 /**
  * Created by daniel on 23/01/17.
  */

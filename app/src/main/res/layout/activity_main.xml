@@ -12,24 +12,24 @@
     tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.MainActivity">
 
     <Button
-        android:text="@string/ver_carta"
+        android:id="@+id/btn_ver_carta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:id="@+id/btn_ver_carta" />
+        android:text="@string/ver_carta" />
 
     <Button
-        android:text="@string/ver_mapa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/btn_ver_mapa"
-        android:layout_above="@+id/btn_ver_carta"/>
-
-    <Button
-        android:text="No tengo un código QR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_ver_carta"
+        android:text="@string/ver_mapa" />
+
+    <Button
         android:id="@+id/btn_sin_codigo"
-        android:layout_alignParentBottom="true"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="No tengo un código QR" />
 
 </RelativeLayout>

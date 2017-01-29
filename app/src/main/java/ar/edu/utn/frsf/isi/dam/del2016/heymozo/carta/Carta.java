@@ -22,8 +22,8 @@ class Carta {
     private ArrayList<String> secciones;
     private ArrayList<ArrayList<Producto>> productosSecciones;
 
-    Carta(String cartaString) throws JSONException {
-        JSONObject cartaJSON = new JSONObject(cartaString);
+    Carta(String cartaStringJSON) throws JSONException {
+        JSONObject cartaJSON = new JSONObject(cartaStringJSON);
         this.nombreRestaurant = cartaJSON.getJSONObject(NOMBRE_RESTAURANT).getString(NOMBRE_RESTAURANT);
         secciones =  new ArrayList<>();
         productosSecciones = new ArrayList<>();
@@ -52,7 +52,7 @@ class Carta {
         return secciones;
     }
 
-    ArrayList<Producto> getProductosSeccion(int seccionID) throws JSONException {
+    ArrayList<Producto> getProductosSeccion(int seccionID) {
         return productosSecciones.get(seccionID);
     }
 

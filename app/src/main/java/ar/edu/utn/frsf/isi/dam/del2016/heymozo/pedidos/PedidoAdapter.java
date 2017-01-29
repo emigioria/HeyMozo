@@ -1,4 +1,4 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
@@ -23,14 +22,14 @@ import static java.lang.String.valueOf;
  * Created by lucas on 24/01/17.
  */
 
-class SeccionAdapter extends ArrayAdapter<Producto> {
+class PedidoAdapter extends ArrayAdapter<Producto> {
 
     private LayoutInflater inflater;
     private LinearLayout secondLayoutAnterior;
     private Integer positionAnterior;
     private HashMap<Integer,Integer> selectedRows;
 
-    SeccionAdapter(Context context, ArrayList<Producto> productos) {
+    PedidoAdapter(Context context, ArrayList<Producto> productos) {
         super(context, R.layout.item_producto, productos);
         inflater = LayoutInflater.from(context);
         secondLayoutAnterior = new LinearLayout(context);
@@ -65,7 +64,7 @@ class SeccionAdapter extends ArrayAdapter<Producto> {
         holder.cantidad.setText(valueOf(cantidad));
         holder.nombreProducto.setText(this.getItem(position).getNombre());
         holder.moneda.setText(this.getItem(position).getMoneda());
-        holder.precio.setText(String.format(Locale.getDefault(),"%.2f",this.getItem(position).getPrecio()));
+        holder.precio.setText(valueOf(this.getItem(position).getPrecio()));
 
         if(selectedRows.get(position)!=null){
             holder.secondLayout.setVisibility(selectedRows.get(position));
@@ -77,11 +76,13 @@ class SeccionAdapter extends ArrayAdapter<Producto> {
         final ViewHolderProducto finalHolder = holder;
         final View finalRow = row;
 
+        Log.v("Position:",positionAnterior+" - "+position);
         row.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
                 secondLayoutAnterior.setVisibility(LinearLayout.GONE);
                 selectedRows.put(positionAnterior,LinearLayout.GONE);
+                Log.v("ClickPosition:",positionAnterior+" - "+position);
                 secondLayoutAnterior = finalHolder.secondLayout;
                 positionAnterior = position;
 
