@@ -82,7 +82,7 @@ public class PedidoActivity extends AppCompatActivity {
             textViewTiempoEspera.setText(espera);
         }
 
-        textViewTotal.setText(String.format(Locale.getDefault(), pedido.getMoneda() + "%.2f", calcularTotal(pedido)));
+        textViewTotal.setText(String.format(Locale.getDefault(), pedido.getMoneda() + "%.2f", pedido.getTotal()));
 
         buttonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,13 +105,5 @@ public class PedidoActivity extends AppCompatActivity {
         layoutEstado = findViewById(R.id.layoutEstado);
         layoutTiempo = findViewById(R.id.layoutTiempo);
         imagenToolbar = (ImageView) findViewById(R.id.imagenToolbar);
-    }
-
-    private Double calcularTotal(Pedido pedido) {
-        Double total = 0.0;
-        for (Producto p : pedido.getProductos()) {
-            total += p.getPrecio() * p.getCantidad();
-        }
-        return total;
     }
 }

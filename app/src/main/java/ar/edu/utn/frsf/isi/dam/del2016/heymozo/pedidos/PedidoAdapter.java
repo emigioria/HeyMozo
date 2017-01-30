@@ -1,6 +1,7 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,10 +10,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.Pedido;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.ViewHolderPedido;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.ViewHolderProducto;
 
@@ -22,19 +29,13 @@ import static java.lang.String.valueOf;
  * Created by lucas on 24/01/17.
  */
 
-class PedidoAdapter extends ArrayAdapter<Producto> {
+class PedidoAdapter extends ArrayAdapter<Pedido> {
 
     private LayoutInflater inflater;
-    private LinearLayout secondLayoutAnterior;
-    private Integer positionAnterior;
-    private HashMap<Integer,Integer> selectedRows;
 
-    PedidoAdapter(Context context, ArrayList<Producto> productos) {
-        super(context, R.layout.item_producto, productos);
+    PedidoAdapter(Context context, ArrayList<Pedido> pedidos) {
+        super(context, R.layout.item_producto, pedidos);
         inflater = LayoutInflater.from(context);
-        secondLayoutAnterior = new LinearLayout(context);
-        positionAnterior = 0;
-        selectedRows = new HashMap();
     }
 
     @NonNull
@@ -42,91 +43,53 @@ class PedidoAdapter extends ArrayAdapter<Producto> {
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
 
         View row = convertView;
-        if(row == null){
+        if (row == null) {
             row = inflater.inflate(R.layout.item_producto, parent, false);
         }
 
-        ViewHolderProducto holder = (ViewHolderProducto) row.getTag();
-        if(holder == null){
-            holder = new ViewHolderProducto(row);
+        ViewHolderPedido holder = (ViewHolderPedido) row.getTag();
+        if (holder == null) {
+            holder = new ViewHolderPedido(row);
             row.setTag(holder);
         }
+        final Pedido pedido = this.getItem(position);
 
-        Integer cantidad = this.getItem(position).getCantidad();
-        if(cantidad>0){
-            holder.cantidad.setVisibility(View.VISIBLE); //Se muestra el campo cantidad si es mayor que 0
-            row.setBackgroundColor(0x66FF7C00);
-        }else{
-            holder.cantidad.setVisibility(View.GONE);
-            row.setBackgroundColor(0x00FFFFFF);
+        String numPedido = String.format(Locale.getDefault(), getContext().getString(R.string.pedidoNum), position);
+        holder.textviewPedido.setText(numPedido);
+        holder.textviewMoneda.setText(pedido.getMoneda());
+        holder.textviewFecha.setText(DateFormat.getDateInstance().format(new Date(pedido.getFechaPedido())));
+        holder.textviewEstado.setText(pedido.getEstado());
+        holder.textviewTotal.setText(valueOf(pedido.getTotal()));
+        holder.textviewNombreRestaurante.setText(pedido.getNombreRestaurant());
+
+        if (pedido.getCalificacion() != null) {
+            holder.buttonGracias.setVisibility(View.GONE);
+            holder.buttonEvaluarExp.setVisibility(View.VISIBLE);
+        } else {
+            holder.buttonGracias.setVisibility(View.VISIBLE);
+            holder.buttonEvaluarExp.setVisibility(View.GONE);
         }
 
-        holder.cantidad.setText(valueOf(cantidad));
-        holder.nombreProducto.setText(this.getItem(position).getNombre());
-        holder.moneda.setText(this.getItem(position).getMoneda());
-        holder.precio.setText(valueOf(this.getItem(position).getPrecio()));
-
-        if(selectedRows.get(position)!=null){
-            holder.secondLayout.setVisibility(selectedRows.get(position));
-        }else{
-            holder.secondLayout.setVisibility(LinearLayout.GONE);
-        }
-
-
-        final ViewHolderProducto finalHolder = holder;
-        final View finalRow = row;
-
-        Log.v("Position:",positionAnterior+" - "+position);
         row.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                Intent i = new Intent(getContext(), PedidoActivity.class);
+                i.putExtra("pedido", pedido.toJSONObject());
+                getContext().startActivity(i);
+            }
+        });
 
-                secondLayoutAnterior.setVisibility(LinearLayout.GONE);
-                selectedRows.put(positionAnterior,LinearLayout.GONE);
-                Log.v("ClickPosition:",positionAnterior+" - "+position);
-                secondLayoutAnterior = finalHolder.secondLayout;
-                positionAnterior = position;
-
-                finalHolder.secondLayout.setVisibility(LinearLayout.VISIBLE);
-                selectedRows.put(position,LinearLayout.VISIBLE);
-
+        holder.buttonEvaluarExp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pedido.setCalificacion("Muy buena");
                 notifyDataSetChanged();
             }
         });
 
-        holder.agregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Integer cantidad = getItem(position).getCantidad()+1;
-                getItem(position).setCantidad(cantidad);
-                finalHolder.cantidad.setText(valueOf(cantidad));
-                finalHolder.cantidad.setVisibility(View.VISIBLE);
-                finalRow.setBackgroundColor(0x66FF7C00);
-            }
-        });
-
-        holder.quitar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Integer cantidad = getItem(position).getCantidad()-1;
-
-                if(cantidad>0) {
-                    getItem(position).setCantidad(cantidad);
-                    finalHolder.cantidad.setText(valueOf(cantidad));
-                    finalHolder.cantidad.setVisibility(View.VISIBLE);
-                    finalRow.setBackgroundColor(0x66FF7C00);
-                }
-                else{
-                    getItem(position).setCantidad(0);
-                    finalHolder.cantidad.setVisibility(View.GONE);
-                    finalRow.setBackgroundColor(0x00FFFFFF);
-                }
-            }
-        });
-
-        return(row);
+        return (row);
     }
 
-    public Producto getItem(int position){
+    public Pedido getItem(int position) {
         return super.getItem(position);
     }
 }

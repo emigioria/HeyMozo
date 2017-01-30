@@ -17,7 +17,7 @@ public class ViewHolderPedido {
     public TextView textviewMoneda;
     public TextView textviewFecha;
     public TextView textviewEstado;
-    public TextView textviewPrecio;
+    public TextView textviewTotal;
     public TextView textviewNombreRestaurante;
     public Button buttonGracias;
     public Button buttonEvaluarExp;
@@ -27,7 +27,7 @@ public class ViewHolderPedido {
         this.textviewMoneda = (TextView) viewBase.findViewById(R.id.textviewMoneda);
         this.textviewFecha = (TextView) viewBase.findViewById(R.id.textviewFecha);
         this.textviewEstado = (TextView) viewBase.findViewById(R.id.textviewEstado);
-        this.textviewPrecio = (TextView) viewBase.findViewById(R.id.textviewPrecio);
+        this.textviewTotal = (TextView) viewBase.findViewById(R.id.textViewTotal);
         this.textviewNombreRestaurante = (TextView) viewBase.findViewById(R.id.textviewNombreRestaurante);
         this.buttonGracias = (Button) viewBase.findViewById(R.id.buttonGracias);
         this.buttonEvaluarExp = (Button) viewBase.findViewById(R.id.buttonEvaluarExp);

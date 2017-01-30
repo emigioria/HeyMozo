@@ -23,6 +23,9 @@ public class Pedido {
     private String estado;
     private String moneda;
     private byte[] imagenRestaurante;
+    private Long fechaPedido;
+    private Double total;
+    private String calificacion;
 
     public Pedido() {
         productos = new ArrayList<>();
@@ -60,7 +63,7 @@ public class Pedido {
     }
 
     public Pedido setFinaliza(Date finaliza) {
-        if(finaliza!=null){
+        if (finaliza != null) {
             this.finaliza = finaliza.getTime();
         }
         return this;
@@ -76,7 +79,7 @@ public class Pedido {
     }
 
     public Date getFinalizaDate() {
-        if(finaliza==null){
+        if (finaliza == null) {
             return null;
         }
         return new Date(finaliza);
@@ -100,11 +103,59 @@ public class Pedido {
         return moneda;
     }
 
-    public byte[] getImagenRestaurante() {
-        return imagenRestaurante;
+    public Pedido setTotal(Double total){
+        this.total = total;
+        return this;
+    }
+
+    public Double getTotal() {
+        if (this.total != null) {
+            return this.total;
+        }
+        Double total = 0.0;
+        for (Producto p : this.getProductos()) {
+            total += p.getPrecio() * p.getCantidad();
+        }
+        this.total = total;
+        return total;
     }
 
     public void setImagenRestaurante(byte[] imagenRestaurante) {
         this.imagenRestaurante = imagenRestaurante;
+    }
+
+    public byte[] getImagenRestaurante() {
+        return imagenRestaurante;
+    }
+
+    public Pedido setFechaPedido(Date fechaPedido) {
+        if (fechaPedido != null) {
+            this.fechaPedido = fechaPedido.getTime();
+        }
+        return this;
+    }
+
+    public void setFechaPedido(Long fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+
+    public Date getFechaPedidoDate() {
+        if (fechaPedido == null) {
+            return null;
+        }
+        return new Date(fechaPedido);
+    }
+
+    public Long getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public Pedido setCalificacion(String calificacion) {
+        this.calificacion = calificacion;
+        return this;
+    }
+
+    public String getCalificacion() {
+        return calificacion;
     }
 }

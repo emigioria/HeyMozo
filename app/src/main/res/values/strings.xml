@@ -20,4 +20,5 @@
     <string name="imagen_para_quitar_una_unidad">Imagen para quitar una unidad</string>
     <string name="gracias_por_su_feedback">¡GRACIAS POR SU FEEDBACK!</string>
     <string name="evalua_tu_experiencia">EVALÚA TU EXPERIENCIA</string>
+    <string name="title_activity_mis_pedidos">Mis pedidos</string>
 </resources>

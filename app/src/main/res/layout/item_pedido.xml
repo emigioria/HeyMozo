@@ -64,7 +64,7 @@
             android:textSize="@dimen/tamañoLetraProducto" />
 
         <TextView
-            android:id="@+id/textviewPrecio"
+            android:id="@+id/textViewTotal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

@@ -77,6 +77,10 @@
             android:name=".pedido.PedidoActivity"
             android:label="@string/title_activity_pedido"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".pedidos.MisPedidos"
+            android:label="@string/title_activity_mis_pedidos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
