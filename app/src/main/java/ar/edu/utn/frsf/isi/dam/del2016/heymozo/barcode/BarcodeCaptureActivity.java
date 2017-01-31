@@ -106,13 +106,11 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         }
     }
 
-
-
-    public void solicitarCarta(String barcode){
+    public void solicitarCarta(String barcode) { //TODO debería hacerlo una tarea asincrónica
         HttpURLConnection urlConnection = null;
         try {
             URL url = new URL("http://" + IP_SERVER + ":" + PORT_SERVER + "/cartas/" + barcode + "/");
-            urlConnection= (HttpURLConnection) url.openConnection();
+            urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);
             StringBuilder sb = new StringBuilder();
@@ -123,14 +121,13 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
                 data = isw.read();
             }
             Intent intent = new Intent();
-            intent.putExtra("carta",sb.toString());
+            intent.putExtra("carta", sb.toString());
             setResult(CommonStatusCodes.SUCCESS, intent);
             finish();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if(urlConnection!=null) urlConnection.disconnect();
+            if (urlConnection != null) urlConnection.disconnect();
         }
     }
 
@@ -148,7 +145,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
 
     /**
      * Creates and starts the camera.
-     *
+     * <p>
      * Suppressing InlinedApi since there is a check that the minimum version is met before using
      * the constant.
      */
