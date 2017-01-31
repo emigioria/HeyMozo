@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_more_information"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/acerca_de_hey_mozo"
         app:showAsAction="never" />
 </menu>

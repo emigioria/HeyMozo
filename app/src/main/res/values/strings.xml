@@ -21,5 +21,6 @@
     <string name="gracias_por_su_feedback">¡GRACIAS POR SU FEEDBACK!</string>
     <string name="evalua_tu_experiencia">EVALÚA TU EXPERIENCIA</string>
     <string name="title_activity_mis_pedidos">Mis pedidos</string>
+    <string name="acerca_de_hey_mozo">Acerca de Hey, Mozo!</string>
     <string name="ip_server">192.168.10.101</string>
 </resources>
