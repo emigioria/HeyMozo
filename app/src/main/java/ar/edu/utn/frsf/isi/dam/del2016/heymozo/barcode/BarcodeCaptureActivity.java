@@ -69,7 +69,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     // Constants used to pass extra data in the intent
     public static final String BarcodeObject = "Barcode";
 
-    private static String IP_SERVER = "192.168.1.101";
     private static String PORT_SERVER = "3000";
 
     private CameraSource mCameraSource;
@@ -109,7 +108,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     public void solicitarCarta(String barcode) { //TODO debería hacerlo una tarea asincrónica
         HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL("http://" + IP_SERVER + ":" + PORT_SERVER + "/cartas/" + barcode + "/");
+            URL url = new URL("http://" + getString(R.string.ip_server) + ":" + PORT_SERVER + "/cartas/" + barcode);
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);

@@ -44,6 +44,9 @@ public class CartaActivity extends AppCompatActivity {
             carta = new Carta(getIntent().getExtras().getString("carta"));
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+
+        if(carta == null){
             CartaActivity.this.finish();
         }
 

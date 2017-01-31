@@ -47,6 +47,10 @@ public class PedidoActivity extends AppCompatActivity {
 
         pedido = gson.fromJson(getIntent().getStringExtra("pedido"), Pedido.class);
 
+        if(pedido == null){
+            this.finish();
+        }
+
         textViewNombreComedor.setText(pedido.getNombreRestaurant());
 
         if (pedido.getEstado() == null) {

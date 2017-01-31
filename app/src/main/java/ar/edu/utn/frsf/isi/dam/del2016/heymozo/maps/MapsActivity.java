@@ -75,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 		askForPermission();
 
-		listarRestaurantesTask = new ListarRestaurantesTask(this);
+		listarRestaurantesTask = new ListarRestaurantesTask(this,this);
 		listarRestaurantesTask.execute();
 	}
 
