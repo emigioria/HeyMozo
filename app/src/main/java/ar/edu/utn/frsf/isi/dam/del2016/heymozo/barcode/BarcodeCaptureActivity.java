@@ -35,28 +35,32 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.Serializable;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.camera.CameraSource;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.camera.CameraSourcePreview;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.Carta;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaListener;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaTask;
+
+import static ar.edu.utn.frsf.isi.dam.del2016.heymozo.R.id.loadingPanelCarta;
 
 public final class BarcodeCaptureActivity extends AppCompatActivity
-        implements BarcodeTracker.BarcodeGraphicTrackerCallback {
+        implements BarcodeTracker.BarcodeGraphicTrackerCallback, SolicitarCartaListener {
 
     private static final String TAG = "Barcode-reader";
 
@@ -66,13 +70,9 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     // Permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
 
-    // Constants used to pass extra data in the intent
-    public static final String BarcodeObject = "Barcode";
-
-    private static String PORT_SERVER = "3000";
-
     private CameraSource mCameraSource;
     private CameraSourcePreview mPreview;
+    private RelativeLayout loadingPanelCarta;
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -83,6 +83,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         setContentView(R.layout.barcode_capture);
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
+        loadingPanelCarta = (RelativeLayout) findViewById(R.id.loadingPanelCarta);
 
         boolean autoFocus = true;
         boolean useFlash = false;
@@ -101,33 +102,34 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     public void onDetectedQrCode(Barcode barcode) {
         Log.d(TAG, "onDetectedQrCode: " + barcode.displayValue);
         if (barcode != null) {
-            solicitarCarta(barcode.displayValue);
+            SolicitarCartaTask solicitarCartaTask = new SolicitarCartaTask(this);
+            solicitarCartaTask.execute(barcode.displayValue);
         }
     }
 
-    public void solicitarCarta(String barcode) { //TODO debería hacerlo una tarea asincrónica
-        HttpURLConnection urlConnection = null;
-        try {
-            URL url = new URL("http://" + getString(R.string.ip_server) + ":" + PORT_SERVER + "/cartas/" + barcode);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            InputStreamReader isw = new InputStreamReader(in);
-            StringBuilder sb = new StringBuilder();
-            int data = isw.read();
-            while (data != -1) {
-                char current = (char) data;
-                sb.append(current);
-                data = isw.read();
-            }
-            Intent intent = new Intent();
-            intent.putExtra("carta", sb.toString());
-            setResult(CommonStatusCodes.SUCCESS, intent);
-            finish();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (urlConnection != null) urlConnection.disconnect();
+    @Override
+    public void busquedaIniciada() {
+        loadingPanelCarta.setVisibility(View.VISIBLE);
+        //mPreview.stop();
+        //Toast.makeText(getApplicationContext(),"Esperando al servidor...",Toast.LENGTH_LONG);
+    }
+
+    @Override
+    public void busquedaFinalizada(String cartaJSON, int status) {
+        switch (status) {
+            case SolicitarCartaTask.OK:
+                Intent i = new Intent(this, CartaActivity.class);
+                i.putExtra("carta", cartaJSON);
+                startActivity(i);
+                break;
+            case SolicitarCartaTask.CANCELADO:
+                //TODO
+                break;
+            case SolicitarCartaTask.ERROR:
+                Toast.makeText(this,"Ocurrió un error buscando la carta",Toast.LENGTH_SHORT);
+                break;
         }
+        loadingPanelCarta.setVisibility(View.GONE);
     }
 
     // Handles the requesting of the camera permission.

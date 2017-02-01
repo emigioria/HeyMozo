@@ -8,12 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.google.android.gms.common.api.CommonStatusCodes;
-
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.MapsActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.FirebaseService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.MyFirebaseMessagingService;
@@ -25,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnVerCarta;
     private Button btnVerCartaSinCodigo;
     private Button btn_ver_mis_pedidos;
-
-    private static final int BARCODE_READER_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
-                startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
+                startActivity(intent);
             }
         });
 
@@ -175,25 +170,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == BARCODE_READER_REQUEST_CODE) {
-            if (resultCode == CommonStatusCodes.SUCCESS) {
-                if (data != null) {
-                    Intent i = new Intent(this, CartaActivity.class);
-                    Bundle extras = new Bundle();
-                    extras.putString("carta", data.getStringExtra("carta"));
-                    extras.putString("moneda", "$");
-                    extras.putString("mesa", "1234");
-                    i.putExtras(extras);
-                    startActivity(i);
-                } else {
-                    Toast.makeText(this, "Error al escanar código", Toast.LENGTH_SHORT).show();
-                    //TODO presentar cartel informando error
-                }
-            }
-        } else super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -17,10 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ListView;
-
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 
@@ -122,9 +119,8 @@ public class CartaActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.action_more_information: return true; //TODO
         }
 
         return super.onOptionsItemSelected(item);

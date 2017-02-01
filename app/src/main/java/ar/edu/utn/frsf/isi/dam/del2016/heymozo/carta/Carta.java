@@ -1,9 +1,12 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
+import android.os.Parcelable;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
@@ -12,7 +15,7 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
  * Created by lucas on 25/01/17.
  */
 
-class Carta {
+public class Carta {
     //public static final String ID = "id";
     private static final String NOMBRE_RESTAURANT = "nombre_restaurant";
     private static final String SECCIONES = "secciones";

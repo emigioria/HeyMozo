@@ -66,9 +66,9 @@ public class PedidoActivity extends AppCompatActivity {
         }
         else{
             //TODO poner esto y borrar bar1980
-            // Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getImagenRestaurante(), 0, pedido.getImagenRestaurante().length));
-            // imagenToolbar.setBackground(image);
-            imagenToolbar.setBackground(getDrawable(R.drawable.bar1980));
+             Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getImagenRestaurante(), 0, pedido.getImagenRestaurante().length));
+             imagenToolbar.setBackground(image);
+            //imagenToolbar.setBackground(getDrawable(R.drawable.bar1980));
         }
 
         if (pedido.getFinaliza() == null) {
