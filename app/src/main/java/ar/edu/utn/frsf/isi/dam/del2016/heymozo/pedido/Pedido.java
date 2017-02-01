@@ -12,18 +12,17 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Moneda;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
 public class Pedido {
-    private static final String RESTAURANT = "nombre_restaurant";
+    private static final String RESTAURANTE = "nombre_restaurant";
     private static final String MESA = "codigo_mesa";
     private static final String PRODUCTOS = "productos";
     private static final String FINALIZA = "finaliza";
     private static final String ESTADO = "estado";
     private static final String MONEDA = "moneda";
-    private static final String IMAGEN_RESTAURANTE = "imagen_restaurante";
     private static final String FECHA_PEDIDO = "fecha_pedido";
     private static final String TOTAL = "total";
     private static final String CALIFICACION = "calificacion";
 
-    @SerializedName(RESTAURANT)
+    @SerializedName(RESTAURANTE)
     private Restaurante restaurante;
 
     @SerializedName(MESA)
@@ -40,9 +39,6 @@ public class Pedido {
 
     @SerializedName(MONEDA)
     private Moneda moneda;
-
-    @SerializedName(IMAGEN_RESTAURANTE)
-    private byte[] imagenRestaurante;
 
     @SerializedName(FECHA_PEDIDO)
     private Long fechaPedido;
@@ -143,15 +139,6 @@ public class Pedido {
 
     public Pedido setTotal(Double total) {
         this.total = total;
-        return this;
-    }
-
-    public byte[] getImagenRestaurante() {
-        return imagenRestaurante;
-    }
-
-    public Pedido setImagenRestaurante(byte[] imagenRestaurante) {
-        this.imagenRestaurante = imagenRestaurante;
         return this;
     }
 

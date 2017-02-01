@@ -6,6 +6,7 @@ public class Restaurante {
     private static final String NOMBRE = "nombre";
     private static final String LATITUD = "latitud";
     private static final String LONGITUD = "longitud";
+    private static final String IMAGEN_RESTAURANTE = "imagen";
 
     @SerializedName(NOMBRE)
     private String nombre;
@@ -15,6 +16,9 @@ public class Restaurante {
 
     @SerializedName(LONGITUD)
     private Double longitud;
+
+    @SerializedName(IMAGEN_RESTAURANTE)
+    private byte[] imagen;
 
     public Restaurante() {
 
@@ -46,4 +50,14 @@ public class Restaurante {
         this.longitud = longitud;
         return this;
     }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public Restaurante setImagen(byte[] imagen) {
+        this.imagen = imagen;
+        return this;
+    }
+
 }

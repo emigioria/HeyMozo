@@ -44,7 +44,7 @@ public class PedidoActivity extends AppCompatActivity {
 
         pedido = gson.fromJson(getIntent().getStringExtra("pedido"), Pedido.class);
 
-        if(pedido == null){
+        if (pedido == null) {
             this.finish();
             return;
         }
@@ -58,14 +58,11 @@ public class PedidoActivity extends AppCompatActivity {
             buttonConfirmar.setVisibility(View.GONE);
         }
 
-        if(pedido.getImagenRestaurante()==null){
+        if (pedido.getRestaurante().getImagen() == null) {
             imagenToolbar.setVisibility(View.GONE);
-        }
-        else{
-            //TODO poner esto y borrar bar1980
-             Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getImagenRestaurante(), 0, pedido.getImagenRestaurante().length));
-             imagenToolbar.setBackground(image);
-            //imagenToolbar.setBackground(getDrawable(R.drawable.bar1980));
+        } else {
+            Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getRestaurante().getImagen(), 0, pedido.getRestaurante().getImagen().length));
+            imagenToolbar.setBackground(image);
         }
 
         if (pedido.getFinaliza() == null) {
