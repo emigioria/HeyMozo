@@ -2,8 +2,6 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;

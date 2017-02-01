@@ -3,25 +3,20 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.Pedido;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.ViewHolderPedido;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.ViewHolderProducto;
 
 import static java.lang.String.valueOf;
 
@@ -56,11 +51,11 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
 
         String numPedido = String.format(Locale.getDefault(), getContext().getString(R.string.pedidoNum), position);
         holder.textviewPedido.setText(numPedido);
-        holder.textviewMoneda.setText(pedido.getMoneda());
+        holder.textviewMoneda.setText(pedido.getMoneda().getSimbolo());
         holder.textviewFecha.setText(DateFormat.getDateInstance().format(new Date(pedido.getFechaPedido())));
         holder.textviewEstado.setText(pedido.getEstado());
         holder.textviewTotal.setText(valueOf(pedido.getTotal()));
-        holder.textviewNombreRestaurante.setText(pedido.getNombreRestaurant());
+        holder.textviewNombreRestaurante.setText(pedido.getRestaurante().getNombre());
 
         if (pedido.getCalificacion() != null) {
             holder.buttonGracias.setVisibility(View.GONE);

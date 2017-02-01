@@ -2,7 +2,6 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +63,7 @@ class SeccionAdapter extends ArrayAdapter<Producto> {
 
         holder.cantidad.setText(valueOf(cantidad));
         holder.nombreProducto.setText(this.getItem(position).getNombre());
-        holder.moneda.setText(this.getItem(position).getMoneda());
+        holder.moneda.setText(this.getItem(position).getMoneda().getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(),"%.2f",this.getItem(position).getPrecio()));
 
         if(selectedRows.get(position)!=null){

@@ -45,7 +45,7 @@ class ProductoAdapter extends ArrayAdapter<Producto> {
         String cantidad = this.getItem(position).getCantidad()+"";
         holder.cantidad.setText(cantidad);
         holder.nombreProducto.setText(this.getItem(position).getNombre());
-        holder.moneda.setText(this.getItem(position).getMoneda());
+        holder.moneda.setText(this.getItem(position).getMoneda().getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(),"%.2f",this.getItem(position).getPrecio()));
 
         return(row);

@@ -1,17 +1,15 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,13 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import org.json.JSONException;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Mesa;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.Pedido;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Moneda;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
 public class CartaActivity extends AppCompatActivity {
@@ -37,18 +37,13 @@ public class CartaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta);
 
-        try {
-            carta = new Carta(getIntent().getExtras().getString("carta"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        if(carta == null){
+        carta = new Gson().fromJson(getIntent().getExtras().getString("carta"), Carta.class);
+        if (carta == null) {
             CartaActivity.this.finish();
             return;
         }
 
-        setTitle(carta.getNombreRestaurant());
+        setTitle(carta.getRestaurante().getNombre());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -78,14 +73,15 @@ public class CartaActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Gson gson = new Gson();
                 Pedido pedido = new Pedido()
-                        .setCodigoMesa(getIntent().getExtras().getString("mesa"))
-                        .setMoneda(getIntent().getExtras().getString("moneda"))
-                        .setNombreRestaurant(carta.getNombreRestaurant());
+                        .setMesa(gson.fromJson(getIntent().getExtras().getString("mesa"), Mesa.class))
+                        .setMoneda(gson.fromJson(getIntent().getExtras().getString("moneda"), Moneda.class))
+                        .setRestaurante(carta.getRestaurante());
                 ArrayList<Producto> productosSeleccionados = new ArrayList<>();
                 int i = 0;
-                for (String seccion : carta.getSecciones()) {
-                    for (Producto p : carta.getProductosSeccion(i)) {
+                for (Seccion seccion : carta.getSecciones()) {
+                    for (Producto p : seccion.getProductos()) {
                         if (p.getCantidad() != 0) {
                             productosSeleccionados.add(p);
                         }
@@ -119,8 +115,9 @@ public class CartaActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        switch (id){
-            case R.id.action_more_information: return true; //TODO
+        switch (id) {
+            case R.id.action_more_information:
+                return true; //TODO
         }
 
         return super.onOptionsItemSelected(item);
@@ -157,7 +154,7 @@ public class CartaActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_carta, container, false);
             ListView seccionListView = (ListView) rootView.findViewById(R.id.seccion_listview);
 
-            seccionListView.setAdapter(new SeccionAdapter(getContext(), carta.getProductosSeccion(getArguments().getInt(ARG_SECTION_NUMBER) - 1)));
+            seccionListView.setAdapter(new SeccionAdapter(getContext(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos()));
 
             return rootView;
         }
@@ -189,7 +186,7 @@ public class CartaActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             // retorna los titulos de cada seccion según el orden en el que se escribió la carta
-            return carta.getSecciones().get(position);
+            return carta.getSecciones().get(position).getNombre();
         }
     }
 }

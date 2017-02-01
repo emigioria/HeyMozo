@@ -4,8 +4,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -20,7 +18,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
 public class PedidoActivity extends AppCompatActivity {
 
@@ -52,7 +49,7 @@ public class PedidoActivity extends AppCompatActivity {
             return;
         }
 
-        textViewNombreComedor.setText(pedido.getNombreRestaurant());
+        textViewNombreComedor.setText(pedido.getRestaurante().getNombre());
 
         if (pedido.getEstado() == null) {
             layoutEstado.setVisibility(View.GONE);
@@ -87,12 +84,12 @@ public class PedidoActivity extends AppCompatActivity {
             textViewTiempoEspera.setText(espera);
         }
 
-        textViewTotal.setText(String.format(Locale.getDefault(), pedido.getMoneda() + "%.2f", pedido.getTotal()));
+        textViewTotal.setText(String.format(Locale.getDefault(), pedido.getMoneda().getSimbolo() + "%.2f", pedido.getTotal()));
 
         buttonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pedido.getCodigoMesa();
+                pedido.getMesa().getId();
                 //TODO confirmar pedido
             }
         });

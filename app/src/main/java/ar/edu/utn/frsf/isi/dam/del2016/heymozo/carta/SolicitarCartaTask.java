@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -10,22 +11,24 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+
 /**
  * Created by lucas on 31/01/17.
  */
 
 public class SolicitarCartaTask extends AsyncTask<Object, Object, String> {
+    private final Context context;
     private SolicitarCartaListener listener;
-    private static final String IP_SERVER = "192.168.0.10";
-    private static final String PORT_SERVER = "3000";
     private HttpURLConnection urlConnection = null;
     public static final int OK = 0;
     public static final int CANCELADO = 1;
     public static final int ERROR = 2;
     private int status = OK;
 
-    public SolicitarCartaTask(SolicitarCartaListener dListener){
+    public SolicitarCartaTask(SolicitarCartaListener dListener, Context context) {
         this.listener = dListener;
+        this.context = context;
     }
 
     @Override
@@ -37,7 +40,7 @@ public class SolicitarCartaTask extends AsyncTask<Object, Object, String> {
     protected String doInBackground(Object... mesa) {
         StringBuilder sb = null;
         try {
-            URL url = new URL("http://" + IP_SERVER + ":" + PORT_SERVER + "/cartas/" + mesa[0] + "/");
+            URL url = new URL("http://" + context.getString(R.string.ip_server) + ":" + context.getString(R.string.port_server_db) + "/cartas/" + mesa[0]);
             Log.v("INFO:",url.toString());
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());

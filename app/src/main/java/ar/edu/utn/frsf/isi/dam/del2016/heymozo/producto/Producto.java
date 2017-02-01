@@ -1,11 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-/**
- * Created by Emiliano on 27/1/2017.
- */
+import com.google.gson.annotations.SerializedName;
 
 public class Producto {
     private static final String CANTIDAD = "cantidad";
@@ -13,41 +8,55 @@ public class Producto {
     private static final String MONEDA = "moneda";
     private static final String PRECIO = "precio";
 
+    @SerializedName(CANTIDAD)
     private Integer cantidad;
+
+    @SerializedName(NOMBRE_PRODUCTO)
     private String nombre;
-    private String moneda;
+
+    @SerializedName(MONEDA)
+    private Moneda moneda;
+
+    @SerializedName(PRECIO)
     private Double precio;
 
-    public Producto(JSONObject itemJSON) throws JSONException {
-        this.nombre = itemJSON.getString(NOMBRE_PRODUCTO);
-        this.precio = itemJSON.getDouble(PRECIO);
-        this.moneda = itemJSON.getJSONObject(MONEDA).getString(MONEDA);
-        try {
-            this.cantidad = itemJSON.getInt(CANTIDAD);
-        }
-        catch (JSONException e) {
-            this.cantidad = 0;
-        }
+    public Producto() {
+        cantidad = 0;
     }
 
-    public Producto setCantidad(Integer cantidad){
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public Producto setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
         return this;
     }
 
-    public Integer getCantidad(){
-        return cantidad;
-    }
-
-    public String getNombre(){
+    public String getNombre() {
         return nombre;
     }
 
-    public Double getPrecio(){
+    public Producto setNombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
+    public Double getPrecio() {
         return precio;
     }
 
-    public String getMoneda(){
+    public Producto setPrecio(Double precio) {
+        this.precio = precio;
+        return this;
+    }
+
+    public Moneda getMoneda() {
         return moneda;
+    }
+
+    public Producto setMoneda(Moneda moneda) {
+        this.moneda = moneda;
+        return this;
     }
 }

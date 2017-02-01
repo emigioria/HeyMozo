@@ -36,7 +36,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -45,19 +44,18 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.camera.CameraSource;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.camera.CameraSourcePreview;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.Carta;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaListener;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaTask;
-
-import static ar.edu.utn.frsf.isi.dam.del2016.heymozo.R.id.loadingPanelCarta;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Mesa;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Moneda;
 
 public final class BarcodeCaptureActivity extends AppCompatActivity
         implements BarcodeTracker.BarcodeGraphicTrackerCallback, SolicitarCartaListener {
@@ -102,7 +100,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     public void onDetectedQrCode(Barcode barcode) {
         Log.d(TAG, "onDetectedQrCode: " + barcode.displayValue);
         if (barcode != null) {
-            SolicitarCartaTask solicitarCartaTask = new SolicitarCartaTask(this);
+            SolicitarCartaTask solicitarCartaTask = new SolicitarCartaTask(this, this);
             solicitarCartaTask.execute(barcode.displayValue);
         }
     }
@@ -118,15 +116,20 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     public void busquedaFinalizada(String cartaJSON, int status) {
         switch (status) {
             case SolicitarCartaTask.OK:
+                Gson gson = new Gson();
                 Intent i = new Intent(this, CartaActivity.class);
-                i.putExtra("carta", cartaJSON);
+                Bundle extras = new Bundle();
+                extras.putString("carta", cartaJSON);
+                extras.putString("moneda", gson.toJson(new Moneda().setSimbolo("$"))); //TODO ver
+                extras.putString("mesa", gson.toJson(new Mesa().setId(1234))); //TODO ver
+                i.putExtras(extras);
                 startActivity(i);
                 break;
             case SolicitarCartaTask.CANCELADO:
                 //TODO
                 break;
             case SolicitarCartaTask.ERROR:
-                Toast.makeText(this,"Ocurrió un error buscando la carta",Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Ocurrió un error buscando la carta", Toast.LENGTH_SHORT).show();
                 break;
         }
         loadingPanelCarta.setVisibility(View.GONE);

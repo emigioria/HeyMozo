@@ -1,54 +1,49 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps;
 
-/**
- * Created by daniel on 23/01/17.
- */
+import com.google.gson.annotations.SerializedName;
+
 public class Restaurante {
-	private Integer id;
-	private String nombre;
-	private Double latitud;
-	private Double longitud;
+    private static final String NOMBRE = "nombre";
+    private static final String LATITUD = "latitud";
+    private static final String LONGITUD = "longitud";
 
-	public Restaurante(Integer id, String nombre, Double latitud, Double longitud) {
-		this.id = id;
-		this.nombre = nombre;
-		this.latitud = latitud;
-		this.longitud = longitud;
-	}
+    @SerializedName(NOMBRE)
+    private String nombre;
 
-	public Restaurante(Integer id) {
-		this.id = id;
-	}
+    @SerializedName(LATITUD)
+    private Double latitud;
 
-	public Integer getId() {
-		return id;
-	}
+    @SerializedName(LONGITUD)
+    private Double longitud;
 
-	public void setId(Integer id) {
-		this.id =id;
-	}
+    public Restaurante() {
 
-	public String getNombre() {
-		return nombre;
-	}
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public Double getLatitud() {
-		return latitud;
-	}
+    public Restaurante setNombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
 
-	public void setLatitud(Double latitud) {
-		this.latitud = latitud;
-	}
+    public Double getLatitud() {
+        return latitud;
+    }
 
-	public Double getLongitud() {
-		return longitud;
-	}
+    public Restaurante setLatitud(Double latitud) {
+        this.latitud = latitud;
+        return this;
+    }
 
-	public void setLongitud(Double longitud) {
-		this.longitud = longitud;
-	}
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public Restaurante setLongitud(Double longitud) {
+        this.longitud = longitud;
+        return this;
+    }
 }

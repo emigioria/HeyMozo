@@ -1,60 +1,81 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.annotations.SerializedName;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Mesa;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Restaurante;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Moneda;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
 public class Pedido {
-    private String nombreRestaurant;
-    private String codigoMesa;
-    private ArrayList<Producto> productos;
+    private static final String RESTAURANT = "nombre_restaurant";
+    private static final String MESA = "codigo_mesa";
+    private static final String PRODUCTOS = "productos";
+    private static final String FINALIZA = "finaliza";
+    private static final String ESTADO = "estado";
+    private static final String MONEDA = "moneda";
+    private static final String IMAGEN_RESTAURANTE = "imagen_restaurante";
+    private static final String FECHA_PEDIDO = "fecha_pedido";
+    private static final String TOTAL = "total";
+    private static final String CALIFICACION = "calificacion";
+
+    @SerializedName(RESTAURANT)
+    private Restaurante restaurante;
+
+    @SerializedName(MESA)
+    private Mesa mesa;
+
+    @SerializedName(PRODUCTOS)
+    private ArrayList<Producto> productos = new ArrayList<>();
+
+    @SerializedName(FINALIZA)
     private Long finaliza;
+
+    @SerializedName(ESTADO)
     private String estado;
-    private String moneda;
+
+    @SerializedName(MONEDA)
+    private Moneda moneda;
+
+    @SerializedName(IMAGEN_RESTAURANTE)
     private byte[] imagenRestaurante;
+
+    @SerializedName(FECHA_PEDIDO)
     private Long fechaPedido;
+
+    @SerializedName(TOTAL)
     private Double total;
+
+    @SerializedName(CALIFICACION)
     private String calificacion;
 
     public Pedido() {
-        productos = new ArrayList<>();
+
     }
 
     public String toJSONObject() {
         return new Gson().toJson(this);
     }
 
-    public Pedido setNombreRestaurant(String nombreRestaurant) {
-        this.nombreRestaurant = nombreRestaurant;
+    public Restaurante getRestaurante() {
+        return restaurante;
+    }
+
+    public Pedido setRestaurante(Restaurante restaurante) {
+        this.restaurante = restaurante;
         return this;
     }
 
-    public String getNombreRestaurant() {
-        return nombreRestaurant;
+    public Mesa getMesa() {
+        return mesa;
     }
 
-    public Pedido setCodigoMesa(String codigoMesa) {
-        this.codigoMesa = codigoMesa;
-        return this;
-    }
-
-    public String getCodigoMesa() {
-        return codigoMesa;
-    }
-
-    public Pedido setProductos(ArrayList<Producto> productos) {
-        this.productos = productos;
+    public Pedido setMesa(Mesa mesa) {
+        this.mesa = mesa;
         return this;
     }
 
@@ -62,15 +83,8 @@ public class Pedido {
         return productos;
     }
 
-    public Pedido setFinaliza(Date finaliza) {
-        if (finaliza != null) {
-            this.finaliza = finaliza.getTime();
-        }
-        return this;
-    }
-
-    public Pedido setFinaliza(Long finaliza) {
-        this.finaliza = finaliza;
+    public Pedido setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
         return this;
     }
 
@@ -85,8 +99,15 @@ public class Pedido {
         return new Date(finaliza);
     }
 
-    public Pedido setEstado(String estado) {
-        this.estado = estado;
+    public Pedido setFinaliza(Date finaliza) {
+        if (finaliza != null) {
+            this.finaliza = finaliza.getTime();
+        }
+        return this;
+    }
+
+    public Pedido setFinaliza(Long finaliza) {
+        this.finaliza = finaliza;
         return this;
     }
 
@@ -94,17 +115,17 @@ public class Pedido {
         return estado;
     }
 
-    public Pedido setMoneda(String moneda) {
-        this.moneda = moneda;
+    public Pedido setEstado(String estado) {
+        this.estado = estado;
         return this;
     }
 
-    public String getMoneda() {
+    public Moneda getMoneda() {
         return moneda;
     }
 
-    public Pedido setTotal(Double total){
-        this.total = total;
+    public Pedido setMoneda(Moneda moneda) {
+        this.moneda = moneda;
         return this;
     }
 
@@ -120,23 +141,18 @@ public class Pedido {
         return total;
     }
 
-    public void setImagenRestaurante(byte[] imagenRestaurante) {
-        this.imagenRestaurante = imagenRestaurante;
+    public Pedido setTotal(Double total) {
+        this.total = total;
+        return this;
     }
 
     public byte[] getImagenRestaurante() {
         return imagenRestaurante;
     }
 
-    public Pedido setFechaPedido(Date fechaPedido) {
-        if (fechaPedido != null) {
-            this.fechaPedido = fechaPedido.getTime();
-        }
+    public Pedido setImagenRestaurante(byte[] imagenRestaurante) {
+        this.imagenRestaurante = imagenRestaurante;
         return this;
-    }
-
-    public void setFechaPedido(Long fechaPedido) {
-        this.fechaPedido = fechaPedido;
     }
 
     public Date getFechaPedidoDate() {
@@ -150,12 +166,24 @@ public class Pedido {
         return fechaPedido;
     }
 
-    public Pedido setCalificacion(String calificacion) {
-        this.calificacion = calificacion;
+    public Pedido setFechaPedido(Date fechaPedido) {
+        if (fechaPedido != null) {
+            this.fechaPedido = fechaPedido.getTime();
+        }
+        return this;
+    }
+
+    public Pedido setFechaPedido(Long fechaPedido) {
+        this.fechaPedido = fechaPedido;
         return this;
     }
 
     public String getCalificacion() {
         return calificacion;
+    }
+
+    public Pedido setCalificacion(String calificacion) {
+        this.calificacion = calificacion;
+        return this;
     }
 }
