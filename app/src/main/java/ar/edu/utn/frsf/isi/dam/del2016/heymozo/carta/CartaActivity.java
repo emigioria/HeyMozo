@@ -48,6 +48,7 @@ public class CartaActivity extends AppCompatActivity {
 
         if(carta == null){
             CartaActivity.this.finish();
+            return;
         }
 
         setTitle(carta.getNombreRestaurant());

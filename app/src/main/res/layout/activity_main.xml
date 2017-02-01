@@ -15,21 +15,28 @@
         android:id="@+id/btn_ver_carta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/btn_ver_mapa"
         android:text="@string/ver_carta" />
 
     <Button
         android:id="@+id/btn_ver_mapa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_ver_carta"
+        android:layout_centerVertical="true"
         android:text="@string/ver_mapa" />
+
+    <Button
+        android:id="@+id/btn_ver_mis_pedidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_ver_mapa"
+        android:text="@string/title_activity_mis_pedidos" />
 
     <Button
         android:id="@+id/btn_sin_codigo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="No tengo un código QR" />
+        android:text="@string/no_tengo_un_codigo_qr" />
 
 </RelativeLayout>

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.Pedido;
 
-public class MisPedidos extends AppCompatActivity {
+public class MisPedidosActivity extends AppCompatActivity {
 
     private ListView listaPedidos;
     private Gson gson = new Gson();
@@ -25,11 +25,17 @@ public class MisPedidos extends AppCompatActivity {
         setContentView(R.layout.activity_mis_pedidos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        linkearVista();
 
         // create the type for the collection. In this case define that the collection is of type Dataset
         Type datasetListType = new TypeToken<ArrayList<Pedido>>() {
         }.getType();
         ArrayList<Pedido> pedidos = gson.fromJson(getIntent().getStringExtra("pedidos"), datasetListType);
+
+        if(pedidos == null){
+            finish();
+            return;
+        }
 
         listaPedidos.setAdapter(new PedidoAdapter(this, pedidos));
     }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos.MisPedidos"
+    tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos.MisPedidosActivity"
     tools:showIn="@layout/activity_mis_pedidos"
     android:orientation="vertical">
 

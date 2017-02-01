@@ -26,12 +26,10 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaurante>> {
     private final Context context;
     private BusquedaRestaurantesListener<Restaurante> listener;
-    private static String PORT_SERVER = "3000";
     private HttpURLConnection urlConnection = null;
     private int status = 0;
     private static int CANCELADO = 1;
     private static int ERROR = 2;
-
 
     public ListarRestaurantesTask(BusquedaRestaurantesListener<Restaurante> dListener, Context context) {
         this.listener = dListener;
@@ -56,7 +54,7 @@ public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaur
         final StringBuilder sb = new StringBuilder();
         ArrayList<Restaurante> restaurantes = new ArrayList<>();
         try {
-            URL url = new URL("http://" + context.getString(R.string.ip_server) + ":" + PORT_SERVER + "/restaurantes");
+            URL url = new URL("http://" + context.getString(R.string.ip_server) + ":" + context.getString(R.string.port_server_db) + "/restaurantes");
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);

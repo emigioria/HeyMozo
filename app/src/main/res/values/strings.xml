@@ -22,4 +22,9 @@
     <string name="evalua_tu_experiencia">EVALÚA TU EXPERIENCIA</string>
     <string name="title_activity_mis_pedidos">Mis pedidos</string>
     <string name="ip_server">192.168.10.101</string>
+    <string name="no_permission_fine_location">No permission for access fine location</string>
+    <string name="pedido_permiso_titulo">Permisos Peligrosos!!!</string>
+    <string name="pedido_permiso_mensaje">Puedo acceder a un permiso peligroso???</string>
+    <string name="port_server_db">3000</string>
+    <string name="no_tengo_un_codigo_qr">No tengo un código QR</string>
 </resources>

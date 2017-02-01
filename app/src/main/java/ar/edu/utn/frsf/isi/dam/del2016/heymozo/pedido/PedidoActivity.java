@@ -49,6 +49,7 @@ public class PedidoActivity extends AppCompatActivity {
 
         if(pedido == null){
             this.finish();
+            return;
         }
 
         textViewNombreComedor.setText(pedido.getNombreRestaurant());

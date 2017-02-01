@@ -17,12 +17,14 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.MapsActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.FirebaseService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.MyFirebaseMessagingService;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos.MisPedidosActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnVerMapa;
-    Button btnVerCarta;
-    Button btnVerCartaSinCodigo;
+    private Button btnVerMapa;
+    private Button btnVerCarta;
+    private Button btnVerCartaSinCodigo;
+    private Button btn_ver_mis_pedidos;
 
     private static final int BARCODE_READER_REQUEST_CODE = 1;
 
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         btnVerMapa = (Button) findViewById(R.id.btn_ver_mapa);
         btnVerCarta = (Button) findViewById(R.id.btn_ver_carta);
         btnVerCartaSinCodigo = (Button) findViewById(R.id.btn_sin_codigo);
+        btn_ver_mis_pedidos = (Button) findViewById(R.id.btn_ver_mis_pedidos);
 
         btnVerMapa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
                 startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
+            }
+        });
+
+        btn_ver_mis_pedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MisPedidosActivity.class);
+                startActivity(intent);
             }
         });
 
