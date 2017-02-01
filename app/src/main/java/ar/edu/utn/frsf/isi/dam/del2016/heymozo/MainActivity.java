@@ -77,92 +77,636 @@ public class MainActivity extends AppCompatActivity {
                 Bundle extras = new Bundle();
                 extras.putString("moneda", gson.toJson(new Moneda().setSimbolo("$"))); //TODO ver
                 extras.putString("mesa", gson.toJson(new Mesa().setId(1234))); //TODO ver
-                extras.putString("carta", "{\"id\": 1, \"nombre_restaurant\": {\"nombre_restaurant\":\"Bar-Resto 1980\"}, \"secciones\":[\n" +
-                        "            {\"id\": 1, \"nombre\": \"entradas\", \"productos\":[\n" +
-                        "                {\"id\": 1, \"nombre\": \"empanadas de carne\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 12},\n" +
-                        "                {\"id\": 2, \"nombre\": \"empanadas de verdura\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 23},\n" +
-                        "                {\"id\": 3, \"nombre\": \"empanadas árabes\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 34},\n" +
-                        "                {\"id\": 4, \"nombre\": \"ensalada\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 38},\n" +
-                        "                {\"id\": 5, \"nombre\": \"papas fritas\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 86}, \n" +
-                        "                {\"id\": 6, \"nombre\": \"empanadas de carne\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 12}, \n" +
-                        "                {\"id\": 7, \"nombre\": \"empanadas de verdura\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 23}, \n" +
-                        "                {\"id\": 8, \"nombre\": \"empanadas árabes\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 34},\n" +
-                        "                {\"id\": 9, \"nombre\": \"ensalada\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 38},\n" +
-                        "                {\"id\": 10, \"nombre\": \"papas fritas\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 86}, \n" +
-                        "                {\"id\": 11, \"nombre\": \"empanadas de carne\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 12}, \n" +
-                        "                {\"id\": 12, \"nombre\": \"empanadas de verdura\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 23}, \n" +
-                        "                {\"id\": 13, \"nombre\": \"empanadas árabes\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 34},\n" +
-                        "                {\"id\": 14, \"nombre\": \"ensalada\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 38},\n" +
-                        "                {\"id\": 15, \"nombre\": \"papas fritas\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 86} \n" +
-                        "            ]}, \n" +
-                        "            {\"id\": 2, \"nombre\": \"sandwiches\", \"productos\":[\n" +
-                        "                {\"id\": 1, \"nombre\": \"sandwiches\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 12},\n" +
-                        "                {\"id\": 2, \"nombre\": \"triples\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 67},\n" +
-                        "                {\"id\": 3, \"nombre\": \"jamon cocido\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 24},\n" +
-                        "                {\"id\": 4, \"nombre\": \"sandwich con ananá\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56}, \n" +
-                        "                {\"id\": 5, \"nombre\": \"sandwiches\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 65},\n" +
-                        "                {\"id\": 6, \"nombre\": \"triples\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 67},\n" +
-                        "                {\"id\": 7, \"nombre\": \"jamon cocido\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 24}, \n" +
-                        "                {\"id\": 8, \"nombre\": \"sandwich con ananá\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 24}, \n" +
-                        "                {\"id\": 9, \"nombre\": \"sandwiches\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 14},\n" +
-                        "                {\"id\": 10, \"nombre\": \"triples\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 67},\n" +
-                        "                {\"id\": 11, \"nombre\": \"jamon cocido\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 24}, \n" +
-                        "                {\"id\": 12, \"nombre\": \"sandwich con ananá\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 24}, \n" +
-                        "                {\"id\": 13, \"nombre\": \"sandwiches\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 12},\n" +
-                        "                {\"id\": 14, \"nombre\": \"triples\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 67},\n" +
-                        "                {\"id\": 15, \"nombre\": \"jamon cocido\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 24}, \n" +
-                        "                {\"id\": 16, \"nombre\": \"sandwich con ananá\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 78} \n" +
-                        "            ]}, \n" +
-                        "            {\"id\": 3, \"nombre\": \"pizzas\", \"productos\":[\n" +
-                        "                {\"id\": 1, \"nombre\": \"especial\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122},\n" +
-                        "                {\"id\": 2, \"nombre\": \"napolitana\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 190}, \n" +
-                        "                {\"id\": 3, \"nombre\": \"cebollada\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 180},\n" +
-                        "                {\"id\": 4, \"nombre\": \"4 quesos\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 172},\n" +
-                        "                {\"id\": 5, \"nombre\": \"especial\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122},\n" +
-                        "                {\"id\": 6, \"nombre\": \"napolitana\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 190},\n" +
-                        "                {\"id\": 7, \"nombre\": \"cebollada\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 180},\n" +
-                        "                {\"id\": 8, \"nombre\": \"4 quesos\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 172},\n" +
-                        "                {\"id\": 9, \"nombre\": \"especial\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122},\n" +
-                        "                {\"id\": 10, \"nombre\": \"napolitana\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 190},\n" +
-                        "                {\"id\": 11, \"nombre\": \"cebollada\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 180},\n" +
-                        "                {\"id\": 12, \"nombre\": \"4 quesos\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 172},\n" +
-                        "                {\"id\": 13, \"nombre\": \"especial\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122},\n" +
-                        "                {\"id\": 14, \"nombre\": \"napolitana\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 190},\n" +
-                        "                {\"id\": 15, \"nombre\": \"cebollada\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 180},\n" +
-                        "                {\"id\": 16, \"nombre\": \"4 quesos\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 172} \n" +
-                        "            ]}, \n" +
-                        "            {\"id\": 4, \"nombre\": \"postres\", \"productos\":[\n" +
-                        "                {\"id\": 1, \"nombre\": \"helado\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 2, \"nombre\": \"torta alemana\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 3, \"nombre\": \"tiramisú\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 4, \"nombre\": \"frutas\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 5, \"nombre\": \"helado\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 6, \"nombre\": \"torta alemana\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 7, \"nombre\": \"tiramisú\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 8, \"nombre\": \"frutas\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 9, \"nombre\": \"helado\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 10, \"nombre\": \"torta alemana\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56}, \n" +
-                        "                {\"id\": 11, \"nombre\": \"tiramisú\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56},\n" +
-                        "                {\"id\": 12, \"nombre\": \"frutas\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 56} \n" +
-                        "            ]}, \n" +
-                        "            {\"id\": 5, \"nombre\": \"bebidas\", \"productos\":[\n" +
-                        "                {\"id\": 1, \"nombre\": \"fernet\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122},\n" +
-                        "                {\"id\": 2, \"nombre\": \"gancia\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122}, \n" +
-                        "                {\"id\": 3, \"nombre\": \"wisky\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 190},\n" +
-                        "                {\"id\": 4, \"nombre\": \"martini\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 142},\n" +
-                        "                {\"id\": 5, \"nombre\": \"jarra loca\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 200}, \n" +
-                        "                {\"id\": 6, \"nombre\": \"fernet\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122},\n" +
-                        "                {\"id\": 7, \"nombre\": \"gancia\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122}, \n" +
-                        "                {\"id\": 8, \"nombre\": \"wisky\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 190}, \n" +
-                        "                {\"id\": 9, \"nombre\": \"martini\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 142}, \n" +
-                        "                {\"id\": 10, \"nombre\": \"jarra loca\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 200}, \n" +
-                        "                {\"id\": 11, \"nombre\": \"fernet\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122},\n" +
-                        "                {\"id\": 12, \"nombre\": \"gancia\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 122}, \n" +
-                        "                {\"id\": 13, \"nombre\": \"wisky\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 190},\n" +
-                        "                {\"id\": 14, \"nombre\": \"martini\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 142},\n" +
-                        "                {\"id\": 15, \"nombre\": \"jarra loca\", \"moneda\": {\"moneda\": \"$\"}, \"precio\": 200}\n" +
-                        "            ]}\n" +
-                        "        ]}");
+                extras.putString("carta", "{\n" +
+                        "            \"id\": 1,\n" +
+                        "            \"nombre_restaurant\": {\n" +
+                        "                \"nombre\": \"Bar-Resto 1980\"\n" +
+                        "            },\n" +
+                        "            \"secciones\": [\n" +
+                        "                {\n" +
+                        "                    \"id\": 1,\n" +
+                        "                    \"nombre\": \"entradas\",\n" +
+                        "                    \"productos\": [\n" +
+                        "                        {\n" +
+                        "                            \"id\": 1,\n" +
+                        "                            \"nombre\": \"empanadas de carne\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 12\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 2,\n" +
+                        "                            \"nombre\": \"empanadas de verdura\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 23\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 3,\n" +
+                        "                            \"nombre\": \"empanadas árabes\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 34\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 4,\n" +
+                        "                            \"nombre\": \"ensalada\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 38\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 5,\n" +
+                        "                            \"nombre\": \"papas fritas\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 86\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 6,\n" +
+                        "                            \"nombre\": \"empanadas de carne\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 12\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 7,\n" +
+                        "                            \"nombre\": \"empanadas de verdura\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 23\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 8,\n" +
+                        "                            \"nombre\": \"empanadas árabes\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 34\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 9,\n" +
+                        "                            \"nombre\": \"ensalada\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 38\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 10,\n" +
+                        "                            \"nombre\": \"papas fritas\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 86\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 11,\n" +
+                        "                            \"nombre\": \"empanadas de carne\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 12\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 12,\n" +
+                        "                            \"nombre\": \"empanadas de verdura\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 23\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 13,\n" +
+                        "                            \"nombre\": \"empanadas árabes\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 34\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 14,\n" +
+                        "                            \"nombre\": \"ensalada\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 38\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 15,\n" +
+                        "                            \"nombre\": \"papas fritas\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 86\n" +
+                        "                        }\n" +
+                        "                    ]\n" +
+                        "                },\n" +
+                        "                {\n" +
+                        "                    \"id\": 2,\n" +
+                        "                    \"nombre\": \"sandwiches\",\n" +
+                        "                    \"productos\": [\n" +
+                        "                        {\n" +
+                        "                            \"id\": 1,\n" +
+                        "                            \"nombre\": \"sandwiches\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 12\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 2,\n" +
+                        "                            \"nombre\": \"triples\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 67\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 3,\n" +
+                        "                            \"nombre\": \"jamon cocido\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 24\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 4,\n" +
+                        "                            \"nombre\": \"sandwich con ananá\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 5,\n" +
+                        "                            \"nombre\": \"sandwiches\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 65\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 6,\n" +
+                        "                            \"nombre\": \"triples\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 67\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 7,\n" +
+                        "                            \"nombre\": \"jamon cocido\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 24\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 8,\n" +
+                        "                            \"nombre\": \"sandwich con ananá\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 24\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 9,\n" +
+                        "                            \"nombre\": \"sandwiches\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 14\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 10,\n" +
+                        "                            \"nombre\": \"triples\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 67\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 11,\n" +
+                        "                            \"nombre\": \"jamon cocido\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 24\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 12,\n" +
+                        "                            \"nombre\": \"sandwich con ananá\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 24\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 13,\n" +
+                        "                            \"nombre\": \"sandwiches\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 12\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 14,\n" +
+                        "                            \"nombre\": \"triples\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 67\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 15,\n" +
+                        "                            \"nombre\": \"jamon cocido\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 24\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 16,\n" +
+                        "                            \"nombre\": \"sandwich con ananá\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 78\n" +
+                        "                        }\n" +
+                        "                    ]\n" +
+                        "                },\n" +
+                        "                {\n" +
+                        "                    \"id\": 3,\n" +
+                        "                    \"nombre\": \"pizzas\",\n" +
+                        "                    \"productos\": [\n" +
+                        "                        {\n" +
+                        "                            \"id\": 1,\n" +
+                        "                            \"nombre\": \"especial\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 2,\n" +
+                        "                            \"nombre\": \"napolitana\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 190\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 3,\n" +
+                        "                            \"nombre\": \"cebollada\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 180\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 4,\n" +
+                        "                            \"nombre\": \"4 quesos\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 172\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 5,\n" +
+                        "                            \"nombre\": \"especial\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 6,\n" +
+                        "                            \"nombre\": \"napolitana\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 190\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 7,\n" +
+                        "                            \"nombre\": \"cebollada\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 180\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 8,\n" +
+                        "                            \"nombre\": \"4 quesos\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 172\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 9,\n" +
+                        "                            \"nombre\": \"especial\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 10,\n" +
+                        "                            \"nombre\": \"napolitana\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 190\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 11,\n" +
+                        "                            \"nombre\": \"cebollada\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 180\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 12,\n" +
+                        "                            \"nombre\": \"4 quesos\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 172\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 13,\n" +
+                        "                            \"nombre\": \"especial\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 14,\n" +
+                        "                            \"nombre\": \"napolitana\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 190\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 15,\n" +
+                        "                            \"nombre\": \"cebollada\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 180\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 16,\n" +
+                        "                            \"nombre\": \"4 quesos\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 172\n" +
+                        "                        }\n" +
+                        "                    ]\n" +
+                        "                },\n" +
+                        "                {\n" +
+                        "                    \"id\": 4,\n" +
+                        "                    \"nombre\": \"postres\",\n" +
+                        "                    \"productos\": [\n" +
+                        "                        {\n" +
+                        "                            \"id\": 1,\n" +
+                        "                            \"nombre\": \"helado\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 2,\n" +
+                        "                            \"nombre\": \"torta alemana\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 3,\n" +
+                        "                            \"nombre\": \"tiramisú\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 4,\n" +
+                        "                            \"nombre\": \"frutas\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 5,\n" +
+                        "                            \"nombre\": \"helado\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 6,\n" +
+                        "                            \"nombre\": \"torta alemana\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 7,\n" +
+                        "                            \"nombre\": \"tiramisú\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 8,\n" +
+                        "                            \"nombre\": \"frutas\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 9,\n" +
+                        "                            \"nombre\": \"helado\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 10,\n" +
+                        "                            \"nombre\": \"torta alemana\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 11,\n" +
+                        "                            \"nombre\": \"tiramisú\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 12,\n" +
+                        "                            \"nombre\": \"frutas\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 56\n" +
+                        "                        }\n" +
+                        "                    ]\n" +
+                        "                },\n" +
+                        "                {\n" +
+                        "                    \"id\": 5,\n" +
+                        "                    \"nombre\": \"bebidas\",\n" +
+                        "                    \"productos\": [\n" +
+                        "                        {\n" +
+                        "                            \"id\": 1,\n" +
+                        "                            \"nombre\": \"fernet\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 2,\n" +
+                        "                            \"nombre\": \"gancia\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 3,\n" +
+                        "                            \"nombre\": \"wisky\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 190\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 4,\n" +
+                        "                            \"nombre\": \"martini\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 142\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 5,\n" +
+                        "                            \"nombre\": \"jarra loca\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 200\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 6,\n" +
+                        "                            \"nombre\": \"fernet\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 7,\n" +
+                        "                            \"nombre\": \"gancia\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 8,\n" +
+                        "                            \"nombre\": \"wisky\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 190\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 9,\n" +
+                        "                            \"nombre\": \"martini\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 142\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 10,\n" +
+                        "                            \"nombre\": \"jarra loca\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 200\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 11,\n" +
+                        "                            \"nombre\": \"fernet\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 12,\n" +
+                        "                            \"nombre\": \"gancia\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 122\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 13,\n" +
+                        "                            \"nombre\": \"wisky\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 190\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 14,\n" +
+                        "                            \"nombre\": \"martini\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 142\n" +
+                        "                        },\n" +
+                        "                        {\n" +
+                        "                            \"id\": 15,\n" +
+                        "                            \"nombre\": \"jarra loca\",\n" +
+                        "                            \"moneda\": {\n" +
+                        "                                \"moneda\": \"$\"\n" +
+                        "                            },\n" +
+                        "                            \"precio\": 200\n" +
+                        "                        }\n" +
+                        "                    ]\n" +
+                        "                }\n" +
+                        "            ]\n" +
+                        "        }");
                 i.putExtras(extras);
                 startActivity(i);
             }
