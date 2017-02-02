@@ -15,7 +15,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.MapsActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Moneda;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.FirebaseService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.MyFirebaseMessagingService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos.MisPedidosActivity;
@@ -76,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 Intent i = new Intent(MainActivity.this, CartaActivity.class);
                 Bundle extras = new Bundle();
-                extras.putString("moneda", gson.toJson(new Moneda().setSimbolo("$"))); //TODO ver
-                extras.putString("mesa", gson.toJson(new Mesa().setId(1234))); //TODO ver
+                extras.putString("moneda", "$");
+                extras.putString("mesa", gson.toJson(new Mesa().setId(1)));
                 extras.putString("carta", "{\n" +
                         "            \"id\": 1,\n" +
                         "            \"nombre_restaurant\": {\n" +

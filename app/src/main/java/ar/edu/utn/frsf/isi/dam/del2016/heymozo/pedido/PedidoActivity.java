@@ -115,7 +115,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
             }
         }
 
-        textViewTotal.setText(String.format(Locale.getDefault(), pedido.getMoneda().getSimbolo() + "%.2f", pedido.getTotal()));
+        textViewTotal.setText(String.format(Locale.getDefault(), pedido.getRestaurante().getMoneda().getSimbolo() + "%.2f", pedido.getTotal()));
 
         buttonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +134,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
             }
         });
 
-        listaProductos.setAdapter(new ProductoAdapter(this, pedido.getProductos()));
+        listaProductos.setAdapter(new ProductoAdapter(this, pedido.getMoneda(), pedido.getProductos()));
     }
 
     private void setEspera(Long tiempoEspera) {

@@ -55,7 +55,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaListener;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaTask;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Moneda;
 
 public final class BarcodeCaptureActivity extends AppCompatActivity
         implements BarcodeTracker.BarcodeGraphicTrackerCallback, SolicitarCartaListener {
@@ -98,7 +97,14 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         Log.d(TAG, "onDetectedQrCode: " + barcode.displayValue);
         if (barcode != null) {
             SolicitarCartaTask solicitarCartaTask = new SolicitarCartaTask(this, this);
-            solicitarCartaTask.execute(barcode.displayValue);
+
+            //Sintaxis del codigo QR: idRestaurante/idMesa
+            String idRestaurante_idMesa = barcode.displayValue;
+            String[] ids = idRestaurante_idMesa.split("/");
+
+            //ids[0]: idRestaurante
+            //ids[1]: idMesa
+            solicitarCartaTask.execute(ids[0],ids[1]);
         }
     }
 
@@ -115,15 +121,14 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     }
 
     @Override
-    public void busquedaFinalizada(String cartaJSON, int status) {
+    public void busquedaFinalizada(String cartaJSON, Integer idMesa, int status) {
         switch (status) {
             case SolicitarCartaTask.OK:
                 Gson gson = new Gson();
                 Intent i = new Intent(this, CartaActivity.class);
                 Bundle extras = new Bundle();
                 extras.putString("carta", cartaJSON);
-                extras.putString("moneda", gson.toJson(new Moneda().setSimbolo("$"))); //TODO ver
-                extras.putString("mesa", gson.toJson(new Mesa().setId(1234))); //TODO ver
+                extras.putString("mesa", gson.toJson(new Mesa().setId(idMesa)));
                 i.putExtras(extras);
                 startActivity(i);
                 break;

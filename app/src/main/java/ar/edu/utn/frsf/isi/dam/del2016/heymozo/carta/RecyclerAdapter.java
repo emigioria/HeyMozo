@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Moneda;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
 
 import static java.lang.String.valueOf;
@@ -18,12 +19,14 @@ import static java.lang.String.valueOf;
 class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Producto> productos;
+    private Moneda moneda;
     private LinearLayout secondLayoutAnterior;
     private Integer positionAnterior;
     private HashMap<Integer,Integer> selectedRows;
 
-    RecyclerAdapter(Context context, List<Producto> itemList) {
+    RecyclerAdapter(Context context, Moneda moneda, List<Producto> itemList) {
         productos = itemList;
+        this.moneda = moneda;
         secondLayoutAnterior = new LinearLayout(context);
         positionAnterior = 0;
         selectedRows = new HashMap<>();
@@ -41,6 +44,8 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         RecyclerItemViewHolder holder = (RecyclerItemViewHolder) viewHolder;
         final Producto producto = productos.get(position);
         holder.llenarItem(producto);
+
+        holder.moneda.setText(moneda.getSimbolo());
 
         if(selectedRows.get(position)!=null){
             holder.secondLayout.setVisibility(selectedRows.get(position));
