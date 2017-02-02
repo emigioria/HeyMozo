@@ -37,6 +37,7 @@
     <string name="estado_pedido_sirviendo">Sirviendo</string>
     <string name="estado_pedido_adeudado">Adeudado</string>
     <string name="estado_pedido_terminado">Terminado</string>
+    <string name="estado_pedido_cancelado">Terminado</string>
 
     <string name="guardando_pedido">Guardando pedido…</string>
     <string name="entrega_en_instantes">Entrega en instantes…</string>

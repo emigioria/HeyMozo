@@ -50,12 +50,14 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
         holder.textviewTotal.setText(String.format(Locale.getDefault(), "%.2f", pedido.getTotal()));
         holder.textviewNombreRestaurante.setText(pedido.getRestaurante().getNombre());
 
+        holder.buttonEvaluarExp.setVisibility(View.GONE);
+        holder.buttonGracias.setVisibility(View.GONE);
         if (pedido.getCalificacion() != null) {
             holder.buttonGracias.setVisibility(View.VISIBLE);
-            holder.buttonEvaluarExp.setVisibility(View.GONE);
         } else {
-            holder.buttonGracias.setVisibility(View.GONE);
-            holder.buttonEvaluarExp.setVisibility(View.VISIBLE);
+            if (pedido.getEstado().equals(getContext().getString(R.string.estado_pedido_terminado))) {
+                holder.buttonEvaluarExp.setVisibility(View.VISIBLE);
+            }
         }
 
         row.setOnClickListener(new View.OnClickListener() {
