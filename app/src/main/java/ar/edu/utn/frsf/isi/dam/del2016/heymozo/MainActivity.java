@@ -86,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
                         "            \"secciones\": [\n" +
                         "                {\n" +
                         "                    \"id\": 1,\n" +
-                        "                    \"nombre\": \"entradas\",\n" +
+                        "                    \"nombre\": \"Entradas\",\n" +
                         "                    \"productos\": [\n" +
                         "                        {\n" +
                         "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"empanadas de carne\",\n" +
+                        "                            \"nombre\": \"Empanadas de carne\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"empanadas de verdura\",\n" +
+                        "                            \"nombre\": \"Empanadas de verdura\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"empanadas árabes\",\n" +
+                        "                            \"nombre\": \"Empanadas árabes\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 4,\n" +
-                        "                            \"nombre\": \"ensalada\",\n" +
+                        "                            \"nombre\": \"Ensalada\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"papas fritas\",\n" +
+                        "                            \"nombre\": \"Papas fritas\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"empanadas de carne\",\n" +
+                        "                            \"nombre\": \"Empanadas de carne\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"empanadas de verdura\",\n" +
+                        "                            \"nombre\": \"Empanadas de verdura\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 8,\n" +
-                        "                            \"nombre\": \"empanadas árabes\",\n" +
+                        "                            \"nombre\": \"Empanadas árabes\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"ensalada\",\n" +
+                        "                            \"nombre\": \"Ensalada\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"papas fritas\",\n" +
+                        "                            \"nombre\": \"Papas fritas\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"empanadas de carne\",\n" +
+                        "                            \"nombre\": \"Empanadas de carne\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 12,\n" +
-                        "                            \"nombre\": \"empanadas de verdura\",\n" +
+                        "                            \"nombre\": \"Empanadas de verdura\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 13,\n" +
-                        "                            \"nombre\": \"empanadas árabes\",\n" +
+                        "                            \"nombre\": \"Empanadas árabes\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 14,\n" +
-                        "                            \"nombre\": \"ensalada\",\n" +
+                        "                            \"nombre\": \"Ensalada\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 15,\n" +
-                        "                            \"nombre\": \"papas fritas\",\n" +
+                        "                            \"nombre\": \"Papas fritas\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -212,11 +212,11 @@ public class MainActivity extends AppCompatActivity {
                         "                },\n" +
                         "                {\n" +
                         "                    \"id\": 2,\n" +
-                        "                    \"nombre\": \"sandwiches\",\n" +
+                        "                    \"nombre\": \"Sandwiches\",\n" +
                         "                    \"productos\": [\n" +
                         "                        {\n" +
                         "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"sandwiches\",\n" +
+                        "                            \"nombre\": \"Sandwiches\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"triples\",\n" +
+                        "                            \"nombre\": \"Triples\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"jamon cocido\",\n" +
+                        "                            \"nombre\": \"Jamon cocido\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 4,\n" +
-                        "                            \"nombre\": \"sandwich con ananá\",\n" +
+                        "                            \"nombre\": \"Sandwich con ananá\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"sandwiches\",\n" +
+                        "                            \"nombre\": \"Sandwiches\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"triples\",\n" +
+                        "                            \"nombre\": \"Triples\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"jamon cocido\",\n" +
+                        "                            \"nombre\": \"Jamón cocido\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 8,\n" +
-                        "                            \"nombre\": \"sandwich con ananá\",\n" +
+                        "                            \"nombre\": \"Sandwich con ananá\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"sandwiches\",\n" +
+                        "                            \"nombre\": \"Sandwiches\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"triples\",\n" +
+                        "                            \"nombre\": \"Triples\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"jamon cocido\",\n" +
+                        "                            \"nombre\": \"Jamón cocido\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 12,\n" +
-                        "                            \"nombre\": \"sandwich con ananá\",\n" +
+                        "                            \"nombre\": \"Sandwich con ananá\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 13,\n" +
-                        "                            \"nombre\": \"sandwiches\",\n" +
+                        "                            \"nombre\": \"Sandwiches\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 14,\n" +
-                        "                            \"nombre\": \"triples\",\n" +
+                        "                            \"nombre\": \"Triples\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -328,7 +328,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 15,\n" +
-                        "                            \"nombre\": \"jamon cocido\",\n" +
+                        "                            \"nombre\": \"Jamón cocido\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -336,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 16,\n" +
-                        "                            \"nombre\": \"sandwich con ananá\",\n" +
+                        "                            \"nombre\": \"Sandwich con ananá\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -346,11 +346,11 @@ public class MainActivity extends AppCompatActivity {
                         "                },\n" +
                         "                {\n" +
                         "                    \"id\": 3,\n" +
-                        "                    \"nombre\": \"pizzas\",\n" +
+                        "                    \"nombre\": \"Pizzas\",\n" +
                         "                    \"productos\": [\n" +
                         "                        {\n" +
                         "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"especial\",\n" +
+                        "                            \"nombre\": \"Especial\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -358,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"napolitana\",\n" +
+                        "                            \"nombre\": \"Napolitana\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -366,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"cebollada\",\n" +
+                        "                            \"nombre\": \"Cebollada\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -382,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"especial\",\n" +
+                        "                            \"nombre\": \"Especial\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -390,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"napolitana\",\n" +
+                        "                            \"nombre\": \"Napolitana\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -398,7 +398,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"cebollada\",\n" +
+                        "                            \"nombre\": \"Cebollada\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -414,7 +414,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"especial\",\n" +
+                        "                            \"nombre\": \"Especial\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -422,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"napolitana\",\n" +
+                        "                            \"nombre\": \"Napolitana\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"cebollada\",\n" +
+                        "                            \"nombre\": \"Cebollada\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -446,7 +446,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 13,\n" +
-                        "                            \"nombre\": \"especial\",\n" +
+                        "                            \"nombre\": \"Especial\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -454,7 +454,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 14,\n" +
-                        "                            \"nombre\": \"napolitana\",\n" +
+                        "                            \"nombre\": \"Napolitana\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -462,7 +462,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 15,\n" +
-                        "                            \"nombre\": \"cebollada\",\n" +
+                        "                            \"nombre\": \"Cebollada\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -480,11 +480,11 @@ public class MainActivity extends AppCompatActivity {
                         "                },\n" +
                         "                {\n" +
                         "                    \"id\": 4,\n" +
-                        "                    \"nombre\": \"postres\",\n" +
+                        "                    \"nombre\": \"Postres\",\n" +
                         "                    \"productos\": [\n" +
                         "                        {\n" +
                         "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"helado\",\n" +
+                        "                            \"nombre\": \"Helado\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -492,7 +492,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"torta alemana\",\n" +
+                        "                            \"nombre\": \"Torta alemana\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -500,7 +500,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"tiramisú\",\n" +
+                        "                            \"nombre\": \"Tiramisú\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -508,7 +508,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 4,\n" +
-                        "                            \"nombre\": \"frutas\",\n" +
+                        "                            \"nombre\": \"Frutas\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -516,7 +516,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"helado\",\n" +
+                        "                            \"nombre\": \"Helado\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -524,7 +524,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"torta alemana\",\n" +
+                        "                            \"nombre\": \"Torta alemana\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -532,7 +532,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"tiramisú\",\n" +
+                        "                            \"nombre\": \"Tiramisú\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -540,7 +540,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 8,\n" +
-                        "                            \"nombre\": \"frutas\",\n" +
+                        "                            \"nombre\": \"Frutas\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -548,7 +548,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"helado\",\n" +
+                        "                            \"nombre\": \"Helado\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -556,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"torta alemana\",\n" +
+                        "                            \"nombre\": \"Torta alemana\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -564,7 +564,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"tiramisú\",\n" +
+                        "                            \"nombre\": \"Tiramisú\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -572,7 +572,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 12,\n" +
-                        "                            \"nombre\": \"frutas\",\n" +
+                        "                            \"nombre\": \"Frutas\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -582,11 +582,11 @@ public class MainActivity extends AppCompatActivity {
                         "                },\n" +
                         "                {\n" +
                         "                    \"id\": 5,\n" +
-                        "                    \"nombre\": \"bebidas\",\n" +
+                        "                    \"nombre\": \"Bebidas\",\n" +
                         "                    \"productos\": [\n" +
                         "                        {\n" +
                         "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"fernet\",\n" +
+                        "                            \"nombre\": \"Fernet\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -594,7 +594,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"gancia\",\n" +
+                        "                            \"nombre\": \"Gancia\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -602,7 +602,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"wisky\",\n" +
+                        "                            \"nombre\": \"Whisky\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -610,7 +610,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 4,\n" +
-                        "                            \"nombre\": \"martini\",\n" +
+                        "                            \"nombre\": \"Martini\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -618,7 +618,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"jarra loca\",\n" +
+                        "                            \"nombre\": \"Jarra loca\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -626,7 +626,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"fernet\",\n" +
+                        "                            \"nombre\": \"Fernet\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -634,7 +634,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"gancia\",\n" +
+                        "                            \"nombre\": \"Gancia\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -642,7 +642,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 8,\n" +
-                        "                            \"nombre\": \"wisky\",\n" +
+                        "                            \"nombre\": \"Whisky\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -650,7 +650,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"martini\",\n" +
+                        "                            \"nombre\": \"Martini\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -658,7 +658,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"jarra loca\",\n" +
+                        "                            \"nombre\": \"Jarra loca\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -666,7 +666,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"fernet\",\n" +
+                        "                            \"nombre\": \"Fernet\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -674,7 +674,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 12,\n" +
-                        "                            \"nombre\": \"gancia\",\n" +
+                        "                            \"nombre\": \"Gancia\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -682,7 +682,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 13,\n" +
-                        "                            \"nombre\": \"wisky\",\n" +
+                        "                            \"nombre\": \"Whisky\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -690,7 +690,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 14,\n" +
-                        "                            \"nombre\": \"martini\",\n" +
+                        "                            \"nombre\": \"Martini\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +
@@ -698,7 +698,7 @@ public class MainActivity extends AppCompatActivity {
                         "                        },\n" +
                         "                        {\n" +
                         "                            \"id\": 15,\n" +
-                        "                            \"nombre\": \"jarra loca\",\n" +
+                        "                            \"nombre\": \"Jarra loca\",\n" +
                         "                            \"moneda\": {\n" +
                         "                                \"moneda\": \"$\"\n" +
                         "                            },\n" +

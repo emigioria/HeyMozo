@@ -22,11 +22,11 @@
             "secciones": [
                 {
                     "id": 1,
-                    "nombre": "entradas",
+                    "nombre": "Entradas",
                     "productos": [
                         {
                             "id": 1,
-                            "nombre": "empanadas de carne",
+                            "nombre": "Empanadas de carne",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -34,7 +34,7 @@
                         },
                         {
                             "id": 2,
-                            "nombre": "empanadas de verdura",
+                            "nombre": "Empanadas de verdura",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -42,7 +42,7 @@
                         },
                         {
                             "id": 3,
-                            "nombre": "empanadas árabes",
+                            "nombre": "Empanadas árabes",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -50,7 +50,7 @@
                         },
                         {
                             "id": 4,
-                            "nombre": "ensalada",
+                            "nombre": "Ensalada",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -58,7 +58,7 @@
                         },
                         {
                             "id": 5,
-                            "nombre": "papas fritas",
+                            "nombre": "Papas fritas",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -66,7 +66,7 @@
                         },
                         {
                             "id": 6,
-                            "nombre": "empanadas de carne",
+                            "nombre": "Empanadas de carne",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -74,7 +74,7 @@
                         },
                         {
                             "id": 7,
-                            "nombre": "empanadas de verdura",
+                            "nombre": "Empanadas de verdura",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -82,7 +82,7 @@
                         },
                         {
                             "id": 8,
-                            "nombre": "empanadas árabes",
+                            "nombre": "Empanadas árabes",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -90,7 +90,7 @@
                         },
                         {
                             "id": 9,
-                            "nombre": "ensalada",
+                            "nombre": "Ensalada",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -98,7 +98,7 @@
                         },
                         {
                             "id": 10,
-                            "nombre": "papas fritas",
+                            "nombre": "Papas fritas",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -106,7 +106,7 @@
                         },
                         {
                             "id": 11,
-                            "nombre": "empanadas de carne",
+                            "nombre": "Empanadas de carne",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -114,7 +114,7 @@
                         },
                         {
                             "id": 12,
-                            "nombre": "empanadas de verdura",
+                            "nombre": "Empanadas de verdura",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -122,7 +122,7 @@
                         },
                         {
                             "id": 13,
-                            "nombre": "empanadas árabes",
+                            "nombre": "Empanadas árabes",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -130,7 +130,7 @@
                         },
                         {
                             "id": 14,
-                            "nombre": "ensalada",
+                            "nombre": "Ensalada",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -138,7 +138,7 @@
                         },
                         {
                             "id": 15,
-                            "nombre": "papas fritas",
+                            "nombre": "Papas fritas",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -148,11 +148,11 @@
                 },
                 {
                     "id": 2,
-                    "nombre": "sandwiches",
+                    "nombre": "Sandwiches",
                     "productos": [
                         {
                             "id": 1,
-                            "nombre": "sandwiches",
+                            "nombre": "Sandwiches",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -160,7 +160,7 @@
                         },
                         {
                             "id": 2,
-                            "nombre": "triples",
+                            "nombre": "Triples",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -168,7 +168,7 @@
                         },
                         {
                             "id": 3,
-                            "nombre": "jamon cocido",
+                            "nombre": "Jamon cocido",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -176,7 +176,7 @@
                         },
                         {
                             "id": 4,
-                            "nombre": "sandwich con ananá",
+                            "nombre": "Sandwich con ananá",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -184,7 +184,7 @@
                         },
                         {
                             "id": 5,
-                            "nombre": "sandwiches",
+                            "nombre": "Sandwiches",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -192,7 +192,7 @@
                         },
                         {
                             "id": 6,
-                            "nombre": "triples",
+                            "nombre": "Triples",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -200,7 +200,7 @@
                         },
                         {
                             "id": 7,
-                            "nombre": "jamon cocido",
+                            "nombre": "Jamón cocido",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -208,7 +208,7 @@
                         },
                         {
                             "id": 8,
-                            "nombre": "sandwich con ananá",
+                            "nombre": "Sandwich con ananá",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -216,7 +216,7 @@
                         },
                         {
                             "id": 9,
-                            "nombre": "sandwiches",
+                            "nombre": "Sandwiches",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -224,7 +224,7 @@
                         },
                         {
                             "id": 10,
-                            "nombre": "triples",
+                            "nombre": "Triples",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -232,7 +232,7 @@
                         },
                         {
                             "id": 11,
-                            "nombre": "jamon cocido",
+                            "nombre": "Jamón cocido",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -240,7 +240,7 @@
                         },
                         {
                             "id": 12,
-                            "nombre": "sandwich con ananá",
+                            "nombre": "Sandwich con ananá",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -248,7 +248,7 @@
                         },
                         {
                             "id": 13,
-                            "nombre": "sandwiches",
+                            "nombre": "Sandwiches",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -256,7 +256,7 @@
                         },
                         {
                             "id": 14,
-                            "nombre": "triples",
+                            "nombre": "Triples",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -264,7 +264,7 @@
                         },
                         {
                             "id": 15,
-                            "nombre": "jamon cocido",
+                            "nombre": "Jamón cocido",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -272,7 +272,7 @@
                         },
                         {
                             "id": 16,
-                            "nombre": "sandwich con ananá",
+                            "nombre": "Sandwich con ananá",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -282,11 +282,11 @@
                 },
                 {
                     "id": 3,
-                    "nombre": "pizzas",
+                    "nombre": "Pizzas",
                     "productos": [
                         {
                             "id": 1,
-                            "nombre": "especial",
+                            "nombre": "Especial",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -294,7 +294,7 @@
                         },
                         {
                             "id": 2,
-                            "nombre": "napolitana",
+                            "nombre": "Napolitana",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -302,7 +302,7 @@
                         },
                         {
                             "id": 3,
-                            "nombre": "cebollada",
+                            "nombre": "Cebollada",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -318,7 +318,7 @@
                         },
                         {
                             "id": 5,
-                            "nombre": "especial",
+                            "nombre": "Especial",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -326,7 +326,7 @@
                         },
                         {
                             "id": 6,
-                            "nombre": "napolitana",
+                            "nombre": "Napolitana",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -334,7 +334,7 @@
                         },
                         {
                             "id": 7,
-                            "nombre": "cebollada",
+                            "nombre": "Cebollada",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -350,7 +350,7 @@
                         },
                         {
                             "id": 9,
-                            "nombre": "especial",
+                            "nombre": "Especial",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -358,7 +358,7 @@
                         },
                         {
                             "id": 10,
-                            "nombre": "napolitana",
+                            "nombre": "Napolitana",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -366,7 +366,7 @@
                         },
                         {
                             "id": 11,
-                            "nombre": "cebollada",
+                            "nombre": "Cebollada",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -382,7 +382,7 @@
                         },
                         {
                             "id": 13,
-                            "nombre": "especial",
+                            "nombre": "Especial",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -390,7 +390,7 @@
                         },
                         {
                             "id": 14,
-                            "nombre": "napolitana",
+                            "nombre": "Napolitana",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -398,7 +398,7 @@
                         },
                         {
                             "id": 15,
-                            "nombre": "cebollada",
+                            "nombre": "Cebollada",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -416,11 +416,11 @@
                 },
                 {
                     "id": 4,
-                    "nombre": "postres",
+                    "nombre": "Postres",
                     "productos": [
                         {
                             "id": 1,
-                            "nombre": "helado",
+                            "nombre": "Helado",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -428,7 +428,7 @@
                         },
                         {
                             "id": 2,
-                            "nombre": "torta alemana",
+                            "nombre": "Torta alemana",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -436,7 +436,7 @@
                         },
                         {
                             "id": 3,
-                            "nombre": "tiramisú",
+                            "nombre": "Tiramisú",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -444,7 +444,7 @@
                         },
                         {
                             "id": 4,
-                            "nombre": "frutas",
+                            "nombre": "Frutas",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -452,7 +452,7 @@
                         },
                         {
                             "id": 5,
-                            "nombre": "helado",
+                            "nombre": "Helado",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -460,7 +460,7 @@
                         },
                         {
                             "id": 6,
-                            "nombre": "torta alemana",
+                            "nombre": "Torta alemana",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -468,7 +468,7 @@
                         },
                         {
                             "id": 7,
-                            "nombre": "tiramisú",
+                            "nombre": "Tiramisú",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -476,7 +476,7 @@
                         },
                         {
                             "id": 8,
-                            "nombre": "frutas",
+                            "nombre": "Frutas",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -484,7 +484,7 @@
                         },
                         {
                             "id": 9,
-                            "nombre": "helado",
+                            "nombre": "Helado",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -492,7 +492,7 @@
                         },
                         {
                             "id": 10,
-                            "nombre": "torta alemana",
+                            "nombre": "Torta alemana",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -500,7 +500,7 @@
                         },
                         {
                             "id": 11,
-                            "nombre": "tiramisú",
+                            "nombre": "Tiramisú",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -508,7 +508,7 @@
                         },
                         {
                             "id": 12,
-                            "nombre": "frutas",
+                            "nombre": "Frutas",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -518,11 +518,11 @@
                 },
                 {
                     "id": 5,
-                    "nombre": "bebidas",
+                    "nombre": "Bebidas",
                     "productos": [
                         {
                             "id": 1,
-                            "nombre": "fernet",
+                            "nombre": "Fernet",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -530,7 +530,7 @@
                         },
                         {
                             "id": 2,
-                            "nombre": "gancia",
+                            "nombre": "Gancia",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -538,7 +538,7 @@
                         },
                         {
                             "id": 3,
-                            "nombre": "wisky",
+                            "nombre": "Whisky",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -546,7 +546,7 @@
                         },
                         {
                             "id": 4,
-                            "nombre": "martini",
+                            "nombre": "Martini",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -554,7 +554,7 @@
                         },
                         {
                             "id": 5,
-                            "nombre": "jarra loca",
+                            "nombre": "Jarra loca",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -562,7 +562,7 @@
                         },
                         {
                             "id": 6,
-                            "nombre": "fernet",
+                            "nombre": "Fernet",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -570,7 +570,7 @@
                         },
                         {
                             "id": 7,
-                            "nombre": "gancia",
+                            "nombre": "Gancia",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -578,7 +578,7 @@
                         },
                         {
                             "id": 8,
-                            "nombre": "wisky",
+                            "nombre": "Whisky",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -586,7 +586,7 @@
                         },
                         {
                             "id": 9,
-                            "nombre": "martini",
+                            "nombre": "Martini",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -594,7 +594,7 @@
                         },
                         {
                             "id": 10,
-                            "nombre": "jarra loca",
+                            "nombre": "Jarra loca",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -602,7 +602,7 @@
                         },
                         {
                             "id": 11,
-                            "nombre": "fernet",
+                            "nombre": "Fernet",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -610,7 +610,7 @@
                         },
                         {
                             "id": 12,
-                            "nombre": "gancia",
+                            "nombre": "Gancia",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -618,7 +618,7 @@
                         },
                         {
                             "id": 13,
-                            "nombre": "wisky",
+                            "nombre": "Whisky",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -626,7 +626,7 @@
                         },
                         {
                             "id": 14,
-                            "nombre": "martini",
+                            "nombre": "Martini",
                             "moneda": {
                                 "moneda": "$"
                             },
@@ -634,7 +634,7 @@
                         },
                         {
                             "id": 15,
-                            "nombre": "jarra loca",
+                            "nombre": "Jarra loca",
                             "moneda": {
                                 "moneda": "$"
                             },
