@@ -48,6 +48,8 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_check_black_24dp"
         app:rippleColor="@android:color/white"
-        android:tint="@color/white" />
+        android:tint="@color/white"
+        app:borderWidth="0dp"
+        app:layout_behavior="ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.ScrollingFABBehavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

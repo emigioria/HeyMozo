@@ -33,31 +33,33 @@ public class SolicitarCartaTask extends AsyncTask<Object, Object, String> {
 
     @Override
     protected  void onPreExecute(){
-        listener.busquedaIniciada() ;
+        listener.busquedaIniciada();
     }
 
     @Override
     protected String doInBackground(Object... mesa) {
-        StringBuilder sb = null;
+        String cartaJSON = null;
         try {
             URL url = new URL("http://" + context.getString(R.string.ip_server) + ":" + context.getString(R.string.port_server_db) + "/cartas/" + mesa[0]);
-            Log.v("INFO:",url.toString());
+            Log.v("INFO:", url.toString());
             urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);
-            sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             int data = isw.read();
             while (data != -1) {
                 char current = (char) data;
                 sb.append(current);
                 data = isw.read();
             }
+            cartaJSON = sb.toString();
         } catch (IOException e) {
+            status = ERROR;
             e.printStackTrace();
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
-            return sb.toString();
         }
+        return cartaJSON;
     }
 
     @Override

@@ -1,70 +1,46 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
+import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.ViewHolderProducto;
 
 import static java.lang.String.valueOf;
 
-/**
- * Created by lucas on 24/01/17.
- */
+class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-class SeccionAdapter extends ArrayAdapter<Producto> {
-
-    private LayoutInflater inflater;
+    private List<Producto> productos;
     private LinearLayout secondLayoutAnterior;
     private Integer positionAnterior;
     private HashMap<Integer,Integer> selectedRows;
 
-    SeccionAdapter(Context context, ArrayList<Producto> productos) {
-        super(context, R.layout.item_producto, productos);
-        inflater = LayoutInflater.from(context);
+    RecyclerAdapter(Context context, List<Producto> itemList) {
+        productos = itemList;
         secondLayoutAnterior = new LinearLayout(context);
         positionAnterior = 0;
-        selectedRows = new HashMap();
+        selectedRows = new HashMap<>();
     }
 
-    @NonNull
     @Override
-    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.item_producto, parent, false);
+        return RecyclerItemViewHolder.newInstance(view);
+    }
 
-        View row = convertView;
-        if(row == null){
-            row = inflater.inflate(R.layout.item_producto, parent, false);
-        }
-
-        ViewHolderProducto holder = (ViewHolderProducto) row.getTag();
-        if(holder == null){
-            holder = new ViewHolderProducto(row);
-            row.setTag(holder);
-        }
-
-        Integer cantidad = this.getItem(position).getCantidad();
-        if(cantidad>0){
-            holder.cantidad.setVisibility(View.VISIBLE); //Se muestra el campo cantidad si es mayor que 0
-            row.setBackgroundColor(0x66FF7C00);
-        }else{
-            holder.cantidad.setVisibility(View.GONE);
-            row.setBackgroundColor(0x00FFFFFF);
-        }
-
-        holder.cantidad.setText(valueOf(cantidad));
-        holder.nombreProducto.setText(this.getItem(position).getNombre());
-        holder.moneda.setText(this.getItem(position).getMoneda().getSimbolo());
-        holder.precio.setText(String.format(Locale.getDefault(),"%.2f",this.getItem(position).getPrecio()));
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
+        RecyclerItemViewHolder holder = (RecyclerItemViewHolder) viewHolder;
+        final Producto producto = productos.get(position);
+        holder.llenarItem(producto);
 
         if(selectedRows.get(position)!=null){
             holder.secondLayout.setVisibility(selectedRows.get(position));
@@ -72,11 +48,10 @@ class SeccionAdapter extends ArrayAdapter<Producto> {
             holder.secondLayout.setVisibility(LinearLayout.GONE);
         }
 
+        final RecyclerItemViewHolder finalHolder = holder;
+        final View finalRow = holder.view;
 
-        final ViewHolderProducto finalHolder = holder;
-        final View finalRow = row;
-
-        row.setOnClickListener(new View.OnClickListener() {
+        holder.view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
                 secondLayoutAnterior.setVisibility(LinearLayout.GONE);
@@ -94,8 +69,8 @@ class SeccionAdapter extends ArrayAdapter<Producto> {
         holder.agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Integer cantidad = getItem(position).getCantidad()+1;
-                getItem(position).setCantidad(cantidad);
+                Integer cantidad = producto.getCantidad()+1;
+                producto.setCantidad(cantidad);
                 finalHolder.cantidad.setText(valueOf(cantidad));
                 finalHolder.cantidad.setVisibility(View.VISIBLE);
                 finalRow.setBackgroundColor(0x66FF7C00);
@@ -105,26 +80,26 @@ class SeccionAdapter extends ArrayAdapter<Producto> {
         holder.quitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Integer cantidad = getItem(position).getCantidad()-1;
+                Integer cantidad = producto.getCantidad()-1;
 
                 if(cantidad>0) {
-                    getItem(position).setCantidad(cantidad);
+                    producto.setCantidad(cantidad);
                     finalHolder.cantidad.setText(valueOf(cantidad));
                     finalHolder.cantidad.setVisibility(View.VISIBLE);
                     finalRow.setBackgroundColor(0x66FF7C00);
                 }
                 else{
-                    getItem(position).setCantidad(0);
+                    producto.setCantidad(0);
                     finalHolder.cantidad.setVisibility(View.GONE);
                     finalRow.setBackgroundColor(0x00FFFFFF);
                 }
             }
         });
-
-        return(row);
     }
 
-    public Producto getItem(int position){
-        return super.getItem(position);
+    @Override
+    public int getItemCount() {
+        return productos == null ? 0 : productos.size();
     }
+
 }

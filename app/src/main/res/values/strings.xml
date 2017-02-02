@@ -40,4 +40,7 @@
 
     <string name="guardando_pedido">Guardando pedido...</string>
     <string name="entrega_en_instantes">Entrega en instantes...</string>
+    <string name="mensaje_error_sin_conexion">Ocurrió un error buscando la carta, compruebe su conexión a Internet</string>
+    <string name="mensaje_solicitud_cancelada">Solicitud cancelada</string>
+    <string name="mensaje_esperando_carta">Esperando al servidor…</string>
 </resources>
