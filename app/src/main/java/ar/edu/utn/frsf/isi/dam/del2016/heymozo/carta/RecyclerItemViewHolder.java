@@ -38,7 +38,6 @@ class RecyclerItemViewHolder extends RecyclerView.ViewHolder {
 
         cantidad.setText(String.valueOf(producto.getCantidad()));
         nombreProducto.setText(producto.getNombre());
-        moneda.setText(producto.getMoneda().getSimbolo());
         precio.setText(String.format(Locale.getDefault(),"%.2f",producto.getPrecio()));
 
         if(producto.getCantidad()>0){

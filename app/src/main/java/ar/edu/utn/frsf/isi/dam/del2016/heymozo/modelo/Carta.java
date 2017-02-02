@@ -15,6 +15,7 @@ public class Carta {
     @SerializedName(SECCIONES)
     private ArrayList<Seccion> secciones = new ArrayList<>();
 
+
     public Carta() {
 
     }
@@ -40,4 +41,5 @@ public class Carta {
         this.restaurante = restaurante;
         return this;
     }
+
 }

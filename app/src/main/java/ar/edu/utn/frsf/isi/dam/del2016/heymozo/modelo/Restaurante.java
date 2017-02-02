@@ -5,12 +5,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class Restaurante {
     private static final String NOMBRE = "nombre";
+    private static final String MONEDA = "moneda";
     private static final String LATITUD = "latitud";
     private static final String LONGITUD = "longitud";
     private static final String IMAGEN_RESTAURANTE = "imagen";
 
     @SerializedName(NOMBRE)
     private String nombre;
+
+    @SerializedName(MONEDA)
+    private Moneda moneda;
 
     @SerializedName(LATITUD)
     private Double latitud;
@@ -63,6 +67,15 @@ public class Restaurante {
     public Restaurante setImagen(byte[] imagen) {
         this.imagen = imagen;
         return this;
+    }
+
+    public Restaurante setMoneda(Moneda moneda){
+        this.moneda = moneda;
+        return this;
+    }
+
+    public Moneda getMoneda(){
+        return moneda;
     }
 
 }

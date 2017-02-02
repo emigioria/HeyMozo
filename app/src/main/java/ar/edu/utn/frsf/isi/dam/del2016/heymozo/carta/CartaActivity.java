@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Carta;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Moneda;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Seccion;
@@ -80,7 +80,7 @@ public class CartaActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 Pedido pedido = new Pedido()
                         .setMesa(gson.fromJson(getIntent().getExtras().getString("mesa"), Mesa.class))
-                        .setMoneda(gson.fromJson(getIntent().getExtras().getString("moneda"), Moneda.class))
+                        .setMoneda(carta.getRestaurante().getMoneda())
                         .setRestaurante(carta.getRestaurante());
                 ArrayList<Producto> productosSeleccionados = new ArrayList<>();
                 for (Seccion seccion : carta.getSecciones()) {
@@ -162,7 +162,8 @@ public class CartaActivity extends AppCompatActivity {
 
         private void setupRecyclerView(RecyclerView recyclerView) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
+            Log.v("MONEDA",carta.getRestaurante().getMoneda().getSimbolo());
+            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), carta.getRestaurante().getMoneda(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
             recyclerView.setAdapter(recyclerAdapter);
         }
     }
