@@ -13,10 +13,6 @@ import java.net.URL;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
-/**
- * Created by lucas on 31/01/17.
- */
-
 public class SolicitarCartaTask extends AsyncTask<Object, Object, String> {
     private final Context context;
     private SolicitarCartaListener listener;
