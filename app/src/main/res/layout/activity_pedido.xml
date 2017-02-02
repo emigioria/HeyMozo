@@ -15,7 +15,8 @@
         <ImageView
             android:id="@+id/imagenToolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:contentDescription="@string/imagen_del_restaurante" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"

@@ -24,7 +24,7 @@ import java.util.Locale;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
-public class PedidoActivity extends AppCompatActivity implements GuardarPedidoListener {
+public class PedidoActivity extends AppCompatActivity implements GuardarPedidoListener, CargarPedidoListener {
 
     private Pedido pedido;
     private Gson gson = new Gson();
@@ -39,6 +39,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     private Button buttonConfirmar;
 
     private GuardarPedidoTask guardarPedidoTask;
+    private CargarPedidoTask cargarPedidoTask;
 
     private void linkearVista() {
         textViewNombreComedor = (TextView) findViewById(R.id.textViewNombreComedor);
@@ -63,11 +64,20 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
 
         pedido = gson.fromJson(getIntent().getStringExtra("pedido"), Pedido.class);
 
-        if (pedido == null) {
-            this.finish();
-            return;
+        if (pedido != null) {
+            mostrarPedido();
+        } else {
+            String pedidoId = getIntent().getStringExtra("pedidoId");
+            if (pedidoId != null) {
+                cargarPedidoTask = new CargarPedidoTask(PedidoActivity.this, PedidoActivity.this);
+                cargarPedidoTask.execute(pedidoId);
+            } else {
+                this.finish();
+            }
         }
+    }
 
+    private void mostrarPedido() {
         textViewNombreComedor.setText(pedido.getRestaurante().getNombre());
 
         if (pedido.getEstado() == null) {
@@ -166,6 +176,32 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
 
     @Override
     public void guardadoIniciado() {
-        Toast.makeText(this, R.string.guardando_pedido, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.guardando_pedido), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void cargaFinalizada(Pedido pedido, int resultCode) {
+        switch (resultCode) {
+            case CargarPedidoTask.OK:
+                if (pedido == null) {
+                    finish();
+                    return;
+                }
+                this.pedido = pedido;
+                mostrarPedido();
+                break;
+            case CargarPedidoTask.CANCELADO:
+                finish();
+                break;
+            case CargarPedidoTask.ERROR:
+                Toast.makeText(this, getString(R.string.error_servidor), Toast.LENGTH_LONG).show();
+                finish();
+                break;
+        }
+    }
+
+    @Override
+    public void cargaIniciada() {
+        Toast.makeText(this, getString(R.string.cargando_pedido), Toast.LENGTH_SHORT).show();
     }
 }
