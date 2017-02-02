@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 public class Producto {
@@ -22,6 +23,10 @@ public class Producto {
 
     public Producto() {
         cantidad = 0;
+    }
+
+    public String toJSONObject() {
+        return new Gson().toJson(this);
     }
 
     public Integer getCantidad() {

@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 public class Moneda {
@@ -10,6 +11,10 @@ public class Moneda {
 
     public Moneda() {
 
+    }
+
+    public String toJSONObject() {
+        return new Gson().toJson(this);
     }
 
     public String getSimbolo() {

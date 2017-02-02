@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 public class Restaurante {
@@ -22,6 +23,10 @@ public class Restaurante {
 
     public Restaurante() {
 
+    }
+
+    public String toJSONObject() {
+        return new Gson().toJson(this);
     }
 
     public String getNombre() {

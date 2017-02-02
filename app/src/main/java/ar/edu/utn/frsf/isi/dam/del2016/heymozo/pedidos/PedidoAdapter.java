@@ -39,7 +39,7 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
 
         View row = convertView;
         if (row == null) {
-            row = inflater.inflate(R.layout.item_producto, parent, false);
+            row = inflater.inflate(R.layout.item_pedido, parent, false);
         }
 
         ViewHolderPedido holder = (ViewHolderPedido) row.getTag();
@@ -49,7 +49,7 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
         }
         final Pedido pedido = this.getItem(position);
 
-        String numPedido = String.format(Locale.getDefault(), getContext().getString(R.string.pedidoNum), position);
+        String numPedido = String.format(Locale.getDefault(), getContext().getString(R.string.pedidoNum), getCount() - position);
         holder.textviewPedido.setText(numPedido);
         holder.textviewMoneda.setText(pedido.getMoneda().getSimbolo());
         holder.textviewFecha.setText(DateFormat.getDateInstance().format(new Date(pedido.getFechaPedido())));
@@ -58,11 +58,11 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
         holder.textviewNombreRestaurante.setText(pedido.getRestaurante().getNombre());
 
         if (pedido.getCalificacion() != null) {
-            holder.buttonGracias.setVisibility(View.GONE);
-            holder.buttonEvaluarExp.setVisibility(View.VISIBLE);
-        } else {
             holder.buttonGracias.setVisibility(View.VISIBLE);
             holder.buttonEvaluarExp.setVisibility(View.GONE);
+        } else {
+            holder.buttonGracias.setVisibility(View.GONE);
+            holder.buttonEvaluarExp.setVisibility(View.VISIBLE);
         }
 
         row.setOnClickListener(new View.OnClickListener() {

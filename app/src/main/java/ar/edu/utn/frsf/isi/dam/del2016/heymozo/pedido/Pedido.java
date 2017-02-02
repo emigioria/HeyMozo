@@ -12,6 +12,7 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Moneda;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
 public class Pedido {
+    private static final String USUARIO = "usuario_id";
     private static final String RESTAURANTE = "nombre_restaurant";
     private static final String MESA = "codigo_mesa";
     private static final String PRODUCTOS = "productos";
@@ -21,6 +22,9 @@ public class Pedido {
     private static final String FECHA_PEDIDO = "fecha_pedido";
     private static final String TOTAL = "total";
     private static final String CALIFICACION = "calificacion";
+
+    @SerializedName(USUARIO)
+    private String userID;
 
     @SerializedName(RESTAURANTE)
     private Restaurante restaurante;
@@ -55,6 +59,15 @@ public class Pedido {
 
     public String toJSONObject() {
         return new Gson().toJson(this);
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public Pedido setUserID(String userID) {
+        this.userID = userID;
+        return this;
     }
 
     public Restaurante getRestaurante() {

@@ -7,6 +7,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_carta">CartaActivity</string>
     <string name="cargando_ubicaciones">Cargando ubicaciones…</string>
+    <string name="cargando_pedidos">Cargando pedidos…</string>
     <string name="ubicaciones_cargadas">Se han cargado las ubicaciones</string>
     <string name="error_servidor">No se ha podido establecer la conexión con el servidor</string>
     <string name="title_activity_pedido">Su pedido</string>
@@ -28,4 +29,15 @@
     <string name="pedido_permiso_mensaje">Puedo acceder a un permiso peligroso???</string>
     <string name="port_server_db">3000</string>
     <string name="no_tengo_un_codigo_qr">No tengo un código QR</string>
+    <string name="pedido_guardado_correcto">Pedido guardado con éxito!</string>
+    <string name="pedido_no_guardado">Pedido no guardado.</string>
+
+    <string name="estado_pedido_procesando">Procesando</string>
+    <string name="estado_pedido_preparando">Preparando</string>
+    <string name="estado_pedido_sirviendo">Sirviendo</string>
+    <string name="estado_pedido_adeudado">Adeudado</string>
+    <string name="estado_pedido_terminado">Terminado</string>
+
+    <string name="guardando_pedido">Guardando pedido...</string>
+    <string name="entrega_en_instantes">Entrega en instantes...</string>
 </resources>

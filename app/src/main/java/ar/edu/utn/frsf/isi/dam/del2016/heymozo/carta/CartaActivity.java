@@ -94,6 +94,7 @@ public class CartaActivity extends AppCompatActivity {
                     Intent intent = new Intent(CartaActivity.this, PedidoActivity.class);
                     intent.putExtra("pedido", pedido.toJSONObject());
                     startActivity(intent);
+                    finish();
                 }
             }
         });

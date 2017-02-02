@@ -21,7 +21,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/pedidoNum"
             android:textSize="@dimen/tamañoLetraProducto" />
 
         <TextView
@@ -34,7 +33,7 @@
             android:textSize="@dimen/tamañoLetraProducto" />
 
         <TextView
-            android:id="@+id/textviewFecha"
+            android:id="@+id/textViewTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -62,7 +61,7 @@
             android:textSize="@dimen/tamañoLetraProducto" />
 
         <TextView
-            android:id="@+id/textViewTotal"
+            android:id="@+id/textviewFecha"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

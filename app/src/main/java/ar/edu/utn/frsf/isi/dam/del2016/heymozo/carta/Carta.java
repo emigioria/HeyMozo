@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -18,6 +19,10 @@ public class Carta {
 
     public Carta() {
 
+    }
+
+    public String toJSONObject() {
+        return new Gson().toJson(this);
     }
 
     public ArrayList<Seccion> getSecciones() {
