@@ -7,7 +7,7 @@ public class Mesa {
     private static final String ID = "id";
 
     @SerializedName(ID)
-    private Integer id;
+    private String id;
 
     public Mesa() {
 
@@ -17,11 +17,11 @@ public class Mesa {
         return new Gson().toJson(this);
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public Mesa setId(Integer id) {
+    public Mesa setId(String id) {
         this.id = id;
         return this;
     }

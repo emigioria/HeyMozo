@@ -3,12 +3,18 @@
         {
             "id": 1,
             "nombre": "Bar-Resto 1980",
+            "moneda": {
+                "moneda": "$"
+            },
             "latitud": -31.6366443,
             "longitud": -60.699605
         },
         {
             "id": 2,
             "nombre": "Paladar Negro",
+            "moneda": {
+                "moneda": "$"
+            },
             "latitud": -31.6387288,
             "longitud": -60.6936089
         }
@@ -17,7 +23,10 @@
         {
             "id": 1,
             "nombre_restaurant": {
-                "nombre": "Bar-Resto 1980"
+                "nombre": "Bar-Resto 1980",
+                "moneda": {
+                    "moneda": "$"
+                }
             },
             "secciones": [
                 {
@@ -27,121 +36,76 @@
                         {
                             "id": 1,
                             "nombre": "Empanadas de carne",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 12
                         },
                         {
                             "id": 2,
                             "nombre": "Empanadas de verdura",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 23
                         },
                         {
                             "id": 3,
                             "nombre": "Empanadas árabes",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 34
                         },
                         {
                             "id": 4,
                             "nombre": "Ensalada",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 38
                         },
                         {
                             "id": 5,
                             "nombre": "Papas fritas",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 86
                         },
                         {
                             "id": 6,
                             "nombre": "Empanadas de carne",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 12
                         },
                         {
                             "id": 7,
                             "nombre": "Empanadas de verdura",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 23
                         },
                         {
                             "id": 8,
                             "nombre": "Empanadas árabes",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 34
                         },
                         {
                             "id": 9,
                             "nombre": "Ensalada",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 38
                         },
                         {
                             "id": 10,
                             "nombre": "Papas fritas",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 86
                         },
                         {
                             "id": 11,
                             "nombre": "Empanadas de carne",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 12
                         },
                         {
                             "id": 12,
                             "nombre": "Empanadas de verdura",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 23
                         },
                         {
                             "id": 13,
                             "nombre": "Empanadas árabes",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 34
                         },
                         {
                             "id": 14,
                             "nombre": "Ensalada",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 38
                         },
                         {
                             "id": 15,
                             "nombre": "Papas fritas",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 86
                         }
                     ]
@@ -153,129 +117,81 @@
                         {
                             "id": 1,
                             "nombre": "Sandwiches",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 12
                         },
                         {
                             "id": 2,
                             "nombre": "Triples",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 67
                         },
                         {
                             "id": 3,
                             "nombre": "Jamon cocido",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 24
                         },
                         {
                             "id": 4,
                             "nombre": "Sandwich con ananá",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 5,
                             "nombre": "Sandwiches",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 65
                         },
                         {
                             "id": 6,
                             "nombre": "Triples",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 67
                         },
                         {
                             "id": 7,
                             "nombre": "Jamón cocido",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 24
                         },
                         {
                             "id": 8,
                             "nombre": "Sandwich con ananá",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 24
                         },
                         {
                             "id": 9,
                             "nombre": "Sandwiches",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 14
                         },
                         {
                             "id": 10,
                             "nombre": "Triples",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 67
                         },
                         {
                             "id": 11,
                             "nombre": "Jamón cocido",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 24
                         },
                         {
                             "id": 12,
                             "nombre": "Sandwich con ananá",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 24
                         },
                         {
                             "id": 13,
                             "nombre": "Sandwiches",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 12
                         },
                         {
                             "id": 14,
                             "nombre": "Triples",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 67
                         },
                         {
                             "id": 15,
                             "nombre": "Jamón cocido",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 24
                         },
                         {
                             "id": 16,
                             "nombre": "Sandwich con ananá",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 78
                         }
                     ]
@@ -287,129 +203,81 @@
                         {
                             "id": 1,
                             "nombre": "Especial",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 2,
                             "nombre": "Napolitana",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 190
                         },
                         {
                             "id": 3,
                             "nombre": "Cebollada",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 180
                         },
                         {
                             "id": 4,
                             "nombre": "4 quesos",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 172
                         },
                         {
                             "id": 5,
                             "nombre": "Especial",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 6,
                             "nombre": "Napolitana",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 190
                         },
                         {
                             "id": 7,
                             "nombre": "Cebollada",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 180
                         },
                         {
                             "id": 8,
                             "nombre": "4 quesos",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 172
                         },
                         {
                             "id": 9,
                             "nombre": "Especial",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 10,
                             "nombre": "Napolitana",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 190
                         },
                         {
                             "id": 11,
                             "nombre": "Cebollada",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 180
                         },
                         {
                             "id": 12,
                             "nombre": "4 quesos",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 172
                         },
                         {
                             "id": 13,
                             "nombre": "Especial",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 14,
                             "nombre": "Napolitana",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 190
                         },
                         {
                             "id": 15,
                             "nombre": "Cebollada",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 180
                         },
                         {
                             "id": 16,
                             "nombre": "4 quesos",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 172
                         }
                     ]
@@ -421,97 +289,61 @@
                         {
                             "id": 1,
                             "nombre": "Helado",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 2,
                             "nombre": "Torta alemana",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 3,
                             "nombre": "Tiramisú",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 4,
                             "nombre": "Frutas",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 5,
                             "nombre": "Helado",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 6,
                             "nombre": "Torta alemana",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 7,
                             "nombre": "Tiramisú",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 8,
                             "nombre": "Frutas",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 9,
                             "nombre": "Helado",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 10,
                             "nombre": "Torta alemana",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 11,
                             "nombre": "Tiramisú",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         },
                         {
                             "id": 12,
                             "nombre": "Frutas",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 56
                         }
                     ]
@@ -523,121 +355,76 @@
                         {
                             "id": 1,
                             "nombre": "Fernet",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 2,
                             "nombre": "Gancia",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 3,
                             "nombre": "Whisky",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 190
                         },
                         {
                             "id": 4,
                             "nombre": "Martini",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 142
                         },
                         {
                             "id": 5,
                             "nombre": "Jarra loca",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 200
                         },
                         {
                             "id": 6,
                             "nombre": "Fernet",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 7,
                             "nombre": "Gancia",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 8,
                             "nombre": "Whisky",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 190
                         },
                         {
                             "id": 9,
                             "nombre": "Martini",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 142
                         },
                         {
                             "id": 10,
                             "nombre": "Jarra loca",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 200
                         },
                         {
                             "id": 11,
                             "nombre": "Fernet",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 12,
                             "nombre": "Gancia",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 122
                         },
                         {
                             "id": 13,
                             "nombre": "Whisky",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 190
                         },
                         {
                             "id": 14,
                             "nombre": "Martini",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 142
                         },
                         {
                             "id": 15,
                             "nombre": "Jarra loca",
-                            "moneda": {
-                                "moneda": "$"
-                            },
                             "precio": 200
                         }
                     ]

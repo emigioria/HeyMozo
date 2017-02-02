@@ -13,7 +13,7 @@ import java.net.URL;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
-public class SolicitarCartaTask extends AsyncTask<Object, Object, String> {
+public class SolicitarCartaTask extends AsyncTask<String, Object, String> {
     private final Context context;
     private SolicitarCartaListener listener;
     private HttpURLConnection urlConnection = null;
@@ -22,8 +22,7 @@ public class SolicitarCartaTask extends AsyncTask<Object, Object, String> {
     public static final int ERROR = 2;
     private int status = OK;
 
-    private Integer idRestaurante;
-    private Integer idMesa;
+    private String idMesa;
 
     public SolicitarCartaTask(SolicitarCartaListener dListener, Context context) {
         this.listener = dListener;
@@ -36,10 +35,10 @@ public class SolicitarCartaTask extends AsyncTask<Object, Object, String> {
     }
 
     @Override
-    protected String doInBackground(Object... ids) {
+    protected String doInBackground(String... ids) {
         String cartaJSON = null;
-        idRestaurante = Integer.valueOf(ids[0].toString());
-        idMesa = Integer.valueOf(ids[1].toString());
+        String idRestaurante = ids[0];
+        idMesa = ids[1];
         try {
             URL url = new URL("http://" + context.getString(R.string.ip_server) + ":" + context.getString(R.string.port_server_db) + "/cartas/" + idRestaurante);
             Log.v("INFO:", url.toString());

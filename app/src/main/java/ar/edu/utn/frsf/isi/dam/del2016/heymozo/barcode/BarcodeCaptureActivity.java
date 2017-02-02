@@ -121,7 +121,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     }
 
     @Override
-    public void busquedaFinalizada(String cartaJSON, Integer idMesa, int status) {
+    public void busquedaFinalizada(String cartaJSON, String idMesa, int status) {
         switch (status) {
             case SolicitarCartaTask.OK:
                 Gson gson = new Gson();
