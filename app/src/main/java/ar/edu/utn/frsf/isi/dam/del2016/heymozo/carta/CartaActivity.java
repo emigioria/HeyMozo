@@ -2,6 +2,7 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,18 +10,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Mesa;
@@ -147,15 +148,19 @@ public class CartaActivity extends AppCompatActivity {
             return fragment;
         }
 
+        @Nullable
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_carta, container, false);
-            ListView seccionListView = (ListView) rootView.findViewById(R.id.seccion_listview);
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            RecyclerView recyclerView = (RecyclerView) inflater.inflate(
+                    R.layout.fragment_carta, container, false);
+            setupRecyclerView(recyclerView);
+            return recyclerView;
+        }
 
-            seccionListView.setAdapter(new SeccionAdapter(getContext(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos()));
-
-            return rootView;
+        private void setupRecyclerView(RecyclerView recyclerView) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
+            recyclerView.setAdapter(recyclerAdapter);
         }
     }
 
