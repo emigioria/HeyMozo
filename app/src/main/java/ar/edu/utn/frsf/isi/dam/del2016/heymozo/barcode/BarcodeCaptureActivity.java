@@ -107,9 +107,14 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
 
     @Override
     public void busquedaIniciada() {
-        loadingPanelCarta.setVisibility(View.VISIBLE);
-        //mPreview.stop();
-        //Toast.makeText(getApplicationContext(),"Esperando al servidor...",Toast.LENGTH_LONG);
+        runOnUiThread(new Runnable(){
+            @Override
+            public void run(){
+                loadingPanelCarta.setVisibility(RelativeLayout.VISIBLE);
+                mPreview.stop();
+                Toast.makeText(getApplicationContext(), R.string.mensaje_esperando_carta,Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -126,10 +131,12 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
                 startActivity(i);
                 break;
             case SolicitarCartaTask.CANCELADO:
-                //TODO
+                Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
+                startCameraSource();
                 break;
             case SolicitarCartaTask.ERROR:
-                Toast.makeText(this, "Ocurrió un error buscando la carta", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.mensaje_error_sin_conexion, Toast.LENGTH_LONG).show();
+                startCameraSource();
                 break;
         }
         loadingPanelCarta.setVisibility(View.GONE);

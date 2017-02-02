@@ -22,10 +22,13 @@
     <string name="evalua_tu_experiencia">EVALÚA TU EXPERIENCIA</string>
     <string name="title_activity_mis_pedidos">Mis pedidos</string>
     <string name="acerca_de_hey_mozo">Acerca de Hey, Mozo!</string>
-    <string name="ip_server">192.168.10.101</string>
+    <string name="ip_server">192.168.0.105</string>
     <string name="no_permission_fine_location">No permission for access fine location</string>
     <string name="pedido_permiso_titulo">Permisos Peligrosos!!!</string>
     <string name="pedido_permiso_mensaje">Puedo acceder a un permiso peligroso???</string>
     <string name="port_server_db">3000</string>
     <string name="no_tengo_un_codigo_qr">No tengo un código QR</string>
+    <string name="mensaje_error_sin_conexion">Ocurrió un error buscando la carta, compruebe su conexión a Internet</string>
+    <string name="mensaje_solicitud_cancelada">Solicitud cancelada</string>
+    <string name="mensaje_esperando_carta">Esperando al servidor…</string>
 </resources>

@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
 
 /**
  * Created by daniel on 23/01/17.

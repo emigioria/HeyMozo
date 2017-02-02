@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //TODO borrar este botón
         btnVerCartaSinCodigo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

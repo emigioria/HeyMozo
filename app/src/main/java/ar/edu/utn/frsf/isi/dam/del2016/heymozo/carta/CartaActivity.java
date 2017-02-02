@@ -20,6 +20,7 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Mesa;
@@ -79,14 +80,12 @@ public class CartaActivity extends AppCompatActivity {
                         .setMoneda(gson.fromJson(getIntent().getExtras().getString("moneda"), Moneda.class))
                         .setRestaurante(carta.getRestaurante());
                 ArrayList<Producto> productosSeleccionados = new ArrayList<>();
-                int i = 0;
                 for (Seccion seccion : carta.getSecciones()) {
                     for (Producto p : seccion.getProductos()) {
                         if (p.getCantidad() != 0) {
                             productosSeleccionados.add(p);
                         }
                     }
-                    i++;
                 }
                 pedido.setProductos(productosSeleccionados);
 
