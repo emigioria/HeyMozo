@@ -1,4 +1,4 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;

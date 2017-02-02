@@ -54,8 +54,8 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.camera.CameraSourcePreview;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaListener;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaTask;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Mesa;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Moneda;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Moneda;
 
 public final class BarcodeCaptureActivity extends AppCompatActivity
         implements BarcodeTracker.BarcodeGraphicTrackerCallback, SolicitarCartaListener {
@@ -83,14 +83,11 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         loadingPanelCarta = (RelativeLayout) findViewById(R.id.loadingPanelCarta);
 
-        boolean autoFocus = true;
-        boolean useFlash = false;
-
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
-            createCameraSource(autoFocus, useFlash);
+            createCameraSource(true, false);
         } else {
             requestCameraPermission();
         }
@@ -277,9 +274,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Camera permission granted - initialize the camera source");
             // we have permission, so create the camerasource
-            boolean autoFocus = true;
-            boolean useFlash = false;
-            createCameraSource(autoFocus, useFlash);
+            createCameraSource(true, false);
             return;
         }
 

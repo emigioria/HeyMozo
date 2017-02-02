@@ -19,12 +19,9 @@ import java.util.Collection;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Restaurante;
 
-/**
- * Created by daniel on 23/01/17.
- */
-public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaurante>> {
+class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaurante>> {
     private final Context context;
     private BusquedaRestaurantesListener<Restaurante> listener;
     private HttpURLConnection urlConnection = null;
@@ -32,7 +29,7 @@ public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaur
     private static int CANCELADO = 1;
     private static int ERROR = 2;
 
-    public ListarRestaurantesTask(BusquedaRestaurantesListener<Restaurante> dListener, Context context) {
+    ListarRestaurantesTask(BusquedaRestaurantesListener<Restaurante> dListener, Context context) {
         this.listener = dListener;
         this.context = context;
     }
@@ -76,7 +73,7 @@ public class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaur
             e.printStackTrace();
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
-            return restaurantes;
         }
+        return restaurantes;
     }
 }

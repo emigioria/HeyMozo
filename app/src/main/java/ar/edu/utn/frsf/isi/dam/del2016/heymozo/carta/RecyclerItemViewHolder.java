@@ -9,11 +9,9 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
 
-import static java.lang.String.valueOf;
-
-public class RecyclerItemViewHolder extends RecyclerView.ViewHolder {
+class RecyclerItemViewHolder extends RecyclerView.ViewHolder {
 
     public final View view;
     final TextView cantidad;
@@ -24,31 +22,19 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder {
     final ImageView agregar;
     final ImageView quitar;
 
-    public RecyclerItemViewHolder(final View parent, TextView cantidad, TextView nombreProducto, TextView moneda, TextView precio, LinearLayout secondLayout, ImageView agregar, ImageView quitar) {
-        super(parent);
-        this.view = parent;
-        this.cantidad = cantidad;
-        this.nombreProducto = nombreProducto;
-        this.moneda = moneda;
-        this.precio = precio;
-        this.secondLayout = secondLayout;
-        this.agregar = agregar;
-        this.quitar = quitar;
+    RecyclerItemViewHolder(View viewBase) {
+        super(viewBase);
+        this.view = viewBase;
+        this.cantidad = (TextView) viewBase.findViewById(R.id.cantidad_textview);
+        this.nombreProducto = (TextView) viewBase.findViewById(R.id.nombre_producto_textview);
+        this.moneda = (TextView) viewBase.findViewById(R.id.moneda_textview);
+        this.precio = (TextView) viewBase.findViewById(R.id.precio_textview);
+        this.secondLayout = (LinearLayout) viewBase.findViewById(R.id.second_layout);
+        this.agregar = (ImageView) secondLayout.findViewById(R.id.agregar_imageview);
+        this.quitar = (ImageView) secondLayout.findViewById(R.id.quitar_imageview);
     }
 
-    public static RecyclerItemViewHolder newInstance(View viewBase) {
-        TextView cantidad = (TextView) viewBase.findViewById(R.id.cantidad_textview);
-        TextView nombreProducto = (TextView) viewBase.findViewById(R.id.nombre_producto_textview);
-        TextView moneda = (TextView) viewBase.findViewById(R.id.moneda_textview);
-        TextView precio = (TextView) viewBase.findViewById(R.id.precio_textview);
-        LinearLayout secondLayout = (LinearLayout) viewBase.findViewById(R.id.second_layout);
-        ImageView agregar = (ImageView) secondLayout.findViewById(R.id.agregar_imageview);
-        ImageView quitar = (ImageView) secondLayout.findViewById(R.id.quitar_imageview);
-
-        return new RecyclerItemViewHolder(viewBase, cantidad, nombreProducto, moneda, precio, secondLayout, agregar, quitar);
-    }
-
-    public void llenarItem(Producto producto) {
+    void llenarItem(Producto producto) {
 
         cantidad.setText(String.valueOf(producto.getCantidad()));
         nombreProducto.setText(producto.getNombre());

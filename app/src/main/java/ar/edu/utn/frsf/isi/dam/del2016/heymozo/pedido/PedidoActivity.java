@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
 public class PedidoActivity extends AppCompatActivity implements GuardarPedidoListener {
 

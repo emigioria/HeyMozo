@@ -1,15 +1,10 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Date;
-
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Mesa;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Restaurante;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Moneda;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
 public class Pedido {
     private static final String USUARIO = "usuario_id";

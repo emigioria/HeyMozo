@@ -24,11 +24,13 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Mesa;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.Pedido;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Carta;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Moneda;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Seccion;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Moneda;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
 public class CartaActivity extends AppCompatActivity {
 

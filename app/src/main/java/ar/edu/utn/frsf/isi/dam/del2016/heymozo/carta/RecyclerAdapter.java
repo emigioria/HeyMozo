@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
 
 import static java.lang.String.valueOf;
 
@@ -33,7 +33,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View view = LayoutInflater.from(context).inflate(R.layout.item_producto, parent, false);
-        return RecyclerItemViewHolder.newInstance(view);
+        return new RecyclerItemViewHolder(view);
     }
 
     @Override

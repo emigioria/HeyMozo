@@ -14,15 +14,11 @@ import java.util.Date;
 import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.Pedido;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.ViewHolderPedido;
 
 import static java.lang.String.valueOf;
-
-/**
- * Created by lucas on 24/01/17.
- */
 
 class PedidoAdapter extends ArrayAdapter<Pedido> {
 

@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.Pedido;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
 public class MisPedidosActivity extends AppCompatActivity implements ListarMisPedidosListener {
 

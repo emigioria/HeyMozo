@@ -11,12 +11,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.ViewHolderProducto;
-
-/**
- * Created by lucas on 24/01/17.
- */
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
 
 class ProductoAdapter extends ArrayAdapter<Producto> {
 

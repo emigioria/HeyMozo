@@ -11,8 +11,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
-public class GuardarPedidoTask extends AsyncTask<Pedido, Void, Void> {
+class GuardarPedidoTask extends AsyncTask<Pedido, Void, Void> {
     private final Context context;
     private GuardarPedidoListener listener;
     private HttpURLConnection urlConnection = null;
@@ -21,7 +22,7 @@ public class GuardarPedidoTask extends AsyncTask<Pedido, Void, Void> {
     static final int ERROR = 2;
     private int status = OK;
 
-    public GuardarPedidoTask(GuardarPedidoListener dListener, Context context) {
+    GuardarPedidoTask(GuardarPedidoListener dListener, Context context) {
         this.listener = dListener;
         this.context = context;
     }

@@ -1,11 +1,9 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Restaurante;
 
 public class Carta {
     private static final String RESTAURANT = "nombre_restaurant";

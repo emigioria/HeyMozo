@@ -1,11 +1,9 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Producto;
 
 public class Seccion {
     private static final String NOMBRE = "nombre";

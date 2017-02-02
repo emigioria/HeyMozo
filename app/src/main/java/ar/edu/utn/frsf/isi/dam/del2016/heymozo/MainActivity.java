@@ -14,11 +14,11 @@ import com.google.gson.Gson;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.MapsActivity;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.Mesa;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Moneda;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.FirebaseService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.MyFirebaseMessagingService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos.MisPedidosActivity;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.producto.Moneda;
 
 public class MainActivity extends AppCompatActivity {
 

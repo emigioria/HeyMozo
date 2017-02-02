@@ -19,7 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.Pedido;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
 class ListarMisPedidosTask extends AsyncTask<Void, Void, List<Pedido>> {
     private final Context context;
@@ -75,7 +75,7 @@ class ListarMisPedidosTask extends AsyncTask<Void, Void, List<Pedido>> {
             e.printStackTrace();
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
-            return pedidos;
         }
+        return pedidos;
     }
 }

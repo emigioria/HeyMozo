@@ -32,6 +32,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Restaurante;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, BusquedaRestaurantesListener<Restaurante>, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -119,7 +120,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case MapsActivity.PERMISSION_REQUEST_ACCESS: {
                 if (grantResults.length > 0
@@ -129,7 +130,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     finish();
                     Toast.makeText(this, R.string.no_permission_fine_location, Toast.LENGTH_SHORT).show();
                 }
-                return;
             }
         }
     }
