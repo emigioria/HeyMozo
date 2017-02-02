@@ -13,11 +13,6 @@ import com.google.firebase.messaging.RemoteMessage;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.MainActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
-/**
- * Created by daniel on 23/01/17.
- */
-
-
 public class MyFirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
 	@Override

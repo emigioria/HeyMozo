@@ -17,8 +17,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
 
-import static java.lang.String.valueOf;
-
 class PedidoAdapter extends ArrayAdapter<Pedido> {
 
     private LayoutInflater inflater;
@@ -49,7 +47,7 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
         holder.textviewMoneda.setText(pedido.getMoneda().getSimbolo());
         holder.textviewFecha.setText(DateFormat.getDateInstance().format(new Date(pedido.getFechaPedido())));
         holder.textviewEstado.setText(pedido.getEstado());
-        holder.textviewTotal.setText(valueOf(pedido.getTotal()));
+        holder.textviewTotal.setText(String.format(Locale.getDefault(), "%.2f", pedido.getTotal()));
         holder.textviewNombreRestaurante.setText(pedido.getRestaurante().getNombre());
 
         if (pedido.getCalificacion() != null) {
