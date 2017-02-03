@@ -92,7 +92,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         if (pedido.getRestaurante().getImagen() == null) {
             imagenToolbar.setVisibility(View.GONE);
         } else {
-            Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getRestaurante().getImagen(), 0, pedido.getRestaurante().getImagen().length));
+            Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getRestaurante().getImagen().getImagen(), 0, pedido.getRestaurante().getImagen().getImagen().length));
             imagenToolbar.setBackground(image);
         }
 
@@ -141,7 +141,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     }
 
     private void setEspera(Long tiempoEspera) {
-        Long minutos = tiempoEspera / 60000 + 1;
+        Long minutos = (long) Math.ceil(tiempoEspera / 60000);
         Long horas = minutos / 60;
         minutos = minutos % 60;
         String espera = "";
