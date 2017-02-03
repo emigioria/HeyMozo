@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 
@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         Log.d("APP", preferences.getString("registration_id", "no id"));
 
-        Button btnVerMapa = (Button) findViewById(R.id.btn_ver_mapa);
-        Button btnVerCarta = (Button) findViewById(R.id.btn_ver_carta);
-        Button btnVerCartaSinCodigo = (Button) findViewById(R.id.btn_sin_codigo);
-        Button btn_ver_mis_pedidos = (Button) findViewById(R.id.btn_ver_mis_pedidos);
+        LinearLayout btnMapa = (LinearLayout) findViewById(R.id.btnMapa);
+        LinearLayout btnQR = (LinearLayout) findViewById(R.id.btnQR);
+        LinearLayout btnPedidos = (LinearLayout) findViewById(R.id.btnPedidos);
+        LinearLayout btnAyuda = (LinearLayout) findViewById(R.id.btnAyuda);
 
-        btnVerMapa.setOnClickListener(new View.OnClickListener() {
+        btnMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnVerCarta.setOnClickListener(new View.OnClickListener() {
+        btnQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_ver_mis_pedidos.setOnClickListener(new View.OnClickListener() {
+        btnPedidos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MisPedidosActivity.class);
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //TODO borrar este botón
-        btnVerCartaSinCodigo.setOnClickListener(new View.OnClickListener() {
+        btnAyuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Gson gson = new Gson();
