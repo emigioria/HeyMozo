@@ -8,7 +8,7 @@ public class Restaurante {
     private static final String MONEDA = "moneda";
     private static final String LATITUD = "latitud";
     private static final String LONGITUD = "longitud";
-    private static final String IMAGEN_RESTAURANTE = "imagen";
+    private static final String IMAGEN = "imagen";
 
     @SerializedName(NOMBRE)
     private String nombre;
@@ -22,8 +22,8 @@ public class Restaurante {
     @SerializedName(LONGITUD)
     private Double longitud;
 
-    @SerializedName(IMAGEN_RESTAURANTE)
-    private byte[] imagen;
+    @SerializedName(IMAGEN)
+    private Imagen imagen;
 
     public Restaurante() {
 
@@ -60,11 +60,11 @@ public class Restaurante {
         return this;
     }
 
-    public byte[] getImagen() {
+    public Imagen getImagen() {
         return imagen;
     }
 
-    public Restaurante setImagen(byte[] imagen) {
+    public Restaurante setImagen(Imagen imagen) {
         this.imagen = imagen;
         return this;
     }
