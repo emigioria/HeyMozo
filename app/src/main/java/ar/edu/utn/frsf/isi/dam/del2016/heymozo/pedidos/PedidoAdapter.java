@@ -43,12 +43,12 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
         final Pedido pedido = this.getItem(position);
 
         String numPedido = String.format(Locale.getDefault(), getContext().getString(R.string.pedidoNum), getCount() - position);
-        holder.textviewPedido.setText(numPedido);
-        holder.textviewMoneda.setText(pedido.getMoneda().getSimbolo());
-        holder.textviewFecha.setText(DateFormat.getDateInstance().format(new Date(pedido.getFechaPedido())));
-        holder.textviewEstado.setText(pedido.getEstado());
-        holder.textviewTotal.setText(String.format(Locale.getDefault(), "%.2f", pedido.getTotal()));
-        holder.textviewNombreRestaurante.setText(pedido.getRestaurante().getNombre());
+        holder.textViewPedido.setText(numPedido);
+        holder.textViewMoneda.setText(pedido.getRestaurante().getMoneda().getSimbolo());
+        holder.textViewFecha.setText(DateFormat.getDateInstance().format(new Date(pedido.getFechaPedido())));
+        holder.textViewEstado.setText(pedido.getEstado());
+        holder.textViewTotal.setText(String.format(Locale.getDefault(), "%.2f", pedido.getTotal()));
+        holder.textViewNombreRestaurante.setText(pedido.getRestaurante().getNombre());
 
         holder.buttonEvaluarExp.setVisibility(View.GONE);
         holder.buttonGracias.setVisibility(View.GONE);

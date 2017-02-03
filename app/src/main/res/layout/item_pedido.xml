@@ -17,17 +17,17 @@
         android:paddingTop="5dp">
 
         <TextView
-            android:id="@+id/textviewPedido"
+            android:id="@+id/textViewPedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textSize="@dimen/tamañoLetraProducto" />
 
         <TextView
-            android:id="@+id/textviewMoneda"
+            android:id="@+id/textViewMoneda"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|end"
             android:layout_weight="1"
             android:textAlignment="textEnd"
             android:textSize="@dimen/tamañoLetraProducto" />
@@ -36,11 +36,12 @@
             android:id="@+id/textViewTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|end"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:textAlignment="textEnd"
             android:textSize="@dimen/tamañoLetraProducto" />
+
 
     </LinearLayout>
 
@@ -54,17 +55,17 @@
         android:paddingTop="5dp">
 
         <TextView
-            android:id="@+id/textviewEstado"
+            android:id="@+id/textViewEstado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textSize="@dimen/tamañoLetraProducto" />
 
         <TextView
-            android:id="@+id/textviewFecha"
+            android:id="@+id/textViewFecha"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|end"
             android:layout_weight="1"
             android:textAlignment="textEnd"
             android:textSize="@dimen/tamañoLetraProducto" />
@@ -72,7 +73,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textviewNombreRestaurante"
+        android:id="@+id/textViewNombreRestaurante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

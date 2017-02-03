@@ -80,7 +80,6 @@ public class CartaActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 Pedido pedido = new Pedido()
                         .setMesa(gson.fromJson(getIntent().getExtras().getString("mesa"), Mesa.class))
-                        .setMoneda(carta.getRestaurante().getMoneda())
                         .setRestaurante(carta.getRestaurante());
                 ArrayList<Producto> productosSeleccionados = new ArrayList<>();
                 for (Seccion seccion : carta.getSecciones()) {

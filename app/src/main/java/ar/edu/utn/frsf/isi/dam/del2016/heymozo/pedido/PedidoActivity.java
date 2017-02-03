@@ -29,6 +29,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     private Pedido pedido;
     private Gson gson = new Gson();
     private TextView textViewNombreComedor;
+    private TextView textViewMoneda;
     private TextView textViewTotal;
     private TextView textViewEstado;
     private TextView textViewTiempoEspera;
@@ -43,6 +44,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
 
     private void linkearVista() {
         textViewNombreComedor = (TextView) findViewById(R.id.textViewNombreComedor);
+        textViewMoneda = (TextView) findViewById(R.id.textViewMoneda);
         textViewTotal = (TextView) findViewById(R.id.textViewTotal);
         textViewEstado = (TextView) findViewById(R.id.textViewEstado);
         textViewTiempoEspera = (TextView) findViewById(R.id.textViewTiempoEspera);
@@ -115,7 +117,8 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
             }
         }
 
-        textViewTotal.setText(String.format(Locale.getDefault(), pedido.getRestaurante().getMoneda().getSimbolo() + "%.2f", pedido.getTotal()));
+        textViewMoneda.setText(pedido.getRestaurante().getMoneda().getSimbolo());
+        textViewTotal.setText(String.format(Locale.getDefault(), "%.2f", pedido.getTotal()));
 
         buttonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +137,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
             }
         });
 
-        listaProductos.setAdapter(new ProductoAdapter(this, pedido.getMoneda(), pedido.getProductos()));
+        listaProductos.setAdapter(new ProductoAdapter(this, pedido.getRestaurante().getMoneda(), pedido.getProductos()));
     }
 
     private void setEspera(Long tiempoEspera) {

@@ -7,22 +7,22 @@ import android.widget.TextView;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
 class ViewHolderPedido {
-    TextView textviewPedido;
-    TextView textviewMoneda;
-    TextView textviewFecha;
-    TextView textviewEstado;
-    TextView textviewTotal;
-    TextView textviewNombreRestaurante;
+    TextView textViewPedido;
+    TextView textViewMoneda;
+    TextView textViewFecha;
+    TextView textViewEstado;
+    TextView textViewTotal;
+    TextView textViewNombreRestaurante;
     Button buttonGracias;
     Button buttonEvaluarExp;
 
     ViewHolderPedido(View viewBase) {
-        this.textviewPedido = (TextView) viewBase.findViewById(R.id.textviewPedido);
-        this.textviewMoneda = (TextView) viewBase.findViewById(R.id.textviewMoneda);
-        this.textviewFecha = (TextView) viewBase.findViewById(R.id.textviewFecha);
-        this.textviewEstado = (TextView) viewBase.findViewById(R.id.textviewEstado);
-        this.textviewTotal = (TextView) viewBase.findViewById(R.id.textViewTotal);
-        this.textviewNombreRestaurante = (TextView) viewBase.findViewById(R.id.textviewNombreRestaurante);
+        this.textViewPedido = (TextView) viewBase.findViewById(R.id.textViewPedido);
+        this.textViewMoneda = (TextView) viewBase.findViewById(R.id.textViewMoneda);
+        this.textViewFecha = (TextView) viewBase.findViewById(R.id.textViewFecha);
+        this.textViewEstado = (TextView) viewBase.findViewById(R.id.textViewEstado);
+        this.textViewTotal = (TextView) viewBase.findViewById(R.id.textViewTotal);
+        this.textViewNombreRestaurante = (TextView) viewBase.findViewById(R.id.textViewNombreRestaurante);
         this.buttonGracias = (Button) viewBase.findViewById(R.id.buttonGracias);
         this.buttonEvaluarExp = (Button) viewBase.findViewById(R.id.buttonEvaluarExp);
     }
