@@ -155,8 +155,8 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
 
     @Override
     protected void onPause() {
-        if (guardarPedidoTask != null) {
-            guardarPedidoTask.cancel(true);
+        if (cargarPedidoTask != null) {
+            cargarPedidoTask.cancel(true);
         }
         super.onPause();
     }
