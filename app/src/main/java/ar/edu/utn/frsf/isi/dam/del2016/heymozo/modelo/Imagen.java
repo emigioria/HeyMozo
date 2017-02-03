@@ -7,18 +7,13 @@ public class Imagen {
     private static final String IMAGEN = "imagen";
 
     @SerializedName(IMAGEN_ID)
-    private String imagenId;
+    private MongoId imagenId;
 
     @SerializedName(IMAGEN)
     private transient byte[] imagen;
 
     public String getImagenId() {
-        return imagenId;
-    }
-
-    public Imagen setImagenId(String imagenId) {
-        this.imagenId = imagenId;
-        return this;
+        return imagenId.getId();
     }
 
     public byte[] getImagen() {
