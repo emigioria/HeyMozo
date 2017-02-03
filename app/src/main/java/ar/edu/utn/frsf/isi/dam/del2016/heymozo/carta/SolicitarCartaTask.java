@@ -13,7 +13,7 @@ import java.net.URL;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
-public class SolicitarCartaTask extends AsyncTask<String, Object, String> {
+public class SolicitarCartaTask extends AsyncTask<String, Void, String> {
     private final Context context;
     private SolicitarCartaListener listener;
     private HttpURLConnection urlConnection = null;

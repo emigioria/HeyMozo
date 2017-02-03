@@ -38,7 +38,7 @@
             android:id="@+id/moneda_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|end"
             android:textAlignment="textEnd"
             android:textSize="@dimen/tamañoLetraProducto" />
 
@@ -46,7 +46,7 @@
             android:id="@+id/precio_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|end"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:textAlignment="textEnd"

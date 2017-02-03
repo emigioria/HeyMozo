@@ -29,6 +29,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     private Pedido pedido;
     private Gson gson = new Gson();
     private TextView textViewNombreComedor;
+    private TextView textViewMoneda;
     private TextView textViewTotal;
     private TextView textViewEstado;
     private TextView textViewTiempoEspera;
@@ -43,6 +44,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
 
     private void linkearVista() {
         textViewNombreComedor = (TextView) findViewById(R.id.textViewNombreComedor);
+        textViewMoneda = (TextView) findViewById(R.id.textViewMoneda);
         textViewTotal = (TextView) findViewById(R.id.textViewTotal);
         textViewEstado = (TextView) findViewById(R.id.textViewEstado);
         textViewTiempoEspera = (TextView) findViewById(R.id.textViewTiempoEspera);
@@ -90,7 +92,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         if (pedido.getRestaurante().getImagen() == null) {
             imagenToolbar.setVisibility(View.GONE);
         } else {
-            Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getRestaurante().getImagen(), 0, pedido.getRestaurante().getImagen().length));
+            Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getRestaurante().getImagen().getImagen(), 0, pedido.getRestaurante().getImagen().getImagen().length));
             imagenToolbar.setBackground(image);
         }
 
@@ -115,7 +117,8 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
             }
         }
 
-        textViewTotal.setText(String.format(Locale.getDefault(), pedido.getRestaurante().getMoneda().getSimbolo() + "%.2f", pedido.getTotal()));
+        textViewMoneda.setText(pedido.getRestaurante().getMoneda().getSimbolo());
+        textViewTotal.setText(String.format(Locale.getDefault(), "%.2f", pedido.getTotal()));
 
         buttonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,11 +137,11 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
             }
         });
 
-        listaProductos.setAdapter(new ProductoAdapter(this, pedido.getMoneda(), pedido.getProductos()));
+        listaProductos.setAdapter(new ProductoAdapter(this, pedido.getRestaurante().getMoneda(), pedido.getProductos()));
     }
 
     private void setEspera(Long tiempoEspera) {
-        Long minutos = tiempoEspera / 60000 + 1;
+        Long minutos = (long) Math.ceil(tiempoEspera / 60000);
         Long horas = minutos / 60;
         minutos = minutos % 60;
         String espera = "";
@@ -152,8 +155,8 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
 
     @Override
     protected void onPause() {
-        if (guardarPedidoTask != null) {
-            guardarPedidoTask.cancel(true);
+        if (cargarPedidoTask != null) {
+            cargarPedidoTask.cancel(true);
         }
         super.onPause();
     }

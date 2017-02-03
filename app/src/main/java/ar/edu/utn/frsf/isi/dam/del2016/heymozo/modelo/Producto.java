@@ -1,9 +1,5 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
-
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
@@ -20,7 +16,7 @@ public class Producto {
     private String nombre;
 
     @SerializedName(IMAGEN)
-    private byte[] imagen;
+    private Imagen imagen;
 
     @SerializedName(PRECIO)
     private Double precio;
@@ -60,11 +56,11 @@ public class Producto {
         return this;
     }
 
-    public byte[] getImagen() {
+    public Imagen getImagen() {
         return imagen;
     }
 
-    public Producto setImagen(byte[] imagen) {
+    public Producto setImagen(Imagen imagen) {
         this.imagen = imagen;
         return this;
     }

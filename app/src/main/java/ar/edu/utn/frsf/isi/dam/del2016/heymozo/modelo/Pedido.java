@@ -13,7 +13,6 @@ public class Pedido {
     private static final String PRODUCTOS = "productos";
     private static final String FINALIZA = "finaliza";
     private static final String ESTADO = "estado";
-    private static final String MONEDA = "moneda";
     private static final String FECHA_PEDIDO = "fecha_pedido";
     private static final String TOTAL = "total";
     private static final String CALIFICACION = "calificacion";
@@ -35,9 +34,6 @@ public class Pedido {
 
     @SerializedName(ESTADO)
     private String estado;
-
-    @SerializedName(MONEDA)
-    private Moneda moneda;
 
     @SerializedName(FECHA_PEDIDO)
     private Long fechaPedido;
@@ -121,15 +117,6 @@ public class Pedido {
 
     public Pedido setEstado(String estado) {
         this.estado = estado;
-        return this;
-    }
-
-    public Moneda getMoneda() {
-        return moneda;
-    }
-
-    public Pedido setMoneda(Moneda moneda) {
-        this.moneda = moneda;
         return this;
     }
 
