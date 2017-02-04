@@ -1,85 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="0.05">
+    android:layout_gravity="center"
+    android:layout_margin="8dp"
+    card_view:cardElevation="4dp"
+    card_view:cardCornerRadius="4dp"
+    android:background="@android:drawable/dialog_holo_dark_frame">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginBottom="17dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/cantidad_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textSize="@dimen/tamañoLetraProducto" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            card_view:srcCompat="@drawable/empanadas_2_bodega_montferry_barcelona_55abbde5aba1d"
+            android:id="@+id/imageView"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/nombre_producto_textview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="12dp"
-            android:layout_marginStart="12dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/tamañoLetraProducto" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/moneda_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:textAlignment="textEnd"
-            android:textSize="@dimen/tamañoLetraProducto" />
+            <TextView
+                android:text="Empanadas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nombre_producto_textview"
+                android:textStyle="normal|bold"
+                android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/precio_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:textAlignment="textEnd"
-            android:textSize="@dimen/tamañoLetraProducto" />
+            <TextView
+                android:text="TextView"
+                android:layout_width="43dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/moneda_textview" />
+
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/precio_textview" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:layout_height="30dp"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:id="@+id/second_layout">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                card_view:srcCompat="@drawable/ic_minus"
+                android:id="@+id/quitar_imageview"
+                android:layout_weight="1"
+                android:backgroundTint="?attr/colorPrimary" />
+
+
+            <TextView
+                android:text="12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cantidad_textview"
+                android:layout_weight="1"
+                android:textStyle="normal|bold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/cast_libraries_material_featurehighlight_center_horizontal_offset"
+                android:textAlignment="center" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                card_view:srcCompat="@drawable/ic_plus"
+                android:id="@+id/agregar_imageview"
+                android:layout_weight="1"
+                android:backgroundTint="?attr/colorPrimary" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/second_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.3"
-        android:background="@android:color/black"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/agregar_imageview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_plus"
-            android:contentDescription="@string/imagen_para_agregar_una_unidad" />
-
-        <ImageView
-            android:id="@+id/quitar_imageview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_minus"
-            android:contentDescription="@string/imagen_para_quitar_una_unidad" />
-
-    </LinearLayout>
-</FrameLayout>
+</android.support.v7.widget.CardView>
