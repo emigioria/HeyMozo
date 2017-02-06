@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.common.images.Size;
 
@@ -91,8 +92,9 @@ public class CameraSourcePreview extends ViewGroup {
             try {
                 startIfReady();
             } catch (SecurityException se) {
-                Log.e(TAG,"Do not have permission to start the camera", se);
-            } catch (IOException e) {
+                Log.e(TAG, "Do not have permission to start the camera", se);
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "Error al abrir la cámara", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "Could not start camera source.", e);
             }
         }
@@ -160,10 +162,11 @@ public class CameraSourcePreview extends ViewGroup {
 
         try {
             startIfReady();
-        } catch (IOException e) {
-            Log.e(TAG, "Could not start camera source.", e);
         } catch (SecurityException se) {
             Log.e(TAG, "Does not have permission to start the camera.", se);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Error al abrir la cámara", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Could not start camera source.", e);
         }
     }
 
