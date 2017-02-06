@@ -4,12 +4,20 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 public class Restaurante {
+    private static final String ID = "id";
     private static final String NOMBRE = "nombre";
     private static final String MONEDA = "moneda";
     private static final String LATITUD = "latitud";
     private static final String LONGITUD = "longitud";
+	private static final String DIRECCION = "direccion";
+	private static final String TELEFONO = "telefono";
+	private static final String PAGINA = "pagina";
+	private static final String RATING = "rating";
     private static final String IMAGEN = "imagen";
     private static final String IMAGEN64 = "imagen64";
+
+	@SerializedName(ID)
+	private String id;
 
     @SerializedName(NOMBRE)
     private String nombre;
@@ -22,6 +30,18 @@ public class Restaurante {
 
     @SerializedName(LONGITUD)
     private Double longitud;
+
+	@SerializedName(DIRECCION)
+	private String direccion;
+
+	@SerializedName(TELEFONO)
+	private String telefono;
+
+	@SerializedName(RATING)
+	private Float rating;
+
+	@SerializedName(PAGINA)
+	private String pagina;
 
     @SerializedName(IMAGEN)
     private Imagen imagen;
@@ -37,7 +57,12 @@ public class Restaurante {
         return new Gson().toJson(this);
     }
 
-    public String getNombre() {
+
+	public String getId() {
+		return id;
+	}
+
+	public String getNombre() {
         return nombre;
     }
 
@@ -84,5 +109,21 @@ public class Restaurante {
 
 	public String getImagen64(){
 		return imagen64;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public Float getRating() {
+		return rating;
+	}
+
+	public String getPagina() {
+		return pagina;
 	}
 }

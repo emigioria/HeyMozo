@@ -22,8 +22,11 @@ import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -36,9 +39,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Restaurante;
@@ -51,6 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int PERMISSION_REQUEST_ACCESS = 899;
     private RelativeLayout loadingPanel;
     private ListarRestaurantesTask listarRestaurantesTask;
+	private Map<String, Restaurante> tablaRestaurantes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switch (resultCode) {
             //Correcto
             case ListarRestaurantesTask.OK:
+	            tablaRestaurantes = new Hashtable<>();
                 for (Restaurante x : restaurantes) {
                     View marker = View.inflate(getBaseContext(), R.layout.custom_marker_layout, null);
                     ImageView imageView = (ImageView) marker.findViewById(R.id.mapsFotoRestaurante);
@@ -166,8 +174,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	                LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
                     mMap.addMarker(new MarkerOptions().position(rest1)
 		                    .title(x.getNombre())
+		                    .snippet(x.getId())
 		                    .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker))));
+	                tablaRestaurantes.put(x.getId(), x);
                 }
+	            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+		            @Override
+		            public boolean onMarkerClick(Marker marker) {
+						Restaurante r = tablaRestaurantes.get(marker.getSnippet());
+			            AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+
+			            View v = getLayoutInflater().inflate(R.layout.custom_map_dialog, null);
+			            ImageView imageViewFotoRestaurante = (ImageView) v.findViewById(R.id.imageViewFotoRestaurante);
+			            TextView textViewNombreRestaurante = (TextView) v.findViewById(R.id.textViewNombreRestaurante);
+			            TextView textViewTelefono = (TextView) v.findViewById(R.id.textViewTelefono);
+			            TextView textViewDireccion = (TextView) v.findViewById(R.id.textViewDireccion);
+			            TextView textViewPaginaWeb = (TextView) v.findViewById(R.id.textViewPaginaWeb);
+			            RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
+			            Button buttonVerCarta = (Button) v.findViewById(R.id.buttonVerCarta);
+
+			            byte[] bytes = Base64.decode(r.getImagen64(), Base64.DEFAULT);
+			            Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+			            imageViewFotoRestaurante.setImageBitmap(bMap);
+
+			            textViewNombreRestaurante.setText(r.getNombre());
+			            textViewDireccion.setText(r.getDireccion());
+			            textViewTelefono.setText(r.getTelefono());
+			            textViewPaginaWeb.setText(r.getPagina());
+			            ratingBar.setRating(r.getRating());
+			            buttonVerCarta.setOnClickListener(new View.OnClickListener() {
+				            @Override
+				            public void onClick(View v) {
+					            //TODO ver carta
+				            }
+			            });
+
+			            builder.setView(v);
+			            builder.show();
+
+			            return false;
+		            }
+	            });
                 break;
             //Cancelado
             case ListarRestaurantesTask.CANCELADO:
