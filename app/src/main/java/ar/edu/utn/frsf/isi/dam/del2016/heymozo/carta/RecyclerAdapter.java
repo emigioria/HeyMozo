@@ -36,12 +36,12 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View view = LayoutInflater.from(context).inflate(R.layout.item_producto, parent, false);
-        return new RecyclerItemViewHolder(view);
+        return new ViewHolderProductoRecycler(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
-        RecyclerItemViewHolder holder = (RecyclerItemViewHolder) viewHolder;
+        ViewHolderProductoRecycler holder = (ViewHolderProductoRecycler) viewHolder;
         final Producto producto = productos.get(position);
         holder.llenarItem(producto);
 
@@ -53,7 +53,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.secondLayout.setVisibility(LinearLayout.GONE);
         }
 
-        final RecyclerItemViewHolder finalHolder = holder;
+        final ViewHolderProductoRecycler finalHolder = holder;
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

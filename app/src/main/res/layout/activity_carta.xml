@@ -49,7 +49,6 @@
         app:srcCompat="@drawable/ic_check_black_24dp"
         app:rippleColor="@android:color/white"
         android:tint="@color/white"
-        app:borderWidth="0dp"
-        app:layout_behavior="ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.ScrollingFABBehavior"/>
+        app:borderWidth="0dp" />
 
 </android.support.design.widget.CoordinatorLayout>

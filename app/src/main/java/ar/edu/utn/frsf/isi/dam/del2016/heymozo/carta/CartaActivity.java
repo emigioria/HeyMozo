@@ -37,6 +37,7 @@ public class CartaActivity extends AppCompatActivity {
     private static final int CODIGO_PEDIDO = 107;
     private Carta carta;
     private Mesa mesa;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,7 @@ public class CartaActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,6 +138,7 @@ public class CartaActivity extends AppCompatActivity {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
         private Carta carta;
+        private FloatingActionButton fab;
 
         public PlaceholderFragment() {
         }
@@ -145,12 +147,13 @@ public class CartaActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber, Carta carta) {
+        public static PlaceholderFragment newInstance(int sectionNumber, Carta carta, FloatingActionButton fab) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             fragment.setCarta(carta);
+            fragment.setFab(fab);
             return fragment;
         }
 
@@ -165,13 +168,33 @@ public class CartaActivity extends AppCompatActivity {
 
         private void setupRecyclerView(RecyclerView recyclerView) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            Log.v("MONEDA",carta.getRestaurante().getMoneda().getSimbolo());
+            Log.v("MONEDA", carta.getRestaurante().getMoneda().getSimbolo());
             RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), carta.getRestaurante().getMoneda(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
             recyclerView.setAdapter(recyclerAdapter);
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    if (dy > 0 || dy < 0 && fab.isShown())
+                        fab.hide();
+                }
+
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        fab.show();
+                    }
+                    super.onScrollStateChanged(recyclerView, newState);
+                }
+            });
         }
 
         public void setCarta(Carta carta) {
             this.carta = carta;
+        }
+
+        public void setFab(FloatingActionButton fab) {
+            this.fab = fab;
         }
     }
 
@@ -189,7 +212,7 @@ public class CartaActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1, carta);
+            return PlaceholderFragment.newInstance(position + 1, carta, fab);
         }
 
         @Override

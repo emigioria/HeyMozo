@@ -11,7 +11,7 @@ import java.util.Locale;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
 
-class RecyclerItemViewHolder extends RecyclerView.ViewHolder {
+class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
 
     public final View view;
     final TextView cantidad;
@@ -22,7 +22,7 @@ class RecyclerItemViewHolder extends RecyclerView.ViewHolder {
     final ImageButton agregar;
     final ImageButton quitar;
 
-    RecyclerItemViewHolder(View viewBase) {
+    ViewHolderProductoRecycler(View viewBase) {
         super(viewBase);
         this.view = viewBase;
         this.cantidad = (TextView) viewBase.findViewById(R.id.cantidad_textview);
