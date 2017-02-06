@@ -20,6 +20,8 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Producto> productos;
     private Moneda moneda;
     private int posicionConBotones = -1;
+    private static final int ALTURA_EXTENDIDO = 200;
+    private static final int ALTURA_CONTRAIDO = 75;
 
     RecyclerAdapter(Moneda moneda, List<Producto> itemList) {
         if (itemList != null) {
@@ -52,11 +54,20 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         holder.moneda.setText(moneda.getSimbolo());
 
+        ViewGroup.LayoutParams params = holder.imagenProducto.getLayoutParams();
+        final float scale = holder.view.getContext().getResources().getDisplayMetrics().density;
+
         if (posicionConBotones == position) {
             holder.secondLayout.setVisibility(LinearLayout.VISIBLE);
-        }else{
+
+            params.height = (int) (ALTURA_EXTENDIDO * scale + 0.5f);
+        } else {
             holder.secondLayout.setVisibility(LinearLayout.GONE);
+
+            params.height = (int) (ALTURA_CONTRAIDO * scale + 0.5f);
         }
+
+        holder.imagenProducto.setLayoutParams(params);
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -70,7 +81,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Integer cantidad = producto.getCantidad()+1;
+                Integer cantidad = producto.getCantidad() + 1;
                 producto.setCantidad(cantidad);
                 notifyItemChanged(position);
             }
@@ -79,13 +90,8 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.quitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Integer cantidad = producto.getCantidad()-1;
-                if(cantidad>0) {
-                    producto.setCantidad(cantidad);
-                }
-                else{
-                    producto.setCantidad(0);
-                }
+                Integer cantidad = producto.getCantidad() - 1;
+                producto.setCantidad((cantidad > 0) ? (cantidad) : (0));
                 notifyItemChanged(position);
             }
         });
