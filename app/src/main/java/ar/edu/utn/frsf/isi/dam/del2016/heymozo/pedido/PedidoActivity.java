@@ -27,7 +27,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 public class PedidoActivity extends AppCompatActivity implements GuardarPedidoListener, CargarPedidoListener {
 
     private Pedido pedido;
-    private Gson gson = new Gson();
     private TextView textViewNombreComedor;
     private TextView textViewMoneda;
     private TextView textViewTotal;
@@ -64,7 +63,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         setTitle(getString(R.string.title_activity_pedido));
         linkearVista();
 
-        pedido = gson.fromJson(getIntent().getStringExtra("pedido"), Pedido.class);
+        pedido = new Gson().fromJson(getIntent().getStringExtra("pedido"), Pedido.class);
 
         if (pedido != null) {
             mostrarPedido();
