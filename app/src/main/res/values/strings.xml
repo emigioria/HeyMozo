@@ -47,7 +47,7 @@
     <string name="btnQR">Escanear código\n QR</string>
     <string name="btnMapa">Ver restaurantes\n cercanos</string>
     <string name="btnPedidos">Ver mis pedidos</string>
-    <string name="btnConfiguracion">Configuración</string>
+    <string name="btnRestaurantesAdheridos">Ver restaurantes adheridos</string>
     <string name="btnAyuda">Ayuda</string>
     <string name="imagen_del_produto">Imagen del produto</string>
 </resources>

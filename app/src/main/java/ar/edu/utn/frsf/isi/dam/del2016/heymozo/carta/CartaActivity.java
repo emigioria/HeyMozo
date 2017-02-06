@@ -40,19 +40,20 @@ public class CartaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         Gson gson = new Gson();
         carta = gson.fromJson(getIntent().getExtras().getString("carta"), Carta.class);
         mesa = gson.fromJson(getIntent().getExtras().getString("mesa"), Mesa.class);
+        Boolean noHacerPedidos = getIntent().getExtras().getBoolean("noHacerPedidos");
         if (carta == null || mesa == null) {
-            CartaActivity.this.finish();
+            finish();
             return;
         }
 
         setTitle(carta.getRestaurante().getNombre());
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         /*
@@ -99,7 +100,9 @@ public class CartaActivity extends AppCompatActivity {
                 }
             }
         });
-
+        if (noHacerPedidos != null && noHacerPedidos) {
+            fab.setVisibility(View.GONE);
+        }
     }
 
 

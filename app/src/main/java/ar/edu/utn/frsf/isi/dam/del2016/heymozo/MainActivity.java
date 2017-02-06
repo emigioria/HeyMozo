@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout btnQR = (LinearLayout) findViewById(R.id.btnQR);
         LinearLayout btnPedidos = (LinearLayout) findViewById(R.id.btnPedidos);
         LinearLayout btnAyuda = (LinearLayout) findViewById(R.id.btnAyuda);
-        LinearLayout btnConfiguracion = (LinearLayout) findViewById(R.id.btnConfiguracion);
+        LinearLayout btnRestaurantesAdheridos = (LinearLayout) findViewById(R.id.btnRestaurantesAdheridos);
 
         btnMapa.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,9 +68,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-	    btnConfiguracion.setOnClickListener(new View.OnClickListener() {
+        btnRestaurantesAdheridos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
             }
         });
 

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#ff9800</color>
-    <color name="colorPrimaryDark">#F37B00</color>
-    <color name="colorAccent">#FFC107</color>
+    <color name="colorPrimary">#ffff9800</color>
+    <color name="colorPrimaryDark">#ffF37B00</color>
+    <color name="colorAccent">#ffFFC107</color>
 
 
-    <color name="productoSeleccionado">#f57c00</color>
+    <color name="productoSeleccionado">#fff57c00</color>
     <item name="productoSeleccionado2" type="color">#b4f57c00</item>
-    <item name="white" type="color">#ffffff</item>
-    <item name="blue" type="color">#75bdd7</item>
+    <item name="white" type="color">#ffffffff</item>
+    <item name="blue" type="color">#ff75bdd7</item>
     <item name="purple" type="color">#FFAA66CC</item>
     <item name="green" type="color">#FF99CC00</item>
     <item name="orange" type="color">#FFFFBB33</item>
