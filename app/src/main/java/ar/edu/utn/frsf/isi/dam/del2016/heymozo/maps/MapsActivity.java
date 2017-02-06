@@ -174,19 +174,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	                LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
                     mMap.addMarker(new MarkerOptions().position(rest1)
 		                    .title(x.getNombre())
-		                    .snippet(x.getId())
-		                    .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker))));
-	                tablaRestaurantes.put(x.getId(), x);
+                            .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker)))).setTag(x.getId());
+                    tablaRestaurantes.put(x.getId(), x);
                 }
 	            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 		            @Override
 		            public boolean onMarkerClick(Marker marker) {
-						Restaurante r = tablaRestaurantes.get(marker.getSnippet());
-			            AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                        Restaurante r = tablaRestaurantes.get(marker.getTag());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
 
-			            View v = getLayoutInflater().inflate(R.layout.custom_map_dialog, null);
-			            ImageView imageViewFotoRestaurante = (ImageView) v.findViewById(R.id.imageViewFotoRestaurante);
-			            TextView textViewNombreRestaurante = (TextView) v.findViewById(R.id.textViewNombreRestaurante);
+                        View v = View.inflate(getBaseContext(), R.layout.custom_map_dialog, null);
+                        ImageView imageViewFotoRestaurante = (ImageView) v.findViewById(R.id.imageViewFotoRestaurante);
+                        TextView textViewNombreRestaurante = (TextView) v.findViewById(R.id.textViewNombreRestaurante);
 			            TextView textViewTelefono = (TextView) v.findViewById(R.id.textViewTelefono);
 			            TextView textViewDireccion = (TextView) v.findViewById(R.id.textViewDireccion);
 			            TextView textViewPaginaWeb = (TextView) v.findViewById(R.id.textViewPaginaWeb);
@@ -202,8 +201,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 			            textViewTelefono.setText(r.getTelefono());
 			            textViewPaginaWeb.setText(r.getPagina());
 			            ratingBar.setRating(r.getRating());
-			            buttonVerCarta.setOnClickListener(new View.OnClickListener() {
-				            @Override
+                        ratingBar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //TODO ver calificaciones
+                            }
+                        });
+                        buttonVerCarta.setOnClickListener(new View.OnClickListener() {
+                            @Override
 				            public void onClick(View v) {
 					            //TODO ver carta
 				            }
