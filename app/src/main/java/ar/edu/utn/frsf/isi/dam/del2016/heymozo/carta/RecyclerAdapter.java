@@ -7,29 +7,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Moneda;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
 
-import static java.lang.String.valueOf;
-
 class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Producto> productos;
     private Moneda moneda;
-    private LinearLayout secondLayoutAnterior;
-    private Integer positionAnterior;
-    private HashMap<Integer,Integer> selectedRows;
+    private int posicionConBotones = -1;
 
-    RecyclerAdapter(Context context, Moneda moneda, List<Producto> itemList) {
-        productos = itemList;
+    RecyclerAdapter(Moneda moneda, List<Producto> itemList) {
+        if (itemList != null) {
+            productos = itemList;
+        } else {
+            productos = new ArrayList<>();
+        }
         this.moneda = moneda;
-        secondLayoutAnterior = new LinearLayout(context);
-        positionAnterior = 0;
-        selectedRows = new HashMap<>();
     }
 
     @Override
@@ -41,32 +39,31 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
-        ViewHolderProductoRecycler holder = (ViewHolderProductoRecycler) viewHolder;
+        final ViewHolderProductoRecycler holder = (ViewHolderProductoRecycler) viewHolder;
         final Producto producto = productos.get(position);
-        holder.llenarItem(producto);
 
+        holder.nombreProducto.setText(producto.getNombre());
+        holder.precio.setText(String.format(Locale.getDefault(), "%.2f", producto.getPrecio()));
+        if (producto.getCantidad() > 0) {
+            holder.cantidad.setVisibility(View.VISIBLE); //Se muestra el campo cantidad si es mayor que 0
+            holder.cantidad.setText(String.valueOf(producto.getCantidad()));
+        } else {
+            holder.cantidad.setVisibility(View.GONE);
+        }
         holder.moneda.setText(moneda.getSimbolo());
 
-        if(selectedRows.get(position)!=null){
-            holder.secondLayout.setVisibility(selectedRows.get(position));
+        if (posicionConBotones == position) {
+            holder.secondLayout.setVisibility(LinearLayout.VISIBLE);
         }else{
             holder.secondLayout.setVisibility(LinearLayout.GONE);
         }
 
-        final ViewHolderProductoRecycler finalHolder = holder;
-
         holder.view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
-                secondLayoutAnterior.setVisibility(LinearLayout.GONE);
-                selectedRows.put(positionAnterior,LinearLayout.GONE);
-                secondLayoutAnterior = finalHolder.secondLayout;
-                positionAnterior = position;
-
-                finalHolder.secondLayout.setVisibility(LinearLayout.VISIBLE);
-                selectedRows.put(position,LinearLayout.VISIBLE);
-
-                notifyDataSetChanged();
+                int posicionConBotonesAnterior = posicionConBotones;
+                posicionConBotones = position;
+                notifyItemChanged(posicionConBotonesAnterior);
+                notifyItemChanged(posicionConBotones);
             }
         });
 
@@ -75,8 +72,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             public void onClick(View view) {
                 Integer cantidad = producto.getCantidad()+1;
                 producto.setCantidad(cantidad);
-                finalHolder.cantidad.setText(valueOf(cantidad));
-                finalHolder.cantidad.setVisibility(View.VISIBLE);
+                notifyItemChanged(position);
             }
         });
 
@@ -84,23 +80,20 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Integer cantidad = producto.getCantidad()-1;
-
                 if(cantidad>0) {
                     producto.setCantidad(cantidad);
-                    finalHolder.cantidad.setText(valueOf(cantidad));
-                    finalHolder.cantidad.setVisibility(View.VISIBLE);
                 }
                 else{
                     producto.setCantidad(0);
-                    finalHolder.cantidad.setVisibility(View.GONE);
                 }
+                notifyItemChanged(position);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return productos == null ? 0 : productos.size();
+        return productos.size();
     }
 
 }

@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -168,8 +167,7 @@ public class CartaActivity extends AppCompatActivity {
 
         private void setupRecyclerView(RecyclerView recyclerView) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            Log.v("MONEDA", carta.getRestaurante().getMoneda().getSimbolo());
-            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), carta.getRestaurante().getMoneda(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
+            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(carta.getRestaurante().getMoneda(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
             recyclerView.setAdapter(recyclerAdapter);
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
