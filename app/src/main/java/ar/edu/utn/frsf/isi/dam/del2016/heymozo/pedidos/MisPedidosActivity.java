@@ -2,8 +2,9 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
 public class MisPedidosActivity extends AppCompatActivity implements ListarMisPedidosListener {
 
-    private ListView listaPedidos;
+    private RecyclerView listaPedidos;
     private ListarMisPedidosTask listarMisPedidosTask;
 
     @Override
@@ -40,7 +41,7 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
     }
 
     private void linkearVista() {
-        listaPedidos = (ListView) findViewById(R.id.listaPedidos);
+        listaPedidos = (RecyclerView) findViewById(R.id.listaPedidos);
     }
 
     @Override
@@ -51,12 +52,14 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
                     finish();
                     return;
                 }
+
                 Collections.sort(pedidos, new Comparator<Pedido>() {
                     @Override
                     public int compare(Pedido o1, Pedido o2) {
                         return -(o1.getFechaPedido().compareTo(o2.getFechaPedido()));
                     }
                 });
+                listaPedidos.setLayoutManager(new LinearLayoutManager(this));
                 listaPedidos.setAdapter(new PedidoAdapter(MisPedidosActivity.this, new ArrayList<>(pedidos)));
                 break;
             case ListarMisPedidosTask.CANCELADO:

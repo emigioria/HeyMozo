@@ -2,11 +2,10 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -17,32 +16,33 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
 
-class PedidoAdapter extends ArrayAdapter<Pedido> {
+class PedidoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private LayoutInflater inflater;
+    private Context context;
+    private ArrayList<Pedido> pedidos;
 
     PedidoAdapter(Context context, ArrayList<Pedido> pedidos) {
-        super(context, R.layout.item_producto, pedidos);
-        inflater = LayoutInflater.from(context);
+        this.context = context;
+        if (pedidos != null) {
+            this.pedidos = pedidos;
+        } else {
+            this.pedidos = new ArrayList<>();
+        }
     }
 
-    @NonNull
     @Override
-    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.item_pedido, parent, false);
+        return new ViewHolderPedido(view);
+    }
 
-        View row = convertView;
-        if (row == null) {
-            row = inflater.inflate(R.layout.item_pedido, parent, false);
-        }
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
+        final ViewHolderPedido holder = (ViewHolderPedido) viewHolder;
+        final Pedido pedido = pedidos.get(position);
 
-        ViewHolderPedido holder = (ViewHolderPedido) row.getTag();
-        if (holder == null) {
-            holder = new ViewHolderPedido(row);
-            row.setTag(holder);
-        }
-        final Pedido pedido = this.getItem(position);
-
-        String numPedido = String.format(Locale.getDefault(), getContext().getString(R.string.pedidoNum), getCount() - position);
+        String numPedido = String.format(Locale.getDefault(), context.getString(R.string.pedidoNum), getItemCount() - position);
         holder.textViewPedido.setText(numPedido);
         holder.textViewMoneda.setText(pedido.getRestaurante().getMoneda().getSimbolo());
         holder.textViewFecha.setText(DateFormat.getDateInstance().format(new Date(pedido.getFechaPedido())));
@@ -55,16 +55,16 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
         if (pedido.getCalificacion() != null) {
             holder.buttonGracias.setVisibility(View.VISIBLE);
         } else {
-            if (pedido.getEstado().equals(getContext().getString(R.string.estado_pedido_terminado))) {
+            if (pedido.getEstado().equals(context.getString(R.string.estado_pedido_terminado))) {
                 holder.buttonEvaluarExp.setVisibility(View.VISIBLE);
             }
         }
 
-        row.setOnClickListener(new View.OnClickListener() {
+        holder.row.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent(getContext(), PedidoActivity.class);
+                Intent i = new Intent(context, PedidoActivity.class);
                 i.putExtra("pedido", pedido.toJSONObject());
-                getContext().startActivity(i);
+                context.startActivity(i);
             }
         });
 
@@ -72,10 +72,14 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
             @Override
             public void onClick(View view) {
                 pedido.setCalificacion("Muy buena");
-                notifyDataSetChanged();
+                notifyItemChanged(position);
             }
         });
 
-        return (row);
+    }
+
+    @Override
+    public int getItemCount() {
+        return pedidos.size();
     }
 }
