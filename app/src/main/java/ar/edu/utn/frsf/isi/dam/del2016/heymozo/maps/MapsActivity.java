@@ -2,9 +2,14 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,8 +18,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Base64;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -25,6 +34,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -150,8 +160,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Correcto
             case 0:
                 for (Restaurante x : restaurantes) {
-                    LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
-                    mMap.addMarker(new MarkerOptions().position(rest1).title(x.getNombre()));
+	                View marker = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
+	                ImageView imageView = (ImageView) marker.findViewById(R.id.mapsFotoRestaurante);
+	                byte[] bytes = Base64.decode(x.getImagen64(), Base64.DEFAULT);
+	                Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+	                imageView.setImageBitmap(bMap);
+	                LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
+                    mMap.addMarker(new MarkerOptions().position(rest1)
+		                    .title(x.getNombre())
+		                    .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker))));
                 }
                 break;
             //Cancelado
@@ -203,4 +220,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+	// Convert a view to bitmap
+	public static Bitmap createDrawableFromView(Context context, View view) {
+		DisplayMetrics displayMetrics = new DisplayMetrics();
+		((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+		view.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+		view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+		view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+		view.buildDrawingCache();
+		Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+
+		Canvas canvas = new Canvas(bitmap);
+		view.draw(canvas);
+
+		return bitmap;
+	}
 }

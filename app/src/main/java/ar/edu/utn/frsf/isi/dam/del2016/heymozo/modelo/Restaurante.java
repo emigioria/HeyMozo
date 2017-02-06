@@ -9,6 +9,7 @@ public class Restaurante {
     private static final String LATITUD = "latitud";
     private static final String LONGITUD = "longitud";
     private static final String IMAGEN = "imagen";
+    private static final String IMAGEN64 = "imagen64";
 
     @SerializedName(NOMBRE)
     private String nombre;
@@ -24,6 +25,9 @@ public class Restaurante {
 
     @SerializedName(IMAGEN)
     private Imagen imagen;
+
+	@SerializedName(IMAGEN64)
+	private String imagen64;
 
     public Restaurante() {
 
@@ -78,4 +82,7 @@ public class Restaurante {
         return moneda;
     }
 
+	public String getImagen64(){
+		return imagen64;
+	}
 }
