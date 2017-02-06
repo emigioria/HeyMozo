@@ -144,6 +144,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         loadingPanelCarta.setVisibility(View.GONE);
     }
 
+
     // Handles the requesting of the camera permission.
     private void requestCameraPermission() {
         Log.w(TAG, "Camera permission is not granted. Requesting permission");

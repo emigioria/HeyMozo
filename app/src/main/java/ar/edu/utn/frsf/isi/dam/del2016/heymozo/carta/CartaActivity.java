@@ -35,15 +35,18 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
 public class CartaActivity extends AppCompatActivity {
 
     private static final int CODIGO_PEDIDO = 107;
-    private static Carta carta;
+    private Carta carta;
+    private Mesa mesa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta);
 
-        carta = new Gson().fromJson(getIntent().getExtras().getString("carta"), Carta.class);
-        if (carta == null) {
+        Gson gson = new Gson();
+        carta = gson.fromJson(getIntent().getExtras().getString("carta"), Carta.class);
+        mesa = gson.fromJson(getIntent().getExtras().getString("mesa"), Mesa.class);
+        if (carta == null || mesa == null) {
             CartaActivity.this.finish();
             return;
         }
@@ -78,9 +81,8 @@ public class CartaActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Gson gson = new Gson();
                 Pedido pedido = new Pedido()
-                        .setMesa(gson.fromJson(getIntent().getExtras().getString("mesa"), Mesa.class))
+                        .setMesa(mesa)
                         .setRestaurante(carta.getRestaurante());
                 ArrayList<Producto> productosSeleccionados = new ArrayList<>();
                 for (Seccion seccion : carta.getSecciones()) {
@@ -134,6 +136,7 @@ public class CartaActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private Carta carta;
 
         public PlaceholderFragment() {
         }
@@ -142,11 +145,12 @@ public class CartaActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
+        public static PlaceholderFragment newInstance(int sectionNumber, Carta carta) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
+            fragment.setCarta(carta);
             return fragment;
         }
 
@@ -165,6 +169,10 @@ public class CartaActivity extends AppCompatActivity {
             RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), carta.getRestaurante().getMoneda(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
             recyclerView.setAdapter(recyclerAdapter);
         }
+
+        public void setCarta(Carta carta) {
+            this.carta = carta;
+        }
     }
 
     /**
@@ -181,7 +189,7 @@ public class CartaActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position + 1, carta);
         }
 
         @Override
