@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -38,28 +39,38 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout btnQR = (LinearLayout) findViewById(R.id.btnQR);
         LinearLayout btnPedidos = (LinearLayout) findViewById(R.id.btnPedidos);
         LinearLayout btnAyuda = (LinearLayout) findViewById(R.id.btnAyuda);
+        LinearLayout btnConfiguracion = (LinearLayout) findViewById(R.id.btnConfiguracion);
 
         btnMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+	            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(intent);
+                startActivity(intent, options.toBundle());
             }
         });
 
         btnQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
-                startActivity(intent);
+	            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+	            Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
+	            startActivity(intent, options.toBundle());
             }
         });
 
         btnPedidos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MisPedidosActivity.class);
-                startActivity(intent);
+	            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+	            Intent intent = new Intent(MainActivity.this, MisPedidosActivity.class);
+	            startActivity(intent, options.toBundle());
+            }
+        });
+
+	    btnConfiguracion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
             }
         });
 
@@ -68,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Gson gson = new Gson();
-                Intent i = new Intent(MainActivity.this, CartaActivity.class);
+	            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+	            Intent i = new Intent(MainActivity.this, CartaActivity.class);
                 Bundle extras = new Bundle();
                 extras.putString("mesa", gson.toJson(new Mesa().setId("1")));
                 extras.putString("carta", "{\n" +
@@ -483,7 +495,7 @@ public class MainActivity extends AppCompatActivity {
                         "            ]\n" +
                         "        }");
                 i.putExtras(extras);
-                startActivity(i);
+	            startActivity(i, options.toBundle());
             }
         });
     }

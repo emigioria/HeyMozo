@@ -6,7 +6,8 @@
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_collapseParallaxMultiplier="1.0">
+    app:layout_collapseParallaxMultiplier="1.0"
+    android:background="@color/white">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -23,7 +24,8 @@
             tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.MainActivity"
             android:layout_centerHorizontal="true"
             android:baselineAligned="false"
-            android:padding="4dp">
+            android:padding="4dp"
+            >
 
             <LinearLayout
                 android:orientation="horizontal"
