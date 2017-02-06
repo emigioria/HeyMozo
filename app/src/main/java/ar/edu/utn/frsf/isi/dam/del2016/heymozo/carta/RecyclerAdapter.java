@@ -78,7 +78,6 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 producto.setCantidad(cantidad);
                 finalHolder.cantidad.setText(valueOf(cantidad));
                 finalHolder.cantidad.setVisibility(View.VISIBLE);
-                //finalRow.setBackgroundColor(0x66FF7C00);
             }
         });
 
@@ -91,12 +90,10 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     producto.setCantidad(cantidad);
                     finalHolder.cantidad.setText(valueOf(cantidad));
                     finalHolder.cantidad.setVisibility(View.VISIBLE);
-                    //finalRow.setBackgroundColor(0x66FF7C00);
                 }
                 else{
                     producto.setCantidad(0);
                     finalHolder.cantidad.setVisibility(View.GONE);
-                    //finalRow.setBackgroundColor(0x00FFFFFF);
                 }
             }
         });

@@ -21,7 +21,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -50,7 +49,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleApiClient mGoogleApiClient;
     private boolean flagPermisoPedido;
     private static final int PERMISSION_REQUEST_ACCESS = 899;
-    private static String TAG = "MAP";
     private RelativeLayout loadingPanel;
     private ListarRestaurantesTask listarRestaurantesTask;
 
@@ -78,7 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        Log.d(TAG, "Mapa cargado");
+        Log.d("MAP", "Mapa cargado");
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -158,13 +156,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void busquedaFinalizada(List<Restaurante> restaurantes, int resultCode) {
         switch (resultCode) {
             //Correcto
-            case 0:
+            case ListarRestaurantesTask.OK:
                 for (Restaurante x : restaurantes) {
-	                View marker = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
-	                ImageView imageView = (ImageView) marker.findViewById(R.id.mapsFotoRestaurante);
-	                byte[] bytes = Base64.decode(x.getImagen64(), Base64.DEFAULT);
-	                Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-	                imageView.setImageBitmap(bMap);
+                    View marker = View.inflate(getBaseContext(), R.layout.custom_marker_layout, null);
+                    ImageView imageView = (ImageView) marker.findViewById(R.id.mapsFotoRestaurante);
+                    byte[] bytes = Base64.decode(x.getImagen64(), Base64.DEFAULT);
+                    Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    imageView.setImageBitmap(bMap);
 	                LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
                     mMap.addMarker(new MarkerOptions().position(rest1)
 		                    .title(x.getNombre())
@@ -172,11 +170,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 break;
             //Cancelado
-            case 1:
+            case ListarRestaurantesTask.CANCELADO:
                 break;
 
             //Error de conexión
-            case 2:
+            case ListarRestaurantesTask.ERROR:
                 loadingPanel.setVisibility(View.GONE);
                 Toast.makeText(this, getString(R.string.error_servidor), Toast.LENGTH_LONG).show();
                 break;

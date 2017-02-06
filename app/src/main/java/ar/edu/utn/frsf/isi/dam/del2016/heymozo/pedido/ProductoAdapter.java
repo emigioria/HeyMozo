@@ -20,7 +20,7 @@ class ProductoAdapter extends ArrayAdapter<Producto> {
     private Moneda moneda;
 
     ProductoAdapter(Context context, Moneda moneda, ArrayList<Producto> productos) {
-        super(context, R.layout.item_producto, productos);
+        super(context, R.layout.item_producto_flat, productos);
         inflater = LayoutInflater.from(context);
         this.moneda = moneda;
     }
@@ -31,7 +31,7 @@ class ProductoAdapter extends ArrayAdapter<Producto> {
 
         View row = convertView;
         if(row == null){
-            row = inflater.inflate(R.layout.item_producto, parent, false);
+            row = inflater.inflate(R.layout.item_producto_flat, parent, false);
         }
 
         ViewHolderProducto holder = (ViewHolderProducto) row.getTag();

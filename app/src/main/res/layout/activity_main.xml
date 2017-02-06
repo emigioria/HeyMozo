@@ -1,260 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:padding="4dp"
     app:layout_collapseParallaxMultiplier="1.0"
-    android:background="@color/white">
+    tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.MainActivity">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
-            android:id="@+id/activity_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:stretchMode="spacingWidthUniform"
-            tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.MainActivity"
-            android:layout_centerHorizontal="true"
-            android:baselineAligned="false"
-            android:padding="4dp"
-            >
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="4dp"
-                    android:elevation="4dp"
                     android:id="@+id/btnQR"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
                     android:background="@drawable/ripple"
-                    >
+                    android:elevation="4dp"
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        app:srcCompat="@drawable/qrw"
                         android:id="@+id/imageView1"
-                        android:layout_rowWeight="1"
-                        android:isScrollContainer="false"
-                        android:padding="40dp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
                         android:layout_width="match_parent"
-                        android:elevation="0dp"/>
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:padding="40dp"
+                        app:srcCompat="@drawable/qrw" />
 
                     <TextView
-                        android:text="@string/btnQR"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1"
-                        android:isScrollContainer="false"
-                        android:adjustViewBounds="false"
                         android:id="@+id/textView1"
-                        android:gravity="center"
-                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
                         android:layout_width="match_parent"
-                        android:paddingBottom="10dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="-20dp"
-                        android:elevation="0dp"/>
+                        android:gravity="center"
+                        android:paddingBottom="10dp"
+                        android:text="@string/btnQR"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="4dp"
                     android:id="@+id/btnMapa"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
                     android:elevation="4dp"
-                    android:background="@drawable/ripple">
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        app:srcCompat="@drawable/mapaw"
                         android:id="@+id/imageView2"
-                        android:layout_rowWeight="1"
-                        android:isScrollContainer="false"
-                        android:padding="40dp"
-                        android:adjustViewBounds="true"
-                        android:elevation="0dp"
-                        android:scaleType="fitXY"
                         android:layout_width="match_parent"
-                        />
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:padding="40dp"
+                        app:srcCompat="@drawable/mapaw" />
 
                     <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-20dp"
+                        android:gravity="center"
+                        android:paddingBottom="10dp"
                         android:text="@string/btnMapa"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1"
-                        android:isScrollContainer="false"
-                        android:id="@+id/b"
-                        android:gravity="center"
-                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
-                        android:layout_width="match_parent"
-                        android:paddingBottom="10dp"
-                        android:layout_marginTop="-20dp"/>
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elevation="0dp"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_margin="4dp"
                     android:id="@+id/btnPedidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
                     android:elevation="4dp"
-                    android:background="@drawable/ripple">
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        app:srcCompat="@drawable/cartaw"
                         android:id="@+id/imageView3"
-                        android:layout_rowWeight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:padding="40dp"
-                        android:layout_width="match_parent"
-                        android:elevation="0dp"
-                        tools:ignore="ContentDescription"/>
+                        app:srcCompat="@drawable/cartaw" />
 
                     <TextView
-                        android:text="@string/btnPedidos"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1"
-                        android:isScrollContainer="false"
-                        android:adjustViewBounds="false"
                         android:id="@+id/textView3"
-                        android:gravity="center"
-                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-20dp"
+                        android:gravity="center"
                         android:paddingBottom="10dp"
-                        android:layout_marginTop="-20dp"/>
+                        android:text="@string/btnPedidos"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
+                    android:id="@+id/btnConfiguracion"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
                     android:elevation="4dp"
-                    android:id="@+id/btnConfiguracion"
-                    android:background="@drawable/ripple">
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        app:srcCompat="@drawable/gearw"
                         android:id="@+id/imageView4"
-                        android:layout_rowWeight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:padding="40dp"
-                        android:layout_width="match_parent"
-                        android:elevation="0dp"/>
+                        app:srcCompat="@drawable/gearw" />
 
                     <TextView
-                        android:text="@string/btnConfiguracion"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1"
-                        android:isScrollContainer="false"
-                        android:adjustViewBounds="false"
                         android:id="@+id/textView4"
-                        android:gravity="center"
-                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-20dp"
+                        android:gravity="center"
                         android:paddingBottom="10dp"
-                        android:layout_marginTop="-20dp"/>
+                        android:text="@string/btnConfiguracion"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:id="@+id/btnAyuda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elevation="4dp"
-                android:background="@drawable/ripple"
-                android:id="@+id/btnAyuda"
                 android:layout_margin="4dp"
-                android:baselineAligned="false">
+                android:background="@drawable/ripple"
+                android:baselineAligned="false"
+                android:elevation="4dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:elevation="0dp">
+                    android:background="@drawable/ripple"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:layout_columnWeight="1"
-                        app:srcCompat="@drawable/helpw"
                         android:id="@+id/imageView5"
-                        android:layout_rowWeight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:padding="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:elevation="0dp"
-                        tools:ignore="ContentDescription"/>
+                        app:srcCompat="@drawable/helpw" />
 
                     <TextView
-                        android:text="@string/btnAyuda"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1"
-                        android:isScrollContainer="false"
                         android:id="@+id/textView5"
-                        android:gravity="center"
-                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
                         android:layout_width="match_parent"
-                        android:paddingBottom="10dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="-20dp"
-                        android:adjustViewBounds="false"/>
-
+                        android:gravity="center"
+                        android:paddingBottom="10dp"
+                        android:text="@string/btnAyuda"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple"
+                    android:orientation="vertical">
 
                 </LinearLayout>
 

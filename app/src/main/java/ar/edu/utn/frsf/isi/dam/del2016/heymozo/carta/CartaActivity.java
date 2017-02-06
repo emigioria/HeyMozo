@@ -34,6 +34,7 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
 
 public class CartaActivity extends AppCompatActivity {
 
+    private static final int CODIGO_PEDIDO = 107;
     private static Carta carta;
 
     @Override
@@ -94,8 +95,7 @@ public class CartaActivity extends AppCompatActivity {
                 if (productosSeleccionados.size() > 0) {
                     Intent intent = new Intent(CartaActivity.this, PedidoActivity.class);
                     intent.putExtra("pedido", pedido.toJSONObject());
-                    startActivity(intent);
-                    finish();
+                    startActivityForResult(intent, CODIGO_PEDIDO);
                 }
             }
         });
@@ -194,6 +194,20 @@ public class CartaActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             // retorna los titulos de cada seccion según el orden en el que se escribió la carta
             return carta.getSecciones().get(position).getNombre();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case CODIGO_PEDIDO:
+                if (resultCode == RESULT_OK) {
+                    finish();
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+                break;
         }
     }
 }

@@ -25,9 +25,10 @@ class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaurante>> 
     private final Context context;
     private BusquedaRestaurantesListener<Restaurante> listener;
     private HttpURLConnection urlConnection = null;
-    private int status = 0;
-    private static int CANCELADO = 1;
-    private static int ERROR = 2;
+    private int status = OK;
+    static final int OK = 0;
+    static final int CANCELADO = 1;
+    static final int ERROR = 2;
 
     ListarRestaurantesTask(BusquedaRestaurantesListener<Restaurante> dListener, Context context) {
         this.listener = dListener;
