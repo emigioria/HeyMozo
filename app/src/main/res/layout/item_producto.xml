@@ -17,11 +17,11 @@
         <ImageView
             android:id="@+id/imagenProducto"
             android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/imagen_del_produto"
             android:scaleType="centerCrop"
-            card_view:srcCompat="@drawable/empanadas_2_bodega_montferry_barcelona_55abbde5aba1d"
-            android:layout_height="182dp" />
+            card_view:srcCompat="@drawable/empanadas_2_bodega_montferry_barcelona_55abbde5aba1d" />
 
         <LinearLayout
             android:layout_width="match_parent"

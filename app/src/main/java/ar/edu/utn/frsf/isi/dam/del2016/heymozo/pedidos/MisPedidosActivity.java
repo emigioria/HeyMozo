@@ -71,6 +71,6 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
 
     @Override
     public void busquedaIniciada() {
-        Toast.makeText(this, getString(R.string.cargando_pedidos), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.cargando_pedidos), Toast.LENGTH_SHORT).show();
     }
 }
