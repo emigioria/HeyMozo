@@ -30,26 +30,22 @@ class ProductoAdapter extends ArrayAdapter<Producto> {
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
 
         View row = convertView;
-        if(row == null){
+        if (row == null) {
             row = inflater.inflate(R.layout.item_producto_flat, parent, false);
         }
 
         ViewHolderProducto holder = (ViewHolderProducto) row.getTag();
-        if(holder == null){
+        if (holder == null) {
             holder = new ViewHolderProducto(row);
             row.setTag(holder);
         }
 
-        String cantidad = this.getItem(position).getCantidad()+"";
+        String cantidad = this.getItem(position).getCantidad() + "";
         holder.cantidad.setText(cantidad);
         holder.nombreProducto.setText(this.getItem(position).getNombre());
         holder.moneda.setText(moneda.getSimbolo());
-        holder.precio.setText(String.format(Locale.getDefault(),"%.2f",this.getItem(position).getPrecio()));
+        holder.precio.setText(String.format(Locale.getDefault(), "%.2f", this.getItem(position).getPrecio()));
 
-        return(row);
-    }
-
-    public Producto getItem(int position){
-        return super.getItem(position);
+        return (row);
     }
 }

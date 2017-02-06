@@ -78,8 +78,4 @@ class PedidoAdapter extends ArrayAdapter<Pedido> {
 
         return (row);
     }
-
-    public Pedido getItem(int position) {
-        return super.getItem(position);
-    }
 }

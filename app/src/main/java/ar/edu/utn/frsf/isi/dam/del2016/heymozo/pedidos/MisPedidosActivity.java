@@ -6,8 +6,6 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,7 +17,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 public class MisPedidosActivity extends AppCompatActivity implements ListarMisPedidosListener {
 
     private ListView listaPedidos;
-    private Gson gson = new Gson();
     private ListarMisPedidosTask listarMisPedidosTask;
 
     @Override

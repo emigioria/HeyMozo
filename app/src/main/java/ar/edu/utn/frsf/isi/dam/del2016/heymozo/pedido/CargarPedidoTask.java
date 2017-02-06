@@ -19,7 +19,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 class CargarPedidoTask extends AsyncTask<String, Void, Pedido> {
     private final Context context;
     private CargarPedidoListener listener;
-    private HttpURLConnection urlConnection = null;
     static final int OK = 0;
     static final int CANCELADO = 1;
     static final int ERROR = 2;

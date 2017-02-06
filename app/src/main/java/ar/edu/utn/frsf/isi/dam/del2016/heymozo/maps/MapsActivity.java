@@ -91,7 +91,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         listarRestaurantesTask.execute();
     }
 
-    public void askForPermission() {
+    private void askForPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -220,9 +220,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 	// Convert a view to bitmap
-	public static Bitmap createDrawableFromView(Context context, View view) {
-		DisplayMetrics displayMetrics = new DisplayMetrics();
-		((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+    private Bitmap createDrawableFromView(Context context, View view) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 		view.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
 		view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
 		view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);

@@ -54,7 +54,6 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         final RecyclerItemViewHolder finalHolder = holder;
-        final View finalRow = holder.view;
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
