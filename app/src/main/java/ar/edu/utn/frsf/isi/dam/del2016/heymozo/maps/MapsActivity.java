@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -81,14 +82,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    protected void onPause() {
-        if (listarRestaurantesTask != null) {
+    protected void onDestroy() {
+        super.onDestroy();
+        if (listarRestaurantesTask != null && listarRestaurantesTask.getStatus() != AsyncTask.Status.FINISHED) {
             listarRestaurantesTask.cancel(true);
         }
-        if (solicitarCartaTask != null) {
+        if (solicitarCartaTask != null && solicitarCartaTask.getStatus() != AsyncTask.Status.FINISHED) {
             solicitarCartaTask.cancel(true);
         }
-        super.onPause();
     }
 
     @Override

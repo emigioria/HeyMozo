@@ -28,6 +28,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -236,9 +237,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         if (mPreview != null) {
             mPreview.stop();
         }
-        if (solicitarCartaTask != null) {
-            solicitarCartaTask.cancel(true);
-        }
     }
 
     /**
@@ -250,6 +248,9 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         super.onDestroy();
         if (mPreview != null) {
             mPreview.release();
+        }
+        if (solicitarCartaTask != null && solicitarCartaTask.getStatus() != AsyncTask.Status.FINISHED) {
+            solicitarCartaTask.cancel(true);
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -158,11 +159,11 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     }
 
     @Override
-    protected void onPause() {
-        if (cargarPedidoTask != null) {
+    protected void onDestroy() {
+        super.onDestroy();
+        if (cargarPedidoTask != null && cargarPedidoTask.getStatus() != AsyncTask.Status.FINISHED) {
             cargarPedidoTask.cancel(true);
         }
-        super.onPause();
     }
 
     @Override

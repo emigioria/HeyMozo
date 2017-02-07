@@ -1,6 +1,7 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.restaurantes;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,14 +45,14 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
     }
 
     @Override
-    protected void onPause() {
-        if (listarRestaurantesTask != null) {
+    protected void onDestroy() {
+        super.onDestroy();
+        if (listarRestaurantesTask != null && listarRestaurantesTask.getStatus() != AsyncTask.Status.FINISHED) {
             listarRestaurantesTask.cancel(true);
         }
-        if (solicitarCartaTask != null) {
+        if (solicitarCartaTask != null && solicitarCartaTask.getStatus() != AsyncTask.Status.FINISHED) {
             solicitarCartaTask.cancel(true);
         }
-        super.onPause();
     }
 
     private void linkearVista() {

@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,11 +37,11 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
     }
 
     @Override
-    protected void onPause() {
-        if (listarMisPedidosTask != null) {
+    protected void onDestroy() {
+        super.onDestroy();
+        if (listarMisPedidosTask != null && listarMisPedidosTask.getStatus() != AsyncTask.Status.FINISHED) {
             listarMisPedidosTask.cancel(true);
         }
-        super.onPause();
     }
 
     private void linkearVista() {
