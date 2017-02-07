@@ -97,8 +97,9 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         if (pedido.getRestaurante().getImagen() == null) {
             imagenToolbar.setVisibility(View.GONE);
         } else {
-            Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getRestaurante().getImagen().getImagen(), 0, pedido.getRestaurante().getImagen().getImagen().length));
-            imagenToolbar.setBackground(image);
+            //Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getRestaurante().getImagen().getImagen(), 0, pedido.getRestaurante().getImagen().getImagen().length));
+            //imagenToolbar.setBackground(image);
+            //TODO
         }
 
         if (pedido.getFinaliza() == null) {

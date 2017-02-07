@@ -1,7 +1,7 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,7 +11,7 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
 class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
 
-    final View view;
+    final CardView view;
     final TextView cantidad;
     final TextView nombreProducto;
     final TextView moneda;
@@ -21,7 +21,7 @@ class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
     final ImageButton quitar;
     final ImageView imagenProducto;
 
-    ViewHolderProductoRecycler(View viewBase) {
+    ViewHolderProductoRecycler(CardView viewBase) {
         super(viewBase);
         this.view = viewBase;
         this.cantidad = (TextView) viewBase.findViewById(R.id.cantidad_textview);
