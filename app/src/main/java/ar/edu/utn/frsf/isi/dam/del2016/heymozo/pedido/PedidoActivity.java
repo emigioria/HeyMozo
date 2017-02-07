@@ -76,11 +76,28 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         } else {
             String pedidoId = getIntent().getStringExtra("pedidoId");
             if (pedidoId != null) {
-                cargarPedidoTask = new CargarPedidoTask(PedidoActivity.this, PedidoActivity.this);
-                cargarPedidoTask.execute(pedidoId);
+                if (savedInstanceState == null) {
+                    cargarPedidoTask = new CargarPedidoTask(PedidoActivity.this, PedidoActivity.this);
+                    cargarPedidoTask.execute(pedidoId);
+                }
             } else {
                 this.finish();
             }
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("pedido", new Gson().toJson(pedido));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (pedido == null) {
+            pedido = new Gson().fromJson(savedInstanceState.getString("pedido"), Pedido.class);
+            mostrarPedido();
         }
     }
 

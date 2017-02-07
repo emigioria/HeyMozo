@@ -16,7 +16,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 class GuardarPedidoTask extends AsyncTask<Pedido, Void, Void> {
     private final Context context;
     private GuardarPedidoListener listener;
-    private HttpURLConnection urlConnection = null;
     static final int OK = 0;
     static final int CANCELADO = 1;
     static final int ERROR = 2;
@@ -51,6 +50,7 @@ class GuardarPedidoTask extends AsyncTask<Pedido, Void, Void> {
         }
         String pedidoJSON = pedido.toJSONObject();
 
+        HttpURLConnection urlConnection = null;
         try {
             URL url = new URL("http://" + context.getString(R.string.ip_server) + ":" + context.getString(R.string.port_server_db) + "/pedido");
             urlConnection = (HttpURLConnection) url.openConnection();

@@ -2,7 +2,6 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -50,20 +49,25 @@ public class ListarRestaurantesTask extends AsyncTask<Void, Void, List<Restauran
 
     @Override
     protected List<Restaurante> doInBackground(Void... nadas) {
-        final StringBuilder sb = new StringBuilder();
         ArrayList<Restaurante> restaurantes = new ArrayList<>();
         try {
             URL url = new URL("http://" + context.getString(R.string.ip_server) + ":" + context.getString(R.string.port_server_db) + "/restaurantes");
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setConnectTimeout(60000);
+            urlConnection.setReadTimeout(60000);
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);
+            StringBuilder sb = new StringBuilder();
             int data = isw.read();
             while (data != -1) {
                 char current = (char) data;
                 sb.append(current);
                 data = isw.read();
             }
-            Log.d("JSON", "doInBackground: " + sb.toString());
+            isw.close();
+            in.close();
             Gson gson = new Gson();
             // create the type for the collection. In this case define that the collection is of type Dataset
             Type datasetListType = new TypeToken<Collection<Restaurante>>() {

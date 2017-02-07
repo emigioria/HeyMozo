@@ -52,7 +52,6 @@ class CargarPedidoTask extends AsyncTask<String, Void, Pedido> {
             return null;
         }
 
-        StringBuilder sb = new StringBuilder();
         Pedido pedido = null;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String userId = preferences.getString("registration_id", "no id");
@@ -66,6 +65,7 @@ class CargarPedidoTask extends AsyncTask<String, Void, Pedido> {
             urlConnection.setReadTimeout(60000);
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);
+            StringBuilder sb = new StringBuilder();
             int data = isw.read();
             while (data != -1) {
                 char current = (char) data;

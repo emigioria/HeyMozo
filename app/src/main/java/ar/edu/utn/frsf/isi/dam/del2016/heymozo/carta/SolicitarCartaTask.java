@@ -2,7 +2,6 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -44,8 +43,11 @@ public class SolicitarCartaTask extends AsyncTask<String, Void, String> {
         mesaJSON = new Gson().toJson(new Mesa().setId(ids[1]));
         try {
             URL url = new URL("http://" + context.getString(R.string.ip_server) + ":" + context.getString(R.string.port_server_db) + "/cartas/" + idRestaurante);
-            Log.v("INFO:", url.toString());
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setConnectTimeout(60000);
+            urlConnection.setReadTimeout(60000);
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);
             StringBuilder sb = new StringBuilder();
@@ -55,6 +57,8 @@ public class SolicitarCartaTask extends AsyncTask<String, Void, String> {
                 sb.append(current);
                 data = isw.read();
             }
+            isw.close();
+            in.close();
             cartaJSON = sb.toString();
         } catch (IOException e) {
             status = ERROR;

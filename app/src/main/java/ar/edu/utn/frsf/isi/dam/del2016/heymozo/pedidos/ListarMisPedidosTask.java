@@ -24,7 +24,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 class ListarMisPedidosTask extends AsyncTask<Void, Void, List<Pedido>> {
     private final Context context;
     private ListarMisPedidosListener listener;
-    private HttpURLConnection urlConnection = null;
     static final int OK = 0;
     static final int CANCELADO = 1;
     static final int ERROR = 2;
@@ -50,26 +49,32 @@ class ListarMisPedidosTask extends AsyncTask<Void, Void, List<Pedido>> {
 
     @Override
     protected List<Pedido> doInBackground(Void... urls) {
-        StringBuilder sb = new StringBuilder();
         ArrayList<Pedido> pedidos = new ArrayList<>();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String userId = preferences.getString("registration_id", "no id");
+        HttpURLConnection urlConnection = null;
         try {
             URL url = new URL("http://" + context.getString(R.string.ip_server) + ":" + context.getString(R.string.port_server_db) + "/pedidos/" + userId);
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setConnectTimeout(60000);
+            urlConnection.setReadTimeout(60000);
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);
+            StringBuilder sb = new StringBuilder();
             int data = isw.read();
             while (data != -1) {
                 char current = (char) data;
                 sb.append(current);
                 data = isw.read();
             }
-            Gson gson = new Gson();
+            isw.close();
+            in.close();
             // create the type for the collection. In this case define that the collection is of type Dataset
             Type datasetListType = new TypeToken<Collection<Pedido>>() {
             }.getType();
-            pedidos = gson.fromJson(sb.toString(), datasetListType);
+            pedidos = new Gson().fromJson(sb.toString(), datasetListType);
         } catch (Exception e) {
             status = ERROR;
             e.printStackTrace();
