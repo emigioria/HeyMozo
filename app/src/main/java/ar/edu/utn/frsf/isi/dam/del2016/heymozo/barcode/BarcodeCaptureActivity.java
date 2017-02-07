@@ -70,6 +70,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     private CameraSource mCameraSource;
     private CameraSourcePreview mPreview;
     private RelativeLayout loadingPanelCarta;
+    private SolicitarCartaTask solicitarCartaTask;
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -96,7 +97,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     public void onDetectedQrCode(Barcode barcode) {
         Log.d(TAG, "onDetectedQrCode: " + barcode.displayValue);
         if (barcode != null) {
-            SolicitarCartaTask solicitarCartaTask = new SolicitarCartaTask(this, this);
+            solicitarCartaTask = new SolicitarCartaTask(this, this);
 
             //Sintaxis del codigo QR: idRestaurante/idMesa
             String idRestaurante_idMesa = barcode.displayValue;
@@ -115,7 +116,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
             public void run(){
                 loadingPanelCarta.setVisibility(RelativeLayout.VISIBLE);
                 mPreview.stop();
-                Toast.makeText(getApplicationContext(), R.string.mensaje_esperando_carta,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.mensaje_esperando_carta, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -131,6 +132,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
                 extras.putString("mesa", gson.toJson(new Mesa().setId(idMesa)));
                 i.putExtras(extras);
                 startActivity(i);
+                finish();
                 break;
             case SolicitarCartaTask.CANCELADO:
                 Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
@@ -236,6 +238,9 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         super.onPause();
         if (mPreview != null) {
             mPreview.stop();
+        }
+        if (solicitarCartaTask != null) {
+            solicitarCartaTask.cancel(true);
         }
     }
 

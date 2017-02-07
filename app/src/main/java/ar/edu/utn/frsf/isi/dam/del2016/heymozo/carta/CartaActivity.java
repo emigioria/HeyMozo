@@ -34,6 +34,7 @@ public class CartaActivity extends AppCompatActivity {
     private static final int CODIGO_PEDIDO = 107;
     private Carta carta;
     private Mesa mesa;
+    private Boolean noHacerPedidos;
     private FloatingActionButton fab;
 
     @Override
@@ -46,7 +47,7 @@ public class CartaActivity extends AppCompatActivity {
         Gson gson = new Gson();
         carta = gson.fromJson(getIntent().getExtras().getString("carta"), Carta.class);
         mesa = gson.fromJson(getIntent().getExtras().getString("mesa"), Mesa.class);
-        Boolean noHacerPedidos = getIntent().getExtras().getBoolean("noHacerPedidos");
+        noHacerPedidos = getIntent().getExtras().getBoolean("noHacerPedidos");
         if (carta == null || mesa == null) {
             finish();
             return;
@@ -101,7 +102,7 @@ public class CartaActivity extends AppCompatActivity {
             }
         });
         if (noHacerPedidos != null && noHacerPedidos) {
-            fab.setVisibility(View.GONE);
+            ((ViewGroup) fab.getParent()).removeView(fab);
         }
     }
 
@@ -117,6 +118,7 @@ public class CartaActivity extends AppCompatActivity {
         private static final String ARG_SECTION_NUMBER = "section_number";
         private Carta carta;
         private FloatingActionButton fab;
+        private Boolean noHacerPedidos;
 
         public PlaceholderFragment() {
         }
@@ -125,12 +127,13 @@ public class CartaActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber, Carta carta, FloatingActionButton fab) {
+        public static PlaceholderFragment newInstance(int sectionNumber, Carta carta, Boolean noHacerPedidos, FloatingActionButton fab) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             fragment.setCarta(carta);
+            fragment.setnoHacerPedidos(noHacerPedidos);
             fragment.setFab(fab);
             return fragment;
         }
@@ -146,7 +149,7 @@ public class CartaActivity extends AppCompatActivity {
 
         private void setupRecyclerView(RecyclerView recyclerView) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(carta.getRestaurante().getMoneda(), carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
+            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(carta.getRestaurante().getMoneda(), noHacerPedidos, carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
             recyclerView.setAdapter(recyclerAdapter);
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -173,6 +176,10 @@ public class CartaActivity extends AppCompatActivity {
         public void setFab(FloatingActionButton fab) {
             this.fab = fab;
         }
+
+        public void setnoHacerPedidos(Boolean noHacerPedidos) {
+            this.noHacerPedidos = noHacerPedidos;
+        }
     }
 
     /**
@@ -189,7 +196,7 @@ public class CartaActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1, carta, fab);
+            return PlaceholderFragment.newInstance(position + 1, carta, noHacerPedidos, fab);
         }
 
         @Override

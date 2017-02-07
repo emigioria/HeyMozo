@@ -23,21 +23,21 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Restaurante;
 
 class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaurante>> {
     private final Context context;
-    private BusquedaRestaurantesListener<Restaurante> listener;
+    private BusquedaRestaurantesListener listener;
     private HttpURLConnection urlConnection = null;
     private int status = OK;
     static final int OK = 0;
     static final int CANCELADO = 1;
     static final int ERROR = 2;
 
-    ListarRestaurantesTask(BusquedaRestaurantesListener<Restaurante> dListener, Context context) {
+    ListarRestaurantesTask(BusquedaRestaurantesListener dListener, Context context) {
         this.listener = dListener;
         this.context = context;
     }
 
     @Override
     protected void onPreExecute() {
-        listener.busquedaIniciada();
+        listener.busquedaRestauranteIniciada();
     }
 
     @Override
@@ -45,7 +45,7 @@ class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaurante>> 
         if (isCancelled()) {
             status = CANCELADO;
         }
-        listener.busquedaFinalizada(restaurantes, status);
+        listener.busquedaRestauranteFinalizada(restaurantes, status);
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,15 +42,20 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaListener;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaTask;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Restaurante;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, BusquedaRestaurantesListener<Restaurante>, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, BusquedaRestaurantesListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, SolicitarCartaListener {
 
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
@@ -57,7 +63,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int PERMISSION_REQUEST_ACCESS = 899;
     private RelativeLayout loadingPanel;
     private ListarRestaurantesTask listarRestaurantesTask;
-	private Map<String, Restaurante> tablaRestaurantes;
+    private Map<String, Restaurante> tablaRestaurantes;
+    private SolicitarCartaTask solicitarCartaTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +83,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onPause() {
         if (listarRestaurantesTask != null) {
             listarRestaurantesTask.cancel(true);
+        }
+        if (solicitarCartaTask != null) {
+            solicitarCartaTask.cancel(true);
         }
         super.onPause();
     }
@@ -160,66 +170,87 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void busquedaFinalizada(List<Restaurante> restaurantes, int resultCode) {
+    public void busquedaRestauranteFinalizada(List<Restaurante> restaurantes, int resultCode) {
         switch (resultCode) {
             //Correcto
             case ListarRestaurantesTask.OK:
-	            tablaRestaurantes = new Hashtable<>();
+                tablaRestaurantes = new Hashtable<>();
                 for (Restaurante x : restaurantes) {
                     View marker = View.inflate(getBaseContext(), R.layout.custom_marker_layout, null);
                     ImageView imageView = (ImageView) marker.findViewById(R.id.mapsFotoRestaurante);
                     byte[] bytes = Base64.decode(x.getImagen64(), Base64.DEFAULT);
                     Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                     imageView.setImageBitmap(bMap);
-	                LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
+                    LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
                     mMap.addMarker(new MarkerOptions().position(rest1)
-		                    .title(x.getNombre())
+                            .title(x.getNombre())
                             .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker)))).setTag(x.getId());
                     tablaRestaurantes.put(x.getId(), x);
                 }
-	            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-		            @Override
-		            public boolean onMarkerClick(Marker marker) {
-                        Restaurante r = tablaRestaurantes.get(marker.getTag());
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        final Restaurante r = tablaRestaurantes.get(marker.getTag());
                         AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
 
                         View v = View.inflate(getBaseContext(), R.layout.custom_map_dialog, null);
                         ImageView imageViewFotoRestaurante = (ImageView) v.findViewById(R.id.imageViewFotoRestaurante);
                         TextView textViewNombreRestaurante = (TextView) v.findViewById(R.id.textViewNombreRestaurante);
-			            TextView textViewTelefono = (TextView) v.findViewById(R.id.textViewTelefono);
-			            TextView textViewDireccion = (TextView) v.findViewById(R.id.textViewDireccion);
-			            TextView textViewPaginaWeb = (TextView) v.findViewById(R.id.textViewPaginaWeb);
-			            RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
-			            Button buttonVerCarta = (Button) v.findViewById(R.id.buttonVerCarta);
+                        TextView textViewTelefono = (TextView) v.findViewById(R.id.textViewTelefono);
+                        TextView textViewDireccion = (TextView) v.findViewById(R.id.textViewDireccion);
+                        TextView textViewPaginaWeb = (TextView) v.findViewById(R.id.textViewPaginaWeb);
+                        RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
+                        Button buttonVerCarta = (Button) v.findViewById(R.id.buttonVerCarta);
 
-			            byte[] bytes = Base64.decode(r.getImagen64(), Base64.DEFAULT);
-			            Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-			            imageViewFotoRestaurante.setImageBitmap(bMap);
+                        byte[] bytes = Base64.decode(r.getImagen64(), Base64.DEFAULT);
+                        Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        imageViewFotoRestaurante.setImageBitmap(bMap);
 
-			            textViewNombreRestaurante.setText(r.getNombre());
-			            textViewDireccion.setText(r.getDireccion());
-			            textViewTelefono.setText(r.getTelefono());
-			            textViewPaginaWeb.setText(r.getPagina());
-			            ratingBar.setRating(r.getRating());
+                        if (r.getNombre() != null) {
+                            textViewNombreRestaurante.setText(r.getNombre());
+                        } else {
+                            textViewNombreRestaurante.setVisibility(View.GONE);
+                        }
+                        if (r.getDireccion() != null) {
+                            textViewDireccion.setText(r.getDireccion());
+                        } else {
+                            textViewDireccion.setVisibility(View.GONE);
+                        }
+                        if (r.getTelefono() != null) {
+                            textViewTelefono.setText(r.getTelefono());
+                        } else {
+                            textViewTelefono.setVisibility(View.GONE);
+                        }
+                        if (r.getPagina() != null) {
+                            textViewPaginaWeb.setText(r.getPagina());
+                        } else {
+                            textViewPaginaWeb.setVisibility(View.GONE);
+                        }
+                        if (r.getRating() != null) {
+                            ratingBar.setRating(r.getRating());
+                        } else {
+                            ratingBar.setVisibility(View.GONE);
+                        }
                         ratingBar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                //TODO ver calificaciones
+                                Toast.makeText(getBaseContext(), "Caificaciones: Muy buenas!", Toast.LENGTH_LONG).show();
                             }
                         });
                         buttonVerCarta.setOnClickListener(new View.OnClickListener() {
                             @Override
-				            public void onClick(View v) {
-					            //TODO ver carta
-				            }
-			            });
+                            public void onClick(View v) {
+                                solicitarCartaTask = new SolicitarCartaTask(MapsActivity.this, MapsActivity.this);
+                                solicitarCartaTask.execute(r.getId(), "");
+                            }
+                        });
 
-			            builder.setView(v);
-			            builder.show();
+                        builder.setView(v);
+                        builder.show();
 
-			            return false;
-		            }
-	            });
+                        return false;
+                    }
+                });
                 break;
             //Cancelado
             case ListarRestaurantesTask.CANCELADO:
@@ -239,7 +270,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void busquedaIniciada() {
+    public void busquedaRestauranteIniciada() {
         loadingPanel.setVisibility(View.VISIBLE);
         Toast.makeText(this, getString(R.string.cargando_ubicaciones), Toast.LENGTH_LONG).show();
     }
@@ -271,19 +302,52 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-	// Convert a view to bitmap
+    // Convert a view to bitmap
     private Bitmap createDrawableFromView(Context context, View view) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-		view.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
-		view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
-		view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
-		view.buildDrawingCache();
-		Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        view.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
 
-		Canvas canvas = new Canvas(bitmap);
-		view.draw(canvas);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
 
-		return bitmap;
-	}
+        return bitmap;
+    }
+
+    @Override
+    public void busquedaIniciada() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), R.string.mensaje_esperando_carta, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void busquedaFinalizada(String cartaJSON, String idMesa, int status) {
+        switch (status) {
+            case SolicitarCartaTask.OK:
+                Gson gson = new Gson();
+                Intent i = new Intent(this, CartaActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("carta", cartaJSON);
+                extras.putString("mesa", gson.toJson(new Mesa().setId(idMesa)));
+                extras.putBoolean("noHacerPedidos", true);
+                i.putExtras(extras);
+                startActivity(i);
+                break;
+            case SolicitarCartaTask.CANCELADO:
+                Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
+                break;
+            case SolicitarCartaTask.ERROR:
+                Toast.makeText(this, R.string.mensaje_error_sin_conexion, Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
+
 }

@@ -17,19 +17,21 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
 
 class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private final Boolean noHacerPedidos;
     private List<Producto> productos;
     private Moneda moneda;
     private int posicionConBotones = -1;
     private static final int ALTURA_EXTENDIDO = 200;
     private static final int ALTURA_CONTRAIDO = 75;
 
-    RecyclerAdapter(Moneda moneda, List<Producto> itemList) {
+    RecyclerAdapter(Moneda moneda, Boolean noHacerPedidos, List<Producto> itemList) {
         if (itemList != null) {
             productos = itemList;
         } else {
             productos = new ArrayList<>();
         }
         this.moneda = moneda;
+        this.noHacerPedidos = noHacerPedidos;
     }
 
     @Override
@@ -58,7 +60,11 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         final float scale = holder.view.getContext().getResources().getDisplayMetrics().density;
 
         if (posicionConBotones == position) {
-            holder.secondLayout.setVisibility(LinearLayout.VISIBLE);
+            if (!noHacerPedidos) {
+                holder.secondLayout.setVisibility(LinearLayout.VISIBLE);
+            } else {
+                holder.secondLayout.setVisibility(LinearLayout.GONE);
+            }
 
             params.height = (int) (ALTURA_EXTENDIDO * scale + 0.5f);
         } else {
