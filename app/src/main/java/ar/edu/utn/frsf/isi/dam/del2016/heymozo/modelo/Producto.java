@@ -3,7 +3,9 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
-public class Producto {
+import java.io.Serializable;
+
+public class Producto implements Serializable {
     private static final String CANTIDAD = "cantidad";
     private static final String NOMBRE_PRODUCTO = "nombre";
     private static final String IMAGEN = "imagen";
