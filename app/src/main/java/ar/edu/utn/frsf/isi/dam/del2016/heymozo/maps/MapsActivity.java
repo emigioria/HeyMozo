@@ -22,6 +22,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -231,10 +232,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         } else {
                             ratingBar.setVisibility(View.GONE);
                         }
-                        ratingBar.setOnClickListener(new View.OnClickListener() {
+                        ratingBar.setOnTouchListener(new View.OnTouchListener() {
                             @Override
-                            public void onClick(View v) {
+                            public boolean onTouch(View v, MotionEvent event) {
+                                //Cambiar por actividad para ver calificaciones en el futurooooo
                                 Toast.makeText(getBaseContext(), "Caificaciones: Muy buenas!", Toast.LENGTH_LONG).show();
+                                return true;
                             }
                         });
                         buttonVerCarta.setOnClickListener(new View.OnClickListener() {
