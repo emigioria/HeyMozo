@@ -44,7 +44,6 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 
@@ -54,7 +53,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.camera.CameraSourcePreview;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaListener;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaTask;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
 
 public final class BarcodeCaptureActivity extends AppCompatActivity
         implements BarcodeTracker.BarcodeGraphicTrackerCallback, SolicitarCartaListener {
@@ -122,14 +120,13 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     }
 
     @Override
-    public void busquedaFinalizada(String cartaJSON, String idMesa, int status) {
+    public void busquedaFinalizada(String cartaJSON, String mesaJSON, int status) {
         switch (status) {
             case SolicitarCartaTask.OK:
-                Gson gson = new Gson();
                 Intent i = new Intent(this, CartaActivity.class);
                 Bundle extras = new Bundle();
                 extras.putString("carta", cartaJSON);
-                extras.putString("mesa", gson.toJson(new Mesa().setId(idMesa)));
+                extras.putString("mesa", mesaJSON);
                 i.putExtras(extras);
                 startActivity(i);
                 finish();

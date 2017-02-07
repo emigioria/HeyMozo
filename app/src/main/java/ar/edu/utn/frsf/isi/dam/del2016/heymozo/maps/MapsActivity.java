@@ -52,7 +52,7 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaListener;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaTask;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Carta;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Restaurante;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, BusquedaRestaurantesListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, SolicitarCartaListener {
@@ -329,17 +329,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void busquedaFinalizada(String cartaJSON, String idMesa, int status) {
+    public void busquedaFinalizada(String cartaJSON, String mesaJSON, int status) {
         switch (status) {
             case SolicitarCartaTask.OK:
                 Gson gson = new Gson();
-                Intent i = new Intent(this, CartaActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("carta", cartaJSON);
-                extras.putString("mesa", gson.toJson(new Mesa().setId(idMesa)));
-                extras.putBoolean("noHacerPedidos", true);
-                i.putExtras(extras);
-                startActivity(i);
+                Carta carta = gson.fromJson(cartaJSON, Carta.class);
+                if (carta != null) {
+                    Intent i = new Intent(this, CartaActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("carta", cartaJSON);
+                    extras.putString("mesa", mesaJSON);
+                    extras.putBoolean("noHacerPedidos", true);
+                    i.putExtras(extras);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_LONG).show();
+                }
                 break;
             case SolicitarCartaTask.CANCELADO:
                 Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
