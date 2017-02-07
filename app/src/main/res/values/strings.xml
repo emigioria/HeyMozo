@@ -52,4 +52,6 @@
     <string name="imagen_del_produto">Imagen del produto</string>
     <string name="buttonVerCarta">Ver Carta</string>
     <string name="restaurante_sin_carta">El restaurante seleccionado no posee una carta actualmente.</string>
+    <string name="title_activity_restaurantes_adheridos">Restaurantes Adheridos</string>
+    <string name="cargando_restaurantes">Cargando restaurantes…</string>
 </resources>

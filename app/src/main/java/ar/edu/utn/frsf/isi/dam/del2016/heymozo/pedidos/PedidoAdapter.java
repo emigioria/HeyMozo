@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
@@ -19,9 +20,9 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
 class PedidoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private ArrayList<Pedido> pedidos;
+    private List<Pedido> pedidos;
 
-    PedidoAdapter(Context context, ArrayList<Pedido> pedidos) {
+    PedidoAdapter(Context context, List<Pedido> pedidos) {
         this.context = context;
         if (pedidos != null) {
             this.pedidos = pedidos;

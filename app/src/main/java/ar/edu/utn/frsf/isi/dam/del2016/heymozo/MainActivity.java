@@ -19,6 +19,7 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.FirebaseService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.MyFirebaseMessagingService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos.MisPedidosActivity;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.restaurantes.RestaurantesAdheridosActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
         btnRestaurantesAdheridos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+                Intent intent = new Intent(MainActivity.this, RestaurantesAdheridosActivity.class);
+                startActivity(intent, options.toBundle());
             }
         });
 

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,8 +36,10 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     private ListView listaProductos;
     private View layoutEstado;
     private View layoutTiempo;
+    private View layoutPedido;
     private ImageView imagenToolbar;
     private Button buttonConfirmar;
+    private RelativeLayout loadingPanel;
 
     private GuardarPedidoTask guardarPedidoTask;
     private CargarPedidoTask cargarPedidoTask;
@@ -51,7 +54,9 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         listaProductos = (ListView) findViewById(R.id.listaProductos);
         layoutEstado = findViewById(R.id.layoutEstado);
         layoutTiempo = findViewById(R.id.layoutTiempo);
+        layoutPedido = findViewById(R.id.layoutPedido);
         imagenToolbar = (ImageView) findViewById(R.id.imagenToolbar);
+        loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanel);
     }
 
     @Override
@@ -201,10 +206,14 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
                 finish();
                 break;
         }
+        loadingPanel.setVisibility(View.GONE);
+        layoutPedido.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void cargaIniciada() {
         Toast.makeText(this, getString(R.string.cargando_pedido), Toast.LENGTH_SHORT).show();
+        loadingPanel.setVisibility(View.VISIBLE);
+        layoutPedido.setVisibility(View.INVISIBLE);
     }
 }

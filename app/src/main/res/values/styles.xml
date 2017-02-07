@@ -11,9 +11,11 @@
             true
         </item>
         <item name="android:windowExitTransition">
-            @transition/slide</item>
+            @transition/slide
+        </item>
         <item name="android:windowEnterTransition">
-            @transition/slide</item>
+            @transition/slide
+        </item>
     </style>
 
     <style name="AppTheme.NoActionBar">

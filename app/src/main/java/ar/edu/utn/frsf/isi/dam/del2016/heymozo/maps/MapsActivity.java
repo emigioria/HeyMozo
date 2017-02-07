@@ -254,6 +254,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         return false;
                     }
                 });
+                Toast.makeText(this, getString(R.string.ubicaciones_cargadas), Toast.LENGTH_LONG).show();
                 break;
             //Cancelado
             case ListarRestaurantesTask.CANCELADO:
@@ -261,15 +262,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             //Error de conexión
             case ListarRestaurantesTask.ERROR:
-                loadingPanel.setVisibility(View.GONE);
                 Toast.makeText(this, getString(R.string.error_servidor), Toast.LENGTH_LONG).show();
                 break;
         }
 
-        if (restaurantes.size() != 0) {
-            loadingPanel.setVisibility(View.GONE);
-            Toast.makeText(this, getString(R.string.ubicaciones_cargadas), Toast.LENGTH_LONG).show();
-        }
+        loadingPanel.setVisibility(View.GONE);
     }
 
     @Override
@@ -323,12 +320,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void busquedaIniciada() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getApplicationContext(), R.string.mensaje_esperando_carta, Toast.LENGTH_SHORT).show();
-            }
-        });
+        Toast.makeText(getApplicationContext(), R.string.mensaje_esperando_carta, Toast.LENGTH_SHORT).show();
+        loadingPanel.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -356,6 +349,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Toast.makeText(this, R.string.mensaje_error_sin_conexion, Toast.LENGTH_LONG).show();
                 break;
         }
+        loadingPanel.setVisibility(View.GONE);
     }
 
 }

@@ -21,16 +21,16 @@ import java.util.List;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Restaurante;
 
-class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaurante>> {
+public class ListarRestaurantesTask extends AsyncTask<Void, Void, List<Restaurante>> {
     private final Context context;
     private BusquedaRestaurantesListener listener;
     private HttpURLConnection urlConnection = null;
     private int status = OK;
-    static final int OK = 0;
-    static final int CANCELADO = 1;
-    static final int ERROR = 2;
+    public static final int OK = 0;
+    public static final int CANCELADO = 1;
+    public static final int ERROR = 2;
 
-    ListarRestaurantesTask(BusquedaRestaurantesListener dListener, Context context) {
+    public ListarRestaurantesTask(BusquedaRestaurantesListener dListener, Context context) {
         this.listener = dListener;
         this.context = context;
     }
@@ -49,7 +49,7 @@ class ListarRestaurantesTask extends AsyncTask<String, Void, List<Restaurante>> 
     }
 
     @Override
-    protected List<Restaurante> doInBackground(String... urls) {
+    protected List<Restaurante> doInBackground(Void... nadas) {
         final StringBuilder sb = new StringBuilder();
         ArrayList<Restaurante> restaurantes = new ArrayList<>();
         try {

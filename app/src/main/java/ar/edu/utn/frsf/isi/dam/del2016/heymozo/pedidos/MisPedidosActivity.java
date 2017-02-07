@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
 
     private RecyclerView listaPedidos;
     private ListarMisPedidosTask listarMisPedidosTask;
+    private RelativeLayout loadingPanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
 
     private void linkearVista() {
         listaPedidos = (RecyclerView) findViewById(R.id.listaPedidos);
+        loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanel);
     }
 
     @Override
@@ -70,10 +74,12 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
                 finish();
                 break;
         }
+        loadingPanel.setVisibility(View.GONE);
     }
 
     @Override
     public void busquedaIniciada() {
         Toast.makeText(this, getString(R.string.cargando_pedidos), Toast.LENGTH_SHORT).show();
+        loadingPanel.setVisibility(View.VISIBLE);
     }
 }
