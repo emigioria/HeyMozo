@@ -58,7 +58,7 @@ class ListarMisPedidosTask extends AsyncTask<Void, Void, List<Pedido>> {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setDoInput(true);
             urlConnection.setRequestMethod("GET");
-            urlConnection.setConnectTimeout(60000);
+            urlConnection.setConnectTimeout(5000);
             urlConnection.setReadTimeout(60000);
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             InputStreamReader isw = new InputStreamReader(in);

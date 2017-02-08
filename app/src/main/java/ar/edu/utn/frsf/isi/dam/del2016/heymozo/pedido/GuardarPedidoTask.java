@@ -59,7 +59,7 @@ class GuardarPedidoTask extends AsyncTask<Pedido, Void, Void> {
             urlConnection.setDoOutput(true);
             urlConnection.setDoInput(true);
             urlConnection.setRequestMethod("POST");
-            urlConnection.setConnectTimeout(60000);
+            urlConnection.setConnectTimeout(5000);
             urlConnection.setReadTimeout(60000);
             OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
             OutputStreamWriter osw = new OutputStreamWriter(out);
