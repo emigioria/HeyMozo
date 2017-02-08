@@ -23,7 +23,7 @@
     <string name="evalua_tu_experiencia">EVALÚA TU EXPERIENCIA</string>
     <string name="title_activity_mis_pedidos">Mis pedidos</string>
     <string name="acerca_de_hey_mozo">Acerca de Hey, Mozo!</string>
-    <string name="ip_server">192.168.1.101</string>
+    <string name="ip_server">192.168.10.101</string>
     <string name="no_permission_fine_location">No permission for access fine location</string>
     <string name="pedido_permiso_titulo">Permisos Peligrosos!!!</string>
     <string name="pedido_permiso_mensaje">Puedo acceder a un permiso peligroso???</string>

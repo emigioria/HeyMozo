@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".inicio.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".inicio.MainActivity" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -47,11 +47,11 @@
         <activity
             android:name=".maps.MapsActivity"
             android:label="@string/title_activity_maps"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".inicio.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ar.edu.utn.frsf.isi.dam.del2016.heymozo.MainActivity" />
+                android:value="ar.edu.utn.frsf.isi.dam.del2016.heymozo.inicio.MainActivity" />
         </activity>
         <activity
             android:name=".barcode.BarcodeCaptureActivity"
@@ -81,11 +81,11 @@
         <activity
             android:name=".pedido.PedidoActivity"
             android:label="@string/title_activity_pedido"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".inicio.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".inicio.MainActivity" />
         </activity>
         <activity
             android:name=".pedidos.MisPedidosActivity"

@@ -1,4 +1,4 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.inicio;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
 class CustomGrid extends BaseAdapter {
 
@@ -18,7 +20,6 @@ class CustomGrid extends BaseAdapter {
         this.Imageid = Imageid;
         this.text = text;
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        c.getDrawable(1);
     }
 
     @Override

@@ -7,7 +7,7 @@
                                                  android:layout_height="match_parent"
                                                  android:fitsSystemWindows="true"
                                                  app:layout_collapseParallaxMultiplier="1.0"
-                                                 tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.MainActivity"
+    tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.inicio.MainActivity"
                                                  android:background="@color/white">
 
     <GridView

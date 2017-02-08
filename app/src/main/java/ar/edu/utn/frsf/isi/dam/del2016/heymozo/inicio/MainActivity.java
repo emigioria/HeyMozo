@@ -1,4 +1,4 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.inicio;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.MapsActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.FirebaseService;

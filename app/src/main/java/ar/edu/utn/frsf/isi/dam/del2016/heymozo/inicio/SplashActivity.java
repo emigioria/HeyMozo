@@ -1,4 +1,4 @@
-package ar.edu.utn.frsf.isi.dam.del2016.heymozo;
+package ar.edu.utn.frsf.isi.dam.del2016.heymozo.inicio;
 
 import android.content.Intent;
 import android.os.Bundle;
