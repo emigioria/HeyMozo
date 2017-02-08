@@ -45,7 +45,11 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         setSupportActionBar(toolbar);
 
         Gson gson = new Gson();
-        carta = gson.fromJson(getIntent().getExtras().getString("carta"), Carta.class);
+        if (savedInstanceState == null) {
+            carta = gson.fromJson(getIntent().getExtras().getString("carta"), Carta.class);
+        } else {
+            carta = new Gson().fromJson(savedInstanceState.getString("carta"), Carta.class);
+        }
         mesa = gson.fromJson(getIntent().getExtras().getString("mesa"), Mesa.class);
         noHacerPedidos = getIntent().getExtras().getBoolean("noHacerPedidos");
         if (carta == null || mesa == null) {
@@ -104,6 +108,17 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         if (noHacerPedidos != null && noHacerPedidos) {
             ((ViewGroup) fab.getParent()).removeView(fab);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("carta", new Gson().toJson(carta));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override
