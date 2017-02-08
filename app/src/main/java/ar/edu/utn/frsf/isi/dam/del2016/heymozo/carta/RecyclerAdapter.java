@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.target.ImageViewTarget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,19 +53,6 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         final ViewHolderProductoRecycler holder = (ViewHolderProductoRecycler) viewHolder;
         final ProductoDetallado producto = productos.get(position);
 
-        if (producto.getImagen() != null && producto.getImagen().getUrlImagen(context) != null) {
-            holder.imagenProducto.setVisibility(View.VISIBLE);
-            Glide.with(context).load(producto.getImagen().getUrlImagen(context))
-                    .error(context.getDrawable(R.drawable.ic_broken_image_black_24dp))
-                    .placeholder(context.getDrawable(R.drawable.ic_loading))
-                    .thumbnail(0.5f)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.imagenProducto);
-        } else {
-            holder.imagenProducto.setVisibility(View.GONE);
-        }
-
         holder.moneda.setText(moneda.getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(), "%.2f", producto.getPrecio()));
 
@@ -93,12 +82,33 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 holder.secondLayout.setVisibility(LinearLayout.GONE);
             }
 
+            //Muestra la imagen de producto de forma expandida
             paramsImagenProducto.height = (int) (ALTURA_EXTENDIDO * scale + 0.5f);
         } else {
+            //Muestra la imagen de producto de forma contraida
             holder.secondLayout.setVisibility(LinearLayout.GONE);
             paramsImagenProducto.height = (int) (ALTURA_CONTRAIDO * scale + 0.5f);
         }
         holder.imagenProducto.setLayoutParams(paramsImagenProducto);
+
+        //Carga la foto del producto
+        if (producto.getImagen() != null && producto.getImagen().getUrlImagen(context) != null) {
+            holder.imagenProducto.setVisibility(View.VISIBLE);
+            Glide.with(context).load(producto.getImagen().getUrlImagen(context))
+                    .error(context.getDrawable(R.drawable.ic_broken_image_black_24dp))
+                    .placeholder(context.getDrawable(R.drawable.ic_loading))
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(new ImageViewTarget<GlideDrawable>(holder.imagenProducto) {
+                        @Override
+                        protected void setResource(GlideDrawable resource) {
+                            holder.imagenProducto.setImageDrawable(resource);
+                        }
+                    });
+        } else {
+            holder.imagenProducto.setVisibility(View.GONE);
+        }
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
