@@ -19,7 +19,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -46,7 +45,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -68,18 +70,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ListarRestaurantesTask listarRestaurantesTask;
     private Map<String, Restaurante> tablaRestaurantes;
     private SolicitarCartaTask solicitarCartaTask;
+    private CameraPosition positionSaved;
+    private boolean buscar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        buscar = savedInstanceState == null;
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanel);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("positionSaved", mMap.getCameraPosition());
+        outState.putString("tablaRestaurantes", new Gson().toJson(tablaRestaurantes));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        positionSaved = savedInstanceState.getParcelable("positionSaved");
+        Type datasetMapType = new TypeToken<Map<String, Restaurante>>() {
+        }.getType();
+        tablaRestaurantes = new Gson().fromJson(savedInstanceState.getString("tablaRestaurantes"), datasetMapType);
     }
 
     @Override
@@ -96,7 +117,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        Log.d("MAP", "Mapa cargado");
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -107,8 +127,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         askForPermission();
 
-        listarRestaurantesTask = new ListarRestaurantesTask(this, this);
-        listarRestaurantesTask.execute();
+        if (buscar) {
+            listarRestaurantesTask = new ListarRestaurantesTask(this, this);
+            listarRestaurantesTask.execute();
+        } else {
+            mostrarRestaurantes(new ArrayList<>(tablaRestaurantes.values()));
+        }
     }
 
     private void askForPermission() {
@@ -177,35 +201,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         switch (resultCode) {
             //Correcto
             case ListarRestaurantesTask.OK:
-                tablaRestaurantes = new Hashtable<>();
-                for (Restaurante restaurante : restaurantes) {
-                    final View marker = View.inflate(getBaseContext(), R.layout.custom_marker_layout, null);
-                    final ImageView imageView = (ImageView) marker.findViewById(R.id.mapsFotoRestaurante);
-                    LatLng rest1 = new LatLng(restaurante.getLatitud(), restaurante.getLongitud());
-                    final Marker mapMarker = mMap.addMarker(new MarkerOptions().position(rest1).title(restaurante.getNombre()));
-                    mapMarker.setTag(restaurante.getId());
-                    if (restaurante.getImagen() != null && restaurante.getImagen().getUrlImagen(getBaseContext()) != null) {
-                        Glide.with(getBaseContext())
-                                .load(restaurante.getImagen().getUrlImagen(getBaseContext()))
-                                .asBitmap()
-                                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                .into(new SimpleTarget<Bitmap>() {
-                                    @Override
-                                    public void onResourceReady(Bitmap bitmap, GlideAnimation<? super Bitmap> glideAnimation) {
-                                        imageView.setImageBitmap(bitmap);
-                                        mapMarker.setIcon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(MapsActivity.this, marker)));
-                                    }
-                                });
-                    }
-                    tablaRestaurantes.put(restaurante.getId(), restaurante);
-                }
-                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(Marker marker) {
-                        mostrarDialogoRestaurante(tablaRestaurantes.get(marker.getTag()));
-                        return false;
-                    }
-                });
+                mostrarRestaurantes(restaurantes);
                 Toast.makeText(this, getString(R.string.ubicaciones_cargadas), Toast.LENGTH_LONG).show();
                 break;
             //Cancelado
@@ -219,6 +215,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         loadingPanel.setVisibility(View.GONE);
+    }
+
+    private void mostrarRestaurantes(List<Restaurante> restaurantes) {
+        tablaRestaurantes = new Hashtable<>();
+        for (Restaurante restaurante : restaurantes) {
+            final View marker = View.inflate(getBaseContext(), R.layout.custom_marker_layout, null);
+            final ImageView imageView = (ImageView) marker.findViewById(R.id.mapsFotoRestaurante);
+            LatLng rest1 = new LatLng(restaurante.getLatitud(), restaurante.getLongitud());
+            final Marker mapMarker = mMap.addMarker(new MarkerOptions().position(rest1).title(restaurante.getNombre()));
+            mapMarker.setTag(restaurante.getId());
+            if (restaurante.getImagen() != null && restaurante.getImagen().getUrlImagen(getBaseContext()) != null) {
+                Glide.with(getBaseContext())
+                        .load(restaurante.getImagen().getUrlImagen(getBaseContext()))
+                        .asBitmap()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(new SimpleTarget<Bitmap>() {
+                            @Override
+                            public void onResourceReady(Bitmap bitmap, GlideAnimation<? super Bitmap> glideAnimation) {
+                                imageView.setImageBitmap(bitmap);
+                                mapMarker.setIcon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(MapsActivity.this, marker)));
+                            }
+                        });
+            }
+            tablaRestaurantes.put(restaurante.getId(), restaurante);
+        }
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                mostrarDialogoRestaurante(tablaRestaurantes.get(marker.getTag()));
+                return false;
+            }
+        });
     }
 
     private void mostrarDialogoRestaurante(final Restaurante restaurante) {
@@ -301,12 +329,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
-        if (mLastLocation != null) {
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()))
-                    .zoom(15)
-                    .build();
-            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        if (positionSaved == null) {
+            if (mLastLocation != null) {
+                CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()))
+                        .zoom(15)
+                        .build();
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
+        } else {
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(positionSaved));
         }
         mGoogleApiClient.disconnect();
     }
