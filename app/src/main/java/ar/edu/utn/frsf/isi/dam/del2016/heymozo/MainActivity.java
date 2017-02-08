@@ -8,25 +8,95 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-
-import com.google.gson.Gson;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.MapsActivity;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Mesa;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.FirebaseService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.MyFirebaseMessagingService;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos.MisPedidosActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.restaurantes.RestaurantesAdheridosActivity;
 
 public class MainActivity extends AppCompatActivity {
-
+    int[] text = {
+            R.string.btnQR,
+            R.string.btnMapa,
+            R.string.btnPedidos,
+            R.string.btnRestaurantesAdheridos,
+            R.string.btnConfiguracion,
+            R.string.btnAyuda
+    } ;
+    int[] imageId = {
+            R.drawable.qrw,
+            R.drawable.mapaw,
+            R.drawable.cartaw,
+            R.drawable.ic_stat_name,
+            R.drawable.gearw,
+            R.drawable.helpw
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        CustomGrid adapter = new CustomGrid(MainActivity.this, text, imageId);
+        GridView grid=(GridView)findViewById(R.id.grid);
+        grid.setAdapter(adapter);
+
+        AnimationSet set = new AnimationSet(true);
+
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(200);
+        set.addAnimation(animation);
+
+        animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 1.0f,Animation.RELATIVE_TO_PARENT, 0.0f
+        );
+        animation.setInterpolator(new DecelerateInterpolator(3.f));
+        animation.setDuration(200);
+        set.addAnimation(animation);
+
+        LayoutAnimationController controller =
+                new LayoutAnimationController(set, 0.5f);
+
+        grid.setLayoutAnimation(controller);
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
+                Intent intent;
+                switch (position){
+                    case 0:
+                        intent = new Intent(MainActivity.this, BarcodeCaptureActivity.class);
+                        startActivity(intent, options.toBundle());
+                        break;
+                    case 1:
+                        intent = new Intent(MainActivity.this, MapsActivity.class);
+                        startActivity(intent, options.toBundle());
+                        break;
+                    case 2:
+                        intent = new Intent(MainActivity.this, MisPedidosActivity.class);
+                        startActivity(intent, options.toBundle());
+                        break;
+                    case 3:
+                        intent = new Intent(MainActivity.this, RestaurantesAdheridosActivity.class);
+                        startActivity(intent, options.toBundle());
+                        break;
+                    default:
+                }
+            }
+        });
 
         Intent intent = new Intent(MainActivity.this, FirebaseService.class);
         startService(intent);
@@ -35,472 +105,5 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         Log.d("APP", preferences.getString("registration_id", "no id"));
-
-        LinearLayout btnMapa = (LinearLayout) findViewById(R.id.btnMapa);
-        LinearLayout btnQR = (LinearLayout) findViewById(R.id.btnQR);
-        LinearLayout btnPedidos = (LinearLayout) findViewById(R.id.btnPedidos);
-        LinearLayout btnAyuda = (LinearLayout) findViewById(R.id.btnAyuda);
-        LinearLayout btnRestaurantesAdheridos = (LinearLayout) findViewById(R.id.btnRestaurantesAdheridos);
-
-        btnMapa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-	            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(intent, options.toBundle());
-            }
-        });
-
-        btnQR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-	            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
-	            Intent intent = new Intent(getApplicationContext(), BarcodeCaptureActivity.class);
-	            startActivity(intent, options.toBundle());
-            }
-        });
-
-        btnPedidos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-	            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
-	            Intent intent = new Intent(MainActivity.this, MisPedidosActivity.class);
-	            startActivity(intent, options.toBundle());
-            }
-        });
-
-        btnRestaurantesAdheridos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
-                Intent intent = new Intent(MainActivity.this, RestaurantesAdheridosActivity.class);
-                startActivity(intent, options.toBundle());
-            }
-        });
-
-        //TODO borrar este botón
-        btnAyuda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Gson gson = new Gson();
-	            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
-	            Intent i = new Intent(MainActivity.this, CartaActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("mesa", gson.toJson(new Mesa().setId("1")));
-                extras.putString("carta", "{\n" +
-                        "            \"id\": 1,\n" +
-                        "            \"nombre_restaurant\": {\n" +
-                        "                \"nombre\": \"Bar-Resto 1980\",\n" +
-                        "                \"moneda\": {\n" +
-                        "                    \"moneda\": \"$\"\n" +
-                        "                }\n" +
-                        "            },\n" +
-                        "            \"secciones\": [\n" +
-                        "                {\n" +
-                        "                    \"id\": 1,\n" +
-                        "                    \"nombre\": \"Entradas\",\n" +
-                        "                    \"productos\": [\n" +
-                        "                        {\n" +
-                        "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"Empanadas de carne\",\n" +
-                        "                            \"precio\": 12\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"Empanadas de verdura\",\n" +
-                        "                            \"precio\": 23\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"Empanadas árabes\",\n" +
-                        "                            \"precio\": 34\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 4,\n" +
-                        "                            \"nombre\": \"Ensalada\",\n" +
-                        "                            \"precio\": 38\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"Papas fritas\",\n" +
-                        "                            \"precio\": 86\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"Empanadas de carne\",\n" +
-                        "                            \"precio\": 12\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"Empanadas de verdura\",\n" +
-                        "                            \"precio\": 23\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 8,\n" +
-                        "                            \"nombre\": \"Empanadas árabes\",\n" +
-                        "                            \"precio\": 34\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"Ensalada\",\n" +
-                        "                            \"precio\": 38\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"Papas fritas\",\n" +
-                        "                            \"precio\": 86\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"Empanadas de carne\",\n" +
-                        "                            \"precio\": 12\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 12,\n" +
-                        "                            \"nombre\": \"Empanadas de verdura\",\n" +
-                        "                            \"precio\": 23\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 13,\n" +
-                        "                            \"nombre\": \"Empanadas árabes\",\n" +
-                        "                            \"precio\": 34\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 14,\n" +
-                        "                            \"nombre\": \"Ensalada\",\n" +
-                        "                            \"precio\": 38\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 15,\n" +
-                        "                            \"nombre\": \"Papas fritas\",\n" +
-                        "                            \"precio\": 86\n" +
-                        "                        }\n" +
-                        "                    ]\n" +
-                        "                },\n" +
-                        "                {\n" +
-                        "                    \"id\": 2,\n" +
-                        "                    \"nombre\": \"Sandwiches\",\n" +
-                        "                    \"productos\": [\n" +
-                        "                        {\n" +
-                        "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"Sandwiches\",\n" +
-                        "                            \"precio\": 12\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"Triples\",\n" +
-                        "                            \"precio\": 67\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"Jamon cocido\",\n" +
-                        "                            \"precio\": 24\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 4,\n" +
-                        "                            \"nombre\": \"Sandwich con ananá\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"Sandwiches\",\n" +
-                        "                            \"precio\": 65\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"Triples\",\n" +
-                        "                            \"precio\": 67\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"Jamón cocido\",\n" +
-                        "                            \"precio\": 24\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 8,\n" +
-                        "                            \"nombre\": \"Sandwich con ananá\",\n" +
-                        "                            \"precio\": 24\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"Sandwiches\",\n" +
-                        "                            \"precio\": 14\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"Triples\",\n" +
-                        "                            \"precio\": 67\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"Jamón cocido\",\n" +
-                        "                            \"precio\": 24\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 12,\n" +
-                        "                            \"nombre\": \"Sandwich con ananá\",\n" +
-                        "                            \"precio\": 24\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 13,\n" +
-                        "                            \"nombre\": \"Sandwiches\",\n" +
-                        "                            \"precio\": 12\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 14,\n" +
-                        "                            \"nombre\": \"Triples\",\n" +
-                        "                            \"precio\": 67\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 15,\n" +
-                        "                            \"nombre\": \"Jamón cocido\",\n" +
-                        "                            \"precio\": 24\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 16,\n" +
-                        "                            \"nombre\": \"Sandwich con ananá\",\n" +
-                        "                            \"precio\": 78\n" +
-                        "                        }\n" +
-                        "                    ]\n" +
-                        "                },\n" +
-                        "                {\n" +
-                        "                    \"id\": 3,\n" +
-                        "                    \"nombre\": \"Pizzas\",\n" +
-                        "                    \"productos\": [\n" +
-                        "                        {\n" +
-                        "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"Especial\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"Napolitana\",\n" +
-                        "                            \"precio\": 190\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"Cebollada\",\n" +
-                        "                            \"precio\": 180\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 4,\n" +
-                        "                            \"nombre\": \"4 quesos\",\n" +
-                        "                            \"precio\": 172\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"Especial\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"Napolitana\",\n" +
-                        "                            \"precio\": 190\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"Cebollada\",\n" +
-                        "                            \"precio\": 180\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 8,\n" +
-                        "                            \"nombre\": \"4 quesos\",\n" +
-                        "                            \"precio\": 172\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"Especial\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"Napolitana\",\n" +
-                        "                            \"precio\": 190\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"Cebollada\",\n" +
-                        "                            \"precio\": 180\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 12,\n" +
-                        "                            \"nombre\": \"4 quesos\",\n" +
-                        "                            \"precio\": 172\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 13,\n" +
-                        "                            \"nombre\": \"Especial\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 14,\n" +
-                        "                            \"nombre\": \"Napolitana\",\n" +
-                        "                            \"precio\": 190\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 15,\n" +
-                        "                            \"nombre\": \"Cebollada\",\n" +
-                        "                            \"precio\": 180\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 16,\n" +
-                        "                            \"nombre\": \"4 quesos\",\n" +
-                        "                            \"precio\": 172\n" +
-                        "                        }\n" +
-                        "                    ]\n" +
-                        "                },\n" +
-                        "                {\n" +
-                        "                    \"id\": 4,\n" +
-                        "                    \"nombre\": \"Postres\",\n" +
-                        "                    \"productos\": [\n" +
-                        "                        {\n" +
-                        "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"Helado\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"Torta alemana\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"Tiramisú\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 4,\n" +
-                        "                            \"nombre\": \"Frutas\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"Helado\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"Torta alemana\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"Tiramisú\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 8,\n" +
-                        "                            \"nombre\": \"Frutas\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"Helado\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"Torta alemana\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"Tiramisú\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 12,\n" +
-                        "                            \"nombre\": \"Frutas\",\n" +
-                        "                            \"precio\": 56\n" +
-                        "                        }\n" +
-                        "                    ]\n" +
-                        "                },\n" +
-                        "                {\n" +
-                        "                    \"id\": 5,\n" +
-                        "                    \"nombre\": \"Bebidas\",\n" +
-                        "                    \"productos\": [\n" +
-                        "                        {\n" +
-                        "                            \"id\": 1,\n" +
-                        "                            \"nombre\": \"Fernet\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 2,\n" +
-                        "                            \"nombre\": \"Gancia\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 3,\n" +
-                        "                            \"nombre\": \"Whisky\",\n" +
-                        "                            \"precio\": 190\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 4,\n" +
-                        "                            \"nombre\": \"Martini\",\n" +
-                        "                            \"precio\": 142\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 5,\n" +
-                        "                            \"nombre\": \"Jarra loca\",\n" +
-                        "                            \"precio\": 200\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 6,\n" +
-                        "                            \"nombre\": \"Fernet\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 7,\n" +
-                        "                            \"nombre\": \"Gancia\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 8,\n" +
-                        "                            \"nombre\": \"Whisky\",\n" +
-                        "                            \"precio\": 190\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 9,\n" +
-                        "                            \"nombre\": \"Martini\",\n" +
-                        "                            \"precio\": 142\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 10,\n" +
-                        "                            \"nombre\": \"Jarra loca\",\n" +
-                        "                            \"precio\": 200\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 11,\n" +
-                        "                            \"nombre\": \"Fernet\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 12,\n" +
-                        "                            \"nombre\": \"Gancia\",\n" +
-                        "                            \"precio\": 122\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 13,\n" +
-                        "                            \"nombre\": \"Whisky\",\n" +
-                        "                            \"precio\": 190\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 14,\n" +
-                        "                            \"nombre\": \"Martini\",\n" +
-                        "                            \"precio\": 142\n" +
-                        "                        },\n" +
-                        "                        {\n" +
-                        "                            \"id\": 15,\n" +
-                        "                            \"nombre\": \"Jarra loca\",\n" +
-                        "                            \"precio\": 200\n" +
-                        "                        }\n" +
-                        "                    ]\n" +
-                        "                }\n" +
-                        "            ]\n" +
-                        "        }");
-                i.putExtras(extras);
-	            startActivity(i, options.toBundle());
-            }
-        });
     }
 }
