@@ -23,7 +23,7 @@
     <string name="evalua_tu_experiencia">EVALÚA TU EXPERIENCIA</string>
     <string name="title_activity_mis_pedidos">Mis pedidos</string>
     <string name="acerca_de_hey_mozo">Acerca de Hey, Mozo!</string>
-    <string name="ip_server">192.168.10.101</string>
+    <string name="ip_server">192.168.1.101</string>
     <string name="no_permission_fine_location">No permission for access fine location</string>
     <string name="pedido_permiso_titulo">Permisos Peligrosos!!!</string>
     <string name="pedido_permiso_mensaje">Puedo acceder a un permiso peligroso???</string>
@@ -46,8 +46,9 @@
     <string name="mensaje_esperando_carta">Esperando al servidor…</string>
     <string name="btnQR">Escanear código\n QR</string>
     <string name="btnMapa">Ver restaurantes\n cercanos</string>
-    <string name="btnPedidos">Ver mis pedidos</string>
+    <string name="btnPedidos">Ver mis pedidos\n </string>
     <string name="btnRestaurantesAdheridos">Ver restaurantes adheridos</string>
+    <string name="btnConfiguracion">Configuración</string>
     <string name="btnAyuda">Ayuda</string>
     <string name="imagen_del_produto">Imagen del produto</string>
     <string name="buttonVerCarta">Ver Carta</string>
