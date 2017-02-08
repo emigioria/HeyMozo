@@ -1,9 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido;
 
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -18,6 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 
 import java.util.Date;
@@ -111,12 +110,14 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
             buttonConfirmar.setVisibility(View.GONE);
         }
 
-        if (pedido.getRestaurante().getImagen() == null) {
-            imagenToolbar.setVisibility(View.GONE);
+        if (pedido.getRestaurante().getImagen() != null && pedido.getRestaurante().getImagen().getUrlImagen(getBaseContext()) != null) {
+            Glide.with(getBaseContext()).load(pedido.getRestaurante().getImagen().getUrlImagen(getBaseContext()))
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imagenToolbar);
         } else {
-            //Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(pedido.getRestaurante().getImagen().getImagen(), 0, pedido.getRestaurante().getImagen().getImagen().length));
-            //imagenToolbar.setBackground(image);
-            //TODO
+            imagenToolbar.setVisibility(View.GONE);
         }
 
         if (pedido.getFinaliza() == null) {

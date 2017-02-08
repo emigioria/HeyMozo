@@ -14,7 +14,6 @@ public class Restaurante {
 	private static final String PAGINA = "pagina";
 	private static final String RATING = "rating";
     private static final String IMAGEN = "imagen";
-    private static final String IMAGEN64 = "imagen64";
 
 	@SerializedName(ID)
 	private String id;
@@ -45,9 +44,6 @@ public class Restaurante {
 
     @SerializedName(IMAGEN)
     private Imagen imagen;
-
-	@SerializedName(IMAGEN64)
-	private String imagen64;
 
     public Restaurante() {
 
@@ -106,10 +102,6 @@ public class Restaurante {
     public Moneda getMoneda(){
         return moneda;
     }
-
-	public String getImagen64(){
-		return imagen64;
-	}
 
 	public String getDireccion() {
 		return direccion;

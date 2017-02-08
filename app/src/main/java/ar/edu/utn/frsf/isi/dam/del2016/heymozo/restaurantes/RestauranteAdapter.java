@@ -1,15 +1,15 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.restaurantes;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +45,16 @@ class RestauranteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         final ViewHolderRestaurante holder = (ViewHolderRestaurante) viewHolder;
         final Restaurante restaurante = restaurantes.get(position);
 
-        byte[] bytes = Base64.decode(restaurante.getImagen64(), Base64.DEFAULT);
-        Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        holder.imageViewFotoRestaurante.setImageBitmap(bMap);
+        if (restaurante.getImagen() != null && restaurante.getImagen().getUrlImagen(contexto) != null) {
+            holder.imageViewFotoRestaurante.setVisibility(View.VISIBLE);
+            Glide.with(contexto).load(restaurante.getImagen().getUrlImagen(contexto))
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.imageViewFotoRestaurante);
+        } else {
+            holder.imageViewFotoRestaurante.setVisibility(View.GONE);
+        }
 
         if (restaurante.getNombre() != null) {
             holder.textViewNombreRestaurante.setText(restaurante.getNombre());

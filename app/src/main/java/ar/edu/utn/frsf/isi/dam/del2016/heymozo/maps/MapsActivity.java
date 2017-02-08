@@ -4,12 +4,10 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.location.Location;
 import android.os.AsyncTask;
@@ -20,7 +18,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -32,6 +29,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -177,81 +178,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Correcto
             case ListarRestaurantesTask.OK:
                 tablaRestaurantes = new Hashtable<>();
-                for (Restaurante x : restaurantes) {
-                    View marker = View.inflate(getBaseContext(), R.layout.custom_marker_layout, null);
-                    ImageView imageView = (ImageView) marker.findViewById(R.id.mapsFotoRestaurante);
-                    byte[] bytes = Base64.decode(x.getImagen64(), Base64.DEFAULT);
-                    Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    imageView.setImageBitmap(bMap);
-                    LatLng rest1 = new LatLng(x.getLatitud(), x.getLongitud());
-                    mMap.addMarker(new MarkerOptions().position(rest1)
-                            .title(x.getNombre())
-                            .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker)))).setTag(x.getId());
-                    tablaRestaurantes.put(x.getId(), x);
+                for (Restaurante restaurante : restaurantes) {
+                    final View marker = View.inflate(getBaseContext(), R.layout.custom_marker_layout, null);
+                    final ImageView imageView = (ImageView) marker.findViewById(R.id.mapsFotoRestaurante);
+                    LatLng rest1 = new LatLng(restaurante.getLatitud(), restaurante.getLongitud());
+                    final Marker mapMarker = mMap.addMarker(new MarkerOptions().position(rest1).title(restaurante.getNombre()));
+                    mapMarker.setTag(restaurante.getId());
+                    if (restaurante.getImagen() != null && restaurante.getImagen().getUrlImagen(getBaseContext()) != null) {
+                        Glide.with(getBaseContext())
+                                .load(restaurante.getImagen().getUrlImagen(getBaseContext()))
+                                .asBitmap()
+                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                .into(new SimpleTarget<Bitmap>() {
+                                    @Override
+                                    public void onResourceReady(Bitmap bitmap, GlideAnimation<? super Bitmap> glideAnimation) {
+                                        imageView.setImageBitmap(bitmap);
+                                        mapMarker.setIcon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(MapsActivity.this, marker)));
+                                    }
+                                });
+                    }
+                    tablaRestaurantes.put(restaurante.getId(), restaurante);
                 }
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
-                        final Restaurante r = tablaRestaurantes.get(marker.getTag());
-                        AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
-
-                        View v = View.inflate(getBaseContext(), R.layout.custom_map_dialog, null);
-                        ImageView imageViewFotoRestaurante = (ImageView) v.findViewById(R.id.imageViewFotoRestaurante);
-                        TextView textViewNombreRestaurante = (TextView) v.findViewById(R.id.textViewNombreRestaurante);
-                        TextView textViewTelefono = (TextView) v.findViewById(R.id.textViewTelefono);
-                        TextView textViewDireccion = (TextView) v.findViewById(R.id.textViewDireccion);
-                        TextView textViewPaginaWeb = (TextView) v.findViewById(R.id.textViewPaginaWeb);
-                        RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
-                        Button buttonVerCarta = (Button) v.findViewById(R.id.buttonVerCarta);
-
-                        byte[] bytes = Base64.decode(r.getImagen64(), Base64.DEFAULT);
-                        Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        imageViewFotoRestaurante.setImageBitmap(bMap);
-
-                        if (r.getNombre() != null) {
-                            textViewNombreRestaurante.setText(r.getNombre());
-                        } else {
-                            textViewNombreRestaurante.setVisibility(View.GONE);
-                        }
-                        if (r.getDireccion() != null) {
-                            textViewDireccion.setText(r.getDireccion());
-                        } else {
-                            textViewDireccion.setVisibility(View.GONE);
-                        }
-                        if (r.getTelefono() != null) {
-                            textViewTelefono.setText(r.getTelefono());
-                        } else {
-                            textViewTelefono.setVisibility(View.GONE);
-                        }
-                        if (r.getPagina() != null) {
-                            textViewPaginaWeb.setText(r.getPagina());
-                        } else {
-                            textViewPaginaWeb.setVisibility(View.GONE);
-                        }
-                        if (r.getRating() != null) {
-                            ratingBar.setRating(r.getRating());
-                        } else {
-                            ratingBar.setVisibility(View.GONE);
-                        }
-                        ratingBar.setOnTouchListener(new View.OnTouchListener() {
-                            @Override
-                            public boolean onTouch(View v, MotionEvent event) {
-                                //Cambiar por actividad para ver calificaciones en el futurooooo
-                                Toast.makeText(getBaseContext(), "Caificaciones: Muy buenas!", Toast.LENGTH_LONG).show();
-                                return true;
-                            }
-                        });
-                        buttonVerCarta.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                solicitarCartaTask = new SolicitarCartaTask(MapsActivity.this, MapsActivity.this);
-                                solicitarCartaTask.execute(r.getId(), "");
-                            }
-                        });
-
-                        builder.setView(v);
-                        builder.show();
-
+                        mostrarDialogoRestaurante(tablaRestaurantes.get(marker.getTag()));
                         return false;
                     }
                 });
@@ -268,6 +219,71 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         loadingPanel.setVisibility(View.GONE);
+    }
+
+    private void mostrarDialogoRestaurante(final Restaurante restaurante) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+
+        View v = View.inflate(getBaseContext(), R.layout.custom_map_dialog, null);
+        ImageView imageViewFotoRestaurante = (ImageView) v.findViewById(R.id.imageViewFotoRestaurante);
+        TextView textViewNombreRestaurante = (TextView) v.findViewById(R.id.textViewNombreRestaurante);
+        TextView textViewTelefono = (TextView) v.findViewById(R.id.textViewTelefono);
+        TextView textViewDireccion = (TextView) v.findViewById(R.id.textViewDireccion);
+        TextView textViewPaginaWeb = (TextView) v.findViewById(R.id.textViewPaginaWeb);
+        RatingBar ratingBar = (RatingBar) v.findViewById(R.id.ratingBar);
+        Button buttonVerCarta = (Button) v.findViewById(R.id.buttonVerCarta);
+
+        if (restaurante.getImagen() != null && restaurante.getImagen().getUrlImagen(getBaseContext()) != null) {
+            Glide.with(getBaseContext()).load(restaurante.getImagen().getUrlImagen(getBaseContext()))
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageViewFotoRestaurante);
+        }
+
+        if (restaurante.getNombre() != null) {
+            textViewNombreRestaurante.setText(restaurante.getNombre());
+        } else {
+            textViewNombreRestaurante.setVisibility(View.GONE);
+        }
+        if (restaurante.getDireccion() != null) {
+            textViewDireccion.setText(restaurante.getDireccion());
+        } else {
+            textViewDireccion.setVisibility(View.GONE);
+        }
+        if (restaurante.getTelefono() != null) {
+            textViewTelefono.setText(restaurante.getTelefono());
+        } else {
+            textViewTelefono.setVisibility(View.GONE);
+        }
+        if (restaurante.getPagina() != null) {
+            textViewPaginaWeb.setText(restaurante.getPagina());
+        } else {
+            textViewPaginaWeb.setVisibility(View.GONE);
+        }
+        if (restaurante.getRating() != null) {
+            ratingBar.setRating(restaurante.getRating());
+        } else {
+            ratingBar.setVisibility(View.GONE);
+        }
+        ratingBar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //Cambiar por actividad para ver calificaciones en el futurooooo
+                Toast.makeText(getBaseContext(), "Caificaciones: Muy buenas!", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+        buttonVerCarta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                solicitarCartaTask = new SolicitarCartaTask(MapsActivity.this, MapsActivity.this);
+                solicitarCartaTask.execute(restaurante.getId(), "");
+            }
+        });
+
+        builder.setView(v);
+        builder.show();
     }
 
     @Override
@@ -304,9 +320,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     // Convert a view to bitmap
-    private Bitmap createDrawableFromView(Context context, View view) {
+    private Bitmap createDrawableFromView(Activity actividad, View view) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        actividad.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         view.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
         view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
         view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
