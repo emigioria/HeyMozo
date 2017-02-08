@@ -6,32 +6,16 @@ import com.google.gson.annotations.SerializedName;
 public class Producto {
     private static final String CANTIDAD = "cantidad";
     private static final String NOMBRE_PRODUCTO = "nombre";
-    private static final String IMAGEN = "imagen";
     private static final String PRECIO = "precio";
-    private static final String DESCRIPCION = "descripcion";
-    private static final String DESCRIPCION_LARGA = "descripcion_larga";
 
     @SerializedName(CANTIDAD)
-    private Integer cantidad;
+    private Integer cantidad = 0;
 
     @SerializedName(NOMBRE_PRODUCTO)
     private String nombre;
 
-    @SerializedName(IMAGEN)
-    private Imagen imagen;
-
     @SerializedName(PRECIO)
     private Double precio;
-
-    @SerializedName(DESCRIPCION)
-    private String descripcion;
-
-    @SerializedName(DESCRIPCION_LARGA)
-    private String descripcionLarga;
-
-    public Producto() {
-        cantidad = 0;
-    }
 
     public String toJSONObject() {
         return new Gson().toJson(this);
@@ -55,39 +39,12 @@ public class Producto {
         return this;
     }
 
-    public Imagen getImagen() {
-        return imagen;
-    }
-
-    public Producto setImagen(Imagen imagen) {
-        this.imagen = imagen;
-        return this;
-    }
-
     public Double getPrecio() {
         return precio;
     }
 
     public Producto setPrecio(Double precio) {
         this.precio = precio;
-        return this;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public Producto setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-        return this;
-    }
-
-    public String getDescripcionLarga() {
-        return descripcionLarga;
-    }
-
-    public Producto setDescripcionLarga(String descripcionLarga) {
-        this.descripcionLarga = descripcionLarga;
         return this;
     }
 }

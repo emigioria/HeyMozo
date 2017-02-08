@@ -10,7 +10,7 @@ import android.view.View;
 import com.google.gson.Gson;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
-import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.ProductoDetallado;
 
 public class DetalleProductoActivity extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Producto producto = new Gson().fromJson(getIntent().getStringExtra("producto"), Producto.class);
+        ProductoDetallado producto = new Gson().fromJson(getIntent().getStringExtra("producto"), ProductoDetallado.class);
 
         //toolbar.setBackground(Drawable.createFromPath(producto.getImagen().getImagen()));
         setTitle(producto.getNombre());

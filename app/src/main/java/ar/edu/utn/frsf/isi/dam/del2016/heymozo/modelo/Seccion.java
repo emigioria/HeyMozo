@@ -13,7 +13,7 @@ public class Seccion {
     private String nombre;
 
     @SerializedName(PRODUCTOS)
-    private ArrayList<Producto> productos = new ArrayList<>();
+    private ArrayList<ProductoDetallado> productos = new ArrayList<>();
 
     public Seccion() {
 
@@ -32,11 +32,11 @@ public class Seccion {
         return this;
     }
 
-    public ArrayList<Producto> getProductos() {
+    public ArrayList<ProductoDetallado> getProductos() {
         return productos;
     }
 
-    public Seccion setProductos(ArrayList<Producto> productos) {
+    public Seccion setProductos(ArrayList<ProductoDetallado> productos) {
         this.productos = productos;
         return this;
     }
