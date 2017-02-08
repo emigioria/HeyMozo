@@ -4,7 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -60,8 +62,16 @@ class GuardarPedidoTask extends AsyncTask<Pedido, Void, Void> {
             urlConnection.setConnectTimeout(60000);
             urlConnection.setReadTimeout(60000);
             OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-            OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
-            osw.write(pedidoJSON);
+            OutputStreamWriter osw = new OutputStreamWriter(out);
+            InputStream in = new ByteArrayInputStream(pedidoJSON.getBytes());
+            int data = in.read();
+            while (data != -1) {
+                if (isCancelled())
+                    return null;
+                char current = (char) data;
+                osw.write(current);
+                data = in.read();
+            }
             osw.flush();
             out.flush();
             osw.close();

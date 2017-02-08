@@ -65,6 +65,8 @@ class ListarMisPedidosTask extends AsyncTask<Void, Void, List<Pedido>> {
             StringBuilder sb = new StringBuilder();
             int data = isw.read();
             while (data != -1) {
+                if (isCancelled())
+                    return null;
                 char current = (char) data;
                 sb.append(current);
                 data = isw.read();
