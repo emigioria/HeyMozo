@@ -8,6 +8,8 @@ public class Producto {
     private static final String NOMBRE_PRODUCTO = "nombre";
     private static final String IMAGEN = "imagen";
     private static final String PRECIO = "precio";
+    private static final String DESCRIPCION = "descripcion";
+    private static final String DESCRIPCION_LARGA = "descripcion_larga";
 
     @SerializedName(CANTIDAD)
     private Integer cantidad;
@@ -20,6 +22,12 @@ public class Producto {
 
     @SerializedName(PRECIO)
     private Double precio;
+
+    @SerializedName(DESCRIPCION)
+    private String descripcion;
+
+    @SerializedName(DESCRIPCION_LARGA)
+    private String descripcionLarga;
 
     public Producto() {
         cantidad = 0;
@@ -47,6 +55,15 @@ public class Producto {
         return this;
     }
 
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public Producto setImagen(Imagen imagen) {
+        this.imagen = imagen;
+        return this;
+    }
+
     public Double getPrecio() {
         return precio;
     }
@@ -56,12 +73,21 @@ public class Producto {
         return this;
     }
 
-    public Imagen getImagen() {
-        return imagen;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public Producto setImagen(Imagen imagen) {
-        this.imagen = imagen;
+    public Producto setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+        return this;
+    }
+
+    public String getDescripcionLarga() {
+        return descripcionLarga;
+    }
+
+    public Producto setDescripcionLarga(String descripcionLarga) {
+        this.descripcionLarga = descripcionLarga;
         return this;
     }
 }
