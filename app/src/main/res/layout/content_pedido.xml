@@ -17,6 +17,13 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
+    <ImageView
+        android:id="@+id/imagenComedor"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:contentDescription="@string/imagen_del_restaurante"
+        android:scaleType="centerCrop" />
+
     <ListView
         android:id="@+id/listaProductos"
         android:layout_width="match_parent"

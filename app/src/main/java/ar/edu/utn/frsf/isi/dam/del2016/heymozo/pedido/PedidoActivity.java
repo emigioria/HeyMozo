@@ -37,7 +37,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     private View layoutEstado;
     private View layoutTiempo;
     private View layoutPedido;
-    private ImageView imagenToolbar;
+    private ImageView imagenComedor;
     private Button buttonConfirmar;
     private RelativeLayout loadingPanel;
 
@@ -55,7 +55,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         layoutEstado = findViewById(R.id.layoutEstado);
         layoutTiempo = findViewById(R.id.layoutTiempo);
         layoutPedido = findViewById(R.id.layoutPedido);
-        imagenToolbar = (ImageView) findViewById(R.id.imagenToolbar);
+        imagenComedor = (ImageView) findViewById(R.id.imagenComedor);
         loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanel);
     }
 
@@ -114,12 +114,11 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
             Glide.with(getBaseContext()).load(pedido.getRestaurante().getImagen().getUrlImagen(getBaseContext()))
                     .error(getBaseContext().getDrawable(R.drawable.ic_broken_image_black_24dp))
                     .placeholder(getBaseContext().getDrawable(R.drawable.ic_loading))
-                    .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imagenToolbar);
+                    .into(imagenComedor);
         } else {
-            imagenToolbar.setVisibility(View.GONE);
+            imagenComedor.setVisibility(View.GONE);
         }
 
         if (pedido.getFinaliza() == null) {
