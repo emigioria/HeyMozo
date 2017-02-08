@@ -235,6 +235,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (restaurante.getImagen() != null && restaurante.getImagen().getUrlImagen(getBaseContext()) != null) {
             Glide.with(getBaseContext()).load(restaurante.getImagen().getUrlImagen(getBaseContext()))
+                    .error(getBaseContext().getDrawable(R.drawable.ic_broken_image_black_24dp))
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)

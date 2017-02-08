@@ -48,6 +48,7 @@ class RestauranteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (restaurante.getImagen() != null && restaurante.getImagen().getUrlImagen(contexto) != null) {
             holder.imageViewFotoRestaurante.setVisibility(View.VISIBLE);
             Glide.with(contexto).load(restaurante.getImagen().getUrlImagen(contexto))
+                    .error(contexto.getDrawable(R.drawable.ic_broken_image_black_24dp))
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)

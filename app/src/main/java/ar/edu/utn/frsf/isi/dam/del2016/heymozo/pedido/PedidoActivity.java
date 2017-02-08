@@ -112,6 +112,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
 
         if (pedido.getRestaurante().getImagen() != null && pedido.getRestaurante().getImagen().getUrlImagen(getBaseContext()) != null) {
             Glide.with(getBaseContext()).load(pedido.getRestaurante().getImagen().getUrlImagen(getBaseContext()))
+                    .error(getBaseContext().getDrawable(R.drawable.ic_broken_image_black_24dp))
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)

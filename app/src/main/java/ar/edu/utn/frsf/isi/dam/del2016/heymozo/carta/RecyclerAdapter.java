@@ -54,8 +54,8 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (producto.getImagen() != null && producto.getImagen().getUrlImagen(context) != null) {
             holder.imagenProducto.setVisibility(View.VISIBLE);
             Glide.with(context).load(producto.getImagen().getUrlImagen(context))
-                    .thumbnail(0.5f)
                     .crossFade()
+                    .error(context.getDrawable(R.drawable.ic_broken_image_black_24dp))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(holder.imagenProducto);
         } else {
