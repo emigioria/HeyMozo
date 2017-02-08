@@ -23,8 +23,7 @@ class RestauranteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private MostrarCartaListener mostrarCartaListener;
     private List<Restaurante> restaurantes;
 
-    RestauranteAdapter(Context contexto, MostrarCartaListener mostrarCartaListener, List<Restaurante> restaurantes) {
-        this.contexto = contexto;
+    RestauranteAdapter(MostrarCartaListener mostrarCartaListener, List<Restaurante> restaurantes) {
         this.mostrarCartaListener = mostrarCartaListener;
         if (restaurantes != null) {
             this.restaurantes = restaurantes;
@@ -35,8 +34,8 @@ class RestauranteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.item_restaurante, parent, false);
+        contexto = parent.getContext();
+        View view = LayoutInflater.from(contexto).inflate(R.layout.item_restaurante, parent, false);
         return new ViewHolderRestaurante(view);
     }
 
@@ -49,6 +48,7 @@ class RestauranteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.imageViewFotoRestaurante.setVisibility(View.VISIBLE);
             Glide.with(contexto).load(restaurante.getImagen().getUrlImagen(contexto))
                     .error(contexto.getDrawable(R.drawable.ic_broken_image_black_24dp))
+                    .placeholder(contexto.getDrawable(R.drawable.ic_loading))
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)

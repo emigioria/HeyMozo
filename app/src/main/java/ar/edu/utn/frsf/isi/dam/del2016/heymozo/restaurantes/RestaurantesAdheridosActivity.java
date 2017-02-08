@@ -65,7 +65,7 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
         switch (resultCode) {
             case ListarRestaurantesTask.OK:
                 listaRestaurantesAdheridos.setLayoutManager(new LinearLayoutManager(this));
-                listaRestaurantesAdheridos.setAdapter(new RestauranteAdapter(this, this, restaurantes));
+                listaRestaurantesAdheridos.setAdapter(new RestauranteAdapter(this, restaurantes));
                 break;
             case ListarRestaurantesTask.CANCELADO:
                 break;
