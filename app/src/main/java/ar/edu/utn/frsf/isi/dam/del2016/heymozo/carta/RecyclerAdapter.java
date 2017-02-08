@@ -52,6 +52,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
         final ViewHolderProductoRecycler holder = (ViewHolderProductoRecycler) viewHolder;
         final ProductoDetallado producto = productos.get(position);
+        float scale = holder.view.getContext().getResources().getDisplayMetrics().density;
 
         holder.moneda.setText(moneda.getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(), "%.2f", producto.getPrecio()));
@@ -64,7 +65,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.cantidad.setText(String.valueOf(producto.getCantidad()));
 
             //Se modifica la distancia entre el campo cantidad y nombre del producto
-            paramsNombreProducto.leftMargin = 4;
+            paramsNombreProducto.leftMargin = (int) (4 * scale + 0.5f);
         } else {
             holder.cantidad.setVisibility(View.GONE);
 
@@ -73,7 +74,6 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.nombreProducto.setLayoutParams(paramsNombreProducto);
 
         ViewGroup.LayoutParams paramsImagenProducto = holder.imagenProducto.getLayoutParams();
-        float scale = holder.view.getContext().getResources().getDisplayMetrics().density;
         //Muestra u oculta los botones Agregar y Quitar si corresponde a la posicion en que se registró el click
         if (posicionConBotones == position) {
             if (!noHacerPedidos) {

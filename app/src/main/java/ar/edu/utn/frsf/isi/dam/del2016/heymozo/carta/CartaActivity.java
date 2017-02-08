@@ -29,7 +29,7 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Producto;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Seccion;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity;
 
-public class CartaActivity extends AppCompatActivity {
+public class CartaActivity extends AppCompatActivity implements CartaListener {
 
     private static final int CODIGO_PEDIDO = 107;
     private Carta carta;
@@ -106,6 +106,21 @@ public class CartaActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public Carta getCarta() {
+        return carta;
+    }
+
+    @Override
+    public Boolean getNoHacerPedidos() {
+        return noHacerPedidos;
+    }
+
+    @Override
+    public FloatingActionButton getFab() {
+        return fab;
+    }
+
 
     /**
      * A placeholder fragment containing a simple view.
@@ -116,9 +131,6 @@ public class CartaActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-        private Carta carta;
-        private FloatingActionButton fab;
-        private Boolean noHacerPedidos;
 
         public PlaceholderFragment() {
         }
@@ -127,14 +139,11 @@ public class CartaActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber, Carta carta, Boolean noHacerPedidos, FloatingActionButton fab) {
+        public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
-            fragment.setCarta(carta);
-            fragment.setnoHacerPedidos(noHacerPedidos);
-            fragment.setFab(fab);
             return fragment;
         }
 
@@ -149,6 +158,11 @@ public class CartaActivity extends AppCompatActivity {
 
         private void setupRecyclerView(RecyclerView recyclerView) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            final CartaListener cartaListener = (CartaListener) getActivity();
+            final Carta carta = cartaListener.getCarta();
+            final Boolean noHacerPedidos = cartaListener.getNoHacerPedidos();
+            final FloatingActionButton fab = cartaListener.getFab();
+
             RecyclerAdapter recyclerAdapter = new RecyclerAdapter(carta.getRestaurante().getMoneda(), noHacerPedidos, carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
             recyclerView.setAdapter(recyclerAdapter);
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -168,18 +182,6 @@ public class CartaActivity extends AppCompatActivity {
                 }
             });
         }
-
-        public void setCarta(Carta carta) {
-            this.carta = carta;
-        }
-
-        public void setFab(FloatingActionButton fab) {
-            this.fab = fab;
-        }
-
-        public void setnoHacerPedidos(Boolean noHacerPedidos) {
-            this.noHacerPedidos = noHacerPedidos;
-        }
     }
 
     /**
@@ -196,7 +198,7 @@ public class CartaActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1, carta, noHacerPedidos, fab);
+            return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
