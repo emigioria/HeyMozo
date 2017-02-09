@@ -10,7 +10,10 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -23,6 +26,7 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
     private RecyclerView listaPedidos;
     private ListarMisPedidosTask listarMisPedidosTask;
     private RelativeLayout loadingPanel;
+    private List<Pedido> pedidos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +34,28 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
         setContentView(R.layout.activity_mis_pedidos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle(getString(R.string.title_activity_mis_pedidos));
         linkearVista();
 
-        listarMisPedidosTask = new ListarMisPedidosTask(this, this);
-        listarMisPedidosTask.execute();
+        if (savedInstanceState == null) {
+            listarMisPedidosTask = new ListarMisPedidosTask(this, this);
+            listarMisPedidosTask.execute();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("pedidos", new Gson().toJson(pedidos));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Type datasetListType = new TypeToken<List<Pedido>>() {
+        }.getType();
+        pedidos = new Gson().fromJson(savedInstanceState.getString("pedidos"), datasetListType);
+        listarPedidos();
     }
 
     @Override
@@ -57,15 +79,14 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
                     finish();
                     return;
                 }
-
                 Collections.sort(pedidos, new Comparator<Pedido>() {
                     @Override
                     public int compare(Pedido o1, Pedido o2) {
                         return -(o1.getFechaPedido().compareTo(o2.getFechaPedido()));
                     }
                 });
-                listaPedidos.setLayoutManager(new LinearLayoutManager(this));
-                listaPedidos.setAdapter(new PedidoAdapter(MisPedidosActivity.this, new ArrayList<>(pedidos)));
+                this.pedidos = pedidos;
+                listarPedidos();
                 break;
             case ListarMisPedidosTask.CANCELADO:
                 finish();
@@ -76,6 +97,11 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
                 break;
         }
         loadingPanel.setVisibility(View.GONE);
+    }
+
+    private void listarPedidos() {
+        listaPedidos.setLayoutManager(new LinearLayoutManager(this));
+        listaPedidos.setAdapter(new PedidoAdapter(MisPedidosActivity.this, pedidos));
     }
 
     @Override

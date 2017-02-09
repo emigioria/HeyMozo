@@ -12,7 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
@@ -30,6 +32,7 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
     private ListarRestaurantesTask listarRestaurantesTask;
     private SolicitarCartaTask solicitarCartaTask;
     private RelativeLayout loadingPanel;
+    private List<Restaurante> restaurantes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +43,25 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
         setTitle(getString(R.string.title_activity_restaurantes_adheridos));
         linkearVista();
 
-        listarRestaurantesTask = new ListarRestaurantesTask(this, this);
-        listarRestaurantesTask.execute();
+        if (savedInstanceState == null) {
+            listarRestaurantesTask = new ListarRestaurantesTask(this, this);
+            listarRestaurantesTask.execute();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("restaurantes", new Gson().toJson(restaurantes));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Type datasetListType = new TypeToken<List<Restaurante>>() {
+        }.getType();
+        restaurantes = new Gson().fromJson(savedInstanceState.getString("restaurantes"), datasetListType);
+        listarRestaurantes();
     }
 
     @Override
@@ -64,8 +84,8 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
     public void busquedaRestauranteFinalizada(List<Restaurante> restaurantes, int resultCode) {
         switch (resultCode) {
             case ListarRestaurantesTask.OK:
-                listaRestaurantesAdheridos.setLayoutManager(new LinearLayoutManager(this));
-                listaRestaurantesAdheridos.setAdapter(new RestauranteAdapter(this, restaurantes));
+                this.restaurantes = restaurantes;
+                listarRestaurantes();
                 break;
             case ListarRestaurantesTask.CANCELADO:
                 break;
@@ -74,6 +94,11 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
                 break;
         }
         loadingPanel.setVisibility(View.GONE);
+    }
+
+    private void listarRestaurantes() {
+        listaRestaurantesAdheridos.setLayoutManager(new LinearLayoutManager(this));
+        listaRestaurantesAdheridos.setAdapter(new RestauranteAdapter(this, restaurantes));
     }
 
     @Override
