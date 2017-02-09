@@ -126,7 +126,6 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         });
 
-        //TODO ver como mostrar mas detalles
         holder.view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
