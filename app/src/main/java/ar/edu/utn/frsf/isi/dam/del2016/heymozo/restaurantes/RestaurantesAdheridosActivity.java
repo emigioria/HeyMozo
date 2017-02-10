@@ -129,6 +129,7 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
                 listarRestaurantes();
                 break;
             case ListarRestaurantesTask.CANCELADO:
+                Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
                 break;
             case ListarRestaurantesTask.ERROR:
                 Toast.makeText(this, getString(R.string.error_servidor), Toast.LENGTH_LONG).show();
@@ -144,13 +145,11 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
 
     @Override
     public void busquedaRestauranteIniciada() {
-        Toast.makeText(this, R.string.cargando_restaurantes, Toast.LENGTH_SHORT).show();
         loadingPanel.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void busquedaIniciada() {
-        Toast.makeText(getApplicationContext(), R.string.mensaje_esperando_carta, Toast.LENGTH_SHORT).show();
         loadingPanel.setVisibility(View.VISIBLE);
     }
 

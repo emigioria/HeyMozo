@@ -127,6 +127,7 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
                 listarPedidos();
                 break;
             case ListarMisPedidosTask.CANCELADO:
+                Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
                 finish();
                 break;
             case ListarMisPedidosTask.ERROR:
@@ -144,7 +145,6 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
 
     @Override
     public void busquedaIniciada() {
-        Toast.makeText(this, getString(R.string.cargando_pedidos), Toast.LENGTH_SHORT).show();
         loadingPanel.setVisibility(View.VISIBLE);
     }
 }

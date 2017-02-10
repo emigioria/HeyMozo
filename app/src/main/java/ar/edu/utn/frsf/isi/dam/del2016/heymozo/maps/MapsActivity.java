@@ -206,10 +206,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Correcto
             case ListarRestaurantesTask.OK:
                 mostrarRestaurantes(restaurantes);
-                Toast.makeText(this, getString(R.string.ubicaciones_cargadas), Toast.LENGTH_LONG).show();
                 break;
             //Cancelado
             case ListarRestaurantesTask.CANCELADO:
+                Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
                 break;
 
             //Error de conexión
@@ -323,7 +323,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void busquedaRestauranteIniciada() {
         loadingPanel.setVisibility(View.VISIBLE);
-        Toast.makeText(this, getString(R.string.cargando_ubicaciones), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -381,7 +380,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void busquedaIniciada() {
-        Toast.makeText(getApplicationContext(), R.string.mensaje_esperando_carta, Toast.LENGTH_SHORT).show();
         loadingPanel.setVisibility(View.VISIBLE);
     }
 

@@ -264,6 +264,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
                 mostrarPedido();
                 break;
             case CargarPedidoTask.CANCELADO:
+                Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
                 finish();
                 break;
             case CargarPedidoTask.ERROR:
@@ -277,7 +278,6 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
 
     @Override
     public void cargaIniciada() {
-        Toast.makeText(this, getString(R.string.cargando_pedido), Toast.LENGTH_SHORT).show();
         loadingPanel.setVisibility(View.VISIBLE);
         layoutPedido.setVisibility(View.INVISIBLE);
     }

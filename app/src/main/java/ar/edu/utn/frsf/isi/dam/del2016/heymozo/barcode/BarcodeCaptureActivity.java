@@ -117,7 +117,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
             public void run(){
                 loadingPanelCarta.setVisibility(RelativeLayout.VISIBLE);
                 mPreview.stop();
-                Toast.makeText(getApplicationContext(), R.string.mensaje_esperando_carta, Toast.LENGTH_SHORT).show();
             }
         });
     }
