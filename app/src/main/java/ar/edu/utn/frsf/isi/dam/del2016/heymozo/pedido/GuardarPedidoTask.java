@@ -7,6 +7,7 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -64,18 +65,21 @@ class GuardarPedidoTask extends AsyncTask<Pedido, Void, Void> {
             OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
             OutputStreamWriter osw = new OutputStreamWriter(out);
             InputStream in = new ByteArrayInputStream(pedidoJSON.getBytes());
-            int data = in.read();
+            InputStreamReader isr = new InputStreamReader(in);
+            int data = isr.read();
             while (data != -1) {
                 if (isCancelled())
                     return null;
                 char current = (char) data;
                 osw.write(current);
-                data = in.read();
+                data = isr.read();
             }
             osw.flush();
             out.flush();
             osw.close();
             out.close();
+            in.close();
+            isr.close();
             if (urlConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 throw new IOException(urlConnection.getResponseCode() + "");
             }
