@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +45,7 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         setContentView(R.layout.activity_carta);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getWindow().setExitTransition(new Fade());
 
         Gson gson = new Gson();
         if (savedInstanceState == null) {
@@ -101,7 +104,8 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
                 if (productosSeleccionados.size() > 0) {
                     Intent intent = new Intent(CartaActivity.this, PedidoActivity.class);
                     intent.putExtra("pedido", pedido.toJSONObject());
-                    startActivityForResult(intent, CODIGO_PEDIDO);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(CartaActivity.this);
+                    startActivityForResult(intent, CODIGO_PEDIDO, options.toBundle());
                 }
             }
         });

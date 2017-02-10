@@ -134,6 +134,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
                     extras.putString("carta", cartaJSON);
                     extras.putString("mesa", mesaJSON);
                     i.putExtras(extras);
+                    //A veces se traba la transición y queda parte del menú principal
+                    //ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BarcodeCaptureActivity.this);
                     startActivity(i);
                 } else {
                     Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_LONG).show();

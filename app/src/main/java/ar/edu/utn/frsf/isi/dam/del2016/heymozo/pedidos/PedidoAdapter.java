@@ -1,5 +1,7 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedidos;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -65,7 +67,8 @@ class PedidoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             public void onClick(View view) {
                 Intent i = new Intent(context, PedidoActivity.class);
                 i.putExtra("pedido", pedido.toJSONObject());
-                context.startActivity(i);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context);
+                context.startActivity(i, options.toBundle());
             }
         });
 

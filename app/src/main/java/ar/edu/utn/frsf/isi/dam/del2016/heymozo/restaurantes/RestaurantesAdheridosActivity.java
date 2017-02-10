@@ -1,5 +1,6 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.restaurantes;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -126,7 +127,8 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
                     extras.putString("mesa", mesaJSON);
                     extras.putBoolean("noHacerPedidos", true);
                     i.putExtras(extras);
-                    startActivity(i);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RestaurantesAdheridosActivity.this);
+                    startActivity(i, options.toBundle());
                 } else {
                     Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_LONG).show();
                 }

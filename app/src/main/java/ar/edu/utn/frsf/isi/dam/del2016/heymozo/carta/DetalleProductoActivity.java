@@ -1,9 +1,9 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +19,8 @@ public class DetalleProductoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Fade());
+        getWindow().setExitTransition(new Fade());
         setContentView(R.layout.activity_detalle_producto);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -41,5 +43,10 @@ public class DetalleProductoActivity extends AppCompatActivity {
         detallesTextView.setText(producto.getDescripcionLarga());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAfterTransition();
     }
 }

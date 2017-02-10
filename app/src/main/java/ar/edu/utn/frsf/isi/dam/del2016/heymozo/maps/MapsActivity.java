@@ -3,6 +3,7 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -388,7 +389,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     extras.putString("mesa", mesaJSON);
                     extras.putBoolean("noHacerPedidos", true);
                     i.putExtras(extras);
-                    startActivity(i);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MapsActivity.this);
+                    startActivity(i, options.toBundle());
                 } else {
                     Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_LONG).show();
                 }

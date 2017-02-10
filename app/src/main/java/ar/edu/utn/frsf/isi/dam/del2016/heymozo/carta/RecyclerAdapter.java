@@ -1,8 +1,11 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +52,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
         final ViewHolderProductoRecycler holder = (ViewHolderProductoRecycler) viewHolder;
         final ProductoDetallado producto = productos.get(position);
         float scale = holder.view.getContext().getResources().getDisplayMetrics().density;
@@ -141,8 +144,10 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, DetalleProductoActivity.class);
+                ActivityOptions options = ActivityOptions
+                        .makeSceneTransitionAnimation((Activity) context, new Pair<View, String>(holder.imagenProducto, context.getString(R.string.transition_photo)));
                 i.putExtra("producto", producto.toJSONObject());
-                context.startActivity(i);
+                context.startActivity(i, options.toBundle());
             }
         });
 
