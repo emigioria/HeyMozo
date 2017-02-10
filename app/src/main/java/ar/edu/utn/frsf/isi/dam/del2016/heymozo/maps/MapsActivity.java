@@ -68,10 +68,10 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Restaurante;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, BusquedaRestaurantesListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, SolicitarCartaListener {
 
+    private static final int PERMISSION_REQUEST_ACCESS = 899;
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
     private boolean flagPermisoPedido;
-    private static final int PERMISSION_REQUEST_ACCESS = 899;
     private RelativeLayout loadingPanel;
     private ListarRestaurantesTask listarRestaurantesTask;
     private Map<String, Restaurante> tablaRestaurantes;

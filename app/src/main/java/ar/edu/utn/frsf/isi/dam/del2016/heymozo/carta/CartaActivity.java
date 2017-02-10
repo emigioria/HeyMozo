@@ -140,6 +140,19 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         return fab;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case CODIGO_PEDIDO:
+                if (resultCode == RESULT_OK) {
+                    finish();
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+                break;
+        }
+    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -230,20 +243,6 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         public CharSequence getPageTitle(int position) {
             // retorna los titulos de cada seccion según el orden en el que se escribió la carta
             return carta.getSecciones().get(position).getNombre();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case CODIGO_PEDIDO:
-                if (resultCode == RESULT_OK) {
-                    finish();
-                }
-                break;
-            default:
-                super.onActivityResult(requestCode, resultCode, data);
-                break;
         }
     }
 }

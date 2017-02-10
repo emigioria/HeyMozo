@@ -22,11 +22,11 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
 class ListarMisPedidosTask extends AsyncTask<Void, Void, List<Pedido>> {
-    private final Context context;
-    private ListarMisPedidosListener listener;
     static final int OK = 0;
     static final int CANCELADO = 1;
     static final int ERROR = 2;
+    private final Context context;
+    private ListarMisPedidosListener listener;
     private int status = OK;
 
     ListarMisPedidosTask(ListarMisPedidosListener dListener, Context context) {

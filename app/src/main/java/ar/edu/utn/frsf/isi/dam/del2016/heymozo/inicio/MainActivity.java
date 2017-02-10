@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             R.string.btnRestaurantesAdheridos,
             R.string.btnConfiguracion,
             R.string.btnAyuda
-    } ;
+    };
     int[] imageId = {
             R.drawable.qrw,
             R.drawable.mapaw,
@@ -42,13 +42,14 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.gearw,
             R.drawable.helpw
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         CustomGrid adapter = new CustomGrid(MainActivity.this, text, imageId);
-        GridView grid=(GridView)findViewById(R.id.grid);
+        GridView grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(adapter);
 
         AnimationSet set = new AnimationSet(true);
@@ -58,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         set.addAnimation(animation);
 
         animation = new TranslateAnimation(
-                Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f,
-                Animation.RELATIVE_TO_PARENT, 1.0f,Animation.RELATIVE_TO_PARENT, 0.0f
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_PARENT, 1.0f, Animation.RELATIVE_TO_PARENT, 0.0f
         );
         animation.setInterpolator(new DecelerateInterpolator(3.f));
         animation.setDuration(200);
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this);
                 Intent intent;
-                switch (position){
+                switch (position) {
                     case 0:
                         intent = new Intent(MainActivity.this, BarcodeCaptureActivity.class);
                         startActivity(intent, options.toBundle());

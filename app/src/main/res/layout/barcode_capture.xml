@@ -9,14 +9,14 @@
     <ar.edu.utn.frsf.isi.dam.del2016.heymozo.camera.CameraSourcePreview
         android:id="@+id/preview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:id="@+id/loadingPanelCarta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/cartaProgressBar"

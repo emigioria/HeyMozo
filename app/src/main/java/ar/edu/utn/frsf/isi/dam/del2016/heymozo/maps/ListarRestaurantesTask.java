@@ -21,13 +21,13 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Restaurante;
 
 public class ListarRestaurantesTask extends AsyncTask<Void, Void, List<Restaurante>> {
+    public static final int OK = 0;
+    public static final int CANCELADO = 1;
+    public static final int ERROR = 2;
     private final Context context;
     private BusquedaRestaurantesListener listener;
     private HttpURLConnection urlConnection = null;
     private int status = OK;
-    public static final int OK = 0;
-    public static final int CANCELADO = 1;
-    public static final int ERROR = 2;
 
     public ListarRestaurantesTask(BusquedaRestaurantesListener dListener, Context context) {
         this.listener = dListener;

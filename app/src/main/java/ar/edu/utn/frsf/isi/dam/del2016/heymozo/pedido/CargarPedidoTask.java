@@ -17,11 +17,11 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
 class CargarPedidoTask extends AsyncTask<String, Void, Pedido> {
-    private final Context context;
-    private CargarPedidoListener listener;
     static final int OK = 0;
     static final int CANCELADO = 1;
     static final int ERROR = 2;
+    private final Context context;
+    private CargarPedidoListener listener;
     private int status = OK;
 
     CargarPedidoTask(CargarPedidoListener dListener, Context context) {

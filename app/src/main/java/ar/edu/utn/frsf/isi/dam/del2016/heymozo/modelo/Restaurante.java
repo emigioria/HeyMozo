@@ -9,14 +9,14 @@ public class Restaurante {
     private static final String MONEDA = "moneda";
     private static final String LATITUD = "latitud";
     private static final String LONGITUD = "longitud";
-	private static final String DIRECCION = "direccion";
-	private static final String TELEFONO = "telefono";
-	private static final String PAGINA = "pagina";
-	private static final String RATING = "rating";
+    private static final String DIRECCION = "direccion";
+    private static final String TELEFONO = "telefono";
+    private static final String PAGINA = "pagina";
+    private static final String RATING = "rating";
     private static final String IMAGEN = "imagen";
 
-	@SerializedName(ID)
-	private String id;
+    @SerializedName(ID)
+    private String id;
 
     @SerializedName(NOMBRE)
     private String nombre;
@@ -30,17 +30,17 @@ public class Restaurante {
     @SerializedName(LONGITUD)
     private Double longitud;
 
-	@SerializedName(DIRECCION)
-	private String direccion;
+    @SerializedName(DIRECCION)
+    private String direccion;
 
-	@SerializedName(TELEFONO)
-	private String telefono;
+    @SerializedName(TELEFONO)
+    private String telefono;
 
-	@SerializedName(RATING)
-	private Float rating;
+    @SerializedName(RATING)
+    private Float rating;
 
-	@SerializedName(PAGINA)
-	private String pagina;
+    @SerializedName(PAGINA)
+    private String pagina;
 
     @SerializedName(IMAGEN)
     private Imagen imagen;
@@ -54,11 +54,11 @@ public class Restaurante {
     }
 
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
@@ -94,28 +94,28 @@ public class Restaurante {
         return this;
     }
 
-    public Restaurante setMoneda(Moneda moneda){
+    public Moneda getMoneda() {
+        return moneda;
+    }
+
+    public Restaurante setMoneda(Moneda moneda) {
         this.moneda = moneda;
         return this;
     }
 
-    public Moneda getMoneda(){
-        return moneda;
+    public String getDireccion() {
+        return direccion;
     }
 
-	public String getDireccion() {
-		return direccion;
-	}
+    public String getTelefono() {
+        return telefono;
+    }
 
-	public String getTelefono() {
-		return telefono;
-	}
+    public Float getRating() {
+        return rating;
+    }
 
-	public Float getRating() {
-		return rating;
-	}
-
-	public String getPagina() {
-		return pagina;
-	}
+    public String getPagina() {
+        return pagina;
+    }
 }

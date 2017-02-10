@@ -92,13 +92,6 @@ public class Pedido {
         return finaliza;
     }
 
-    public Date getFinalizaDate() {
-        if (finaliza == null) {
-            return null;
-        }
-        return new Date(finaliza);
-    }
-
     public Pedido setFinaliza(Date finaliza) {
         if (finaliza != null) {
             this.finaliza = finaliza.getTime();
@@ -109,6 +102,13 @@ public class Pedido {
     public Pedido setFinaliza(Long finaliza) {
         this.finaliza = finaliza;
         return this;
+    }
+
+    public Date getFinalizaDate() {
+        if (finaliza == null) {
+            return null;
+        }
+        return new Date(finaliza);
     }
 
     public String getEstado() {

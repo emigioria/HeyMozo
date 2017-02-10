@@ -106,15 +106,15 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
 
             //ids[0]: idRestaurante
             //ids[1]: idMesa
-            solicitarCartaTask.execute(ids[0],ids[1]);
+            solicitarCartaTask.execute(ids[0], ids[1]);
         }
     }
 
     @Override
     public void busquedaIniciada() {
-        runOnUiThread(new Runnable(){
+        runOnUiThread(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 loadingPanelCarta.setVisibility(RelativeLayout.VISIBLE);
                 mPreview.stop();
             }

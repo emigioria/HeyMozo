@@ -28,13 +28,13 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.ProductoDetallado;
 
 class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private static final int ALTURA_EXTENDIDO = 200;
+    private static final int ALTURA_CONTRAIDO = 100;
     private final Boolean noHacerPedidos;
     private Context context;
     private List<ProductoDetallado> productos;
     private Moneda moneda;
     private int posicionConBotones = -1;
-    private static final int ALTURA_EXTENDIDO = 200;
-    private static final int ALTURA_CONTRAIDO = 100;
 
     RecyclerAdapter(Moneda moneda, Boolean noHacerPedidos, List<ProductoDetallado> itemList) {
         if (itemList != null) {
@@ -62,15 +62,14 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.moneda.setText(moneda.getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(), "%.2f", producto.getPrecio()));
 
-        if(producto.getDescripcion()!=null){
+        if (producto.getDescripcion() != null) {
             holder.descripcionCorta.setVisibility(View.VISIBLE);
             holder.descripcionCorta.setText(producto.getDescripcion());
-        }
-        else{
+        } else {
             holder.descripcionCorta.setVisibility(View.GONE);
         }
 
-        if(producto.getDescripcionLarga()==null){
+        if (producto.getDescripcionLarga() == null) {
             holder.imagenMasInformacion.setVisibility(View.GONE);
         } else {
             holder.imagenMasInformacion.setVisibility(View.VISIBLE);

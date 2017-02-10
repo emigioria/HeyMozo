@@ -17,11 +17,11 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
 class GuardarPedidoTask extends AsyncTask<Pedido, Void, Void> {
-    private final Context context;
-    private GuardarPedidoListener listener;
     static final int OK = 0;
     static final int CANCELADO = 1;
     static final int ERROR = 2;
+    private final Context context;
+    private GuardarPedidoListener listener;
     private int status = OK;
 
     GuardarPedidoTask(GuardarPedidoListener dListener, Context context) {
