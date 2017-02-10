@@ -1,6 +1,7 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido;
 
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,6 +9,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -34,6 +37,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     private TextView textViewEstado;
     private TextView textViewTiempoEspera;
     private ListView listaProductos;
+    private ViewGroup layoutHeader;
     private View layoutEstado;
     private View layoutTiempo;
     private View layoutPedido;
@@ -45,7 +49,6 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     private CargarPedidoTask cargarPedidoTask;
 
     private void linkearVista() {
-        textViewNombreComedor = (TextView) findViewById(R.id.textViewNombreComedor);
         textViewMoneda = (TextView) findViewById(R.id.textViewMoneda);
         textViewTotal = (TextView) findViewById(R.id.textViewTotal);
         textViewEstado = (TextView) findViewById(R.id.textViewEstado);
@@ -55,8 +58,11 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         layoutEstado = findViewById(R.id.layoutEstado);
         layoutTiempo = findViewById(R.id.layoutTiempo);
         layoutPedido = findViewById(R.id.layoutPedido);
-        imagenComedor = (ImageView) findViewById(R.id.imagenComedor);
         loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanel);
+
+        layoutHeader = (ViewGroup) getLayoutInflater().inflate(R.layout.header_list_pedido, listaProductos, false);
+        imagenComedor = (ImageView) layoutHeader.findViewById(R.id.imagenComedor);
+        textViewNombreComedor = (TextView) layoutHeader.findViewById(R.id.textViewNombreComedor);
     }
 
     @Override
@@ -67,6 +73,30 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         setSupportActionBar(toolbar);
         setTitle(getString(R.string.title_activity_pedido));
         linkearVista();
+
+        listaProductos.addHeaderView(layoutHeader, null, false);
+        listaProductos.setOnScrollListener(new AbsListView.OnScrollListener() {
+            private int lastTopValueAssigned;
+            private Rect rect = new Rect();
+
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i2, int i3) {
+                parallaxView(imagenComedor);
+                parallaxView(textViewNombreComedor);
+            }
+
+            private void parallaxView(View view) {
+                view.getLocalVisibleRect(rect);
+                if (lastTopValueAssigned != rect.top) {
+                    lastTopValueAssigned = rect.top;
+                    view.setY(rect.top / 2.0f);
+                }
+            }
+        });
 
         pedido = new Gson().fromJson(getIntent().getStringExtra("pedido"), Pedido.class);
 

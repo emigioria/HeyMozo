@@ -10,43 +10,11 @@
     tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.pedido.PedidoActivity"
     tools:showIn="@layout/activity_pedido">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imagenComedor"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:contentDescription="@string/imagen_del_restaurante"
-            android:scaleType="centerCrop" />
-
-        <TextView
-            android:id="@+id/textViewNombreComedor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imagenComedor"
-            android:layout_alignEnd="@id/imagenComedor"
-            android:layout_alignStart="@id/imagenComedor"
-            android:layout_alignTop="@id/imagenComedor"
-            android:gravity="center"
-            android:layerType="software"
-            android:shadowColor="#DD000000"
-            android:shadowDx="0.0"
-            android:shadowDy="0.0"
-            android:shadowRadius="12.0"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/white" />
-
-    </RelativeLayout>
-
     <ListView
         android:id="@+id/listaProductos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:listSelector="@android:color/transparent" />
 

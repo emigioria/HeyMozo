@@ -46,6 +46,6 @@ class ProductoAdapter extends ArrayAdapter<Producto> {
         holder.moneda.setText(moneda.getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(), "%.2f", this.getItem(position).getPrecio()));
 
-        return (row);
+        return row;
     }
 }
