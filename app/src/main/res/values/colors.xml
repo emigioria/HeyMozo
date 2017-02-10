@@ -5,8 +5,6 @@
     <color name="colorPrimaryDark">#ffF57C00</color>
     <color name="colorAccent">#ffFFC107</color>
 
-    <color name="productoSeleccionado">#fff57c00</color>
-    <item name="productoSeleccionado2" type="color">#b4f57c00</item>
     <item name="white" type="color">#ffffffff</item>
     <item name="blue" type="color">#ff75bdd7</item>
     <item name="purple" type="color">#FFAA66CC</item>
