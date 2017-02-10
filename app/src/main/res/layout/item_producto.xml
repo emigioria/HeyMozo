@@ -20,12 +20,12 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imagen_producto"
                 android:layout_width="match_parent"
-                android:layout_height="199dp"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/imagen_del_producto"
                 android:scaleType="centerCrop"
                 android:transitionName="@string/transition_photo"

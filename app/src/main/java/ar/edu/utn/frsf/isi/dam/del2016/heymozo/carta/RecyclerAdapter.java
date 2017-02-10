@@ -61,6 +61,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.precio.setText(String.format(Locale.getDefault(), "%.2f", producto.getPrecio()));
 
         if(producto.getDescripcion()!=null){
+            holder.descripcionCorta.setVisibility(View.VISIBLE);
             holder.descripcionCorta.setText(producto.getDescripcion());
         }
         else{
@@ -69,6 +70,8 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if(producto.getDescripcionLarga()==null){
             holder.imagenMasInformacion.setVisibility(View.GONE);
+        } else {
+            holder.imagenMasInformacion.setVisibility(View.VISIBLE);
         }
 
         holder.nombreProducto.setText(producto.getNombre());
@@ -114,7 +117,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(new ImageViewTarget<GlideDrawable>(holder.imagenProducto) {
+                    .into(new ImageViewTarget<GlideDrawable>(holder.imagenProducto) { //Necesario para dibujar bien el CenterCrop
                         @Override
                         protected void setResource(GlideDrawable resource) {
                             holder.imagenProducto.setImageDrawable(resource);
