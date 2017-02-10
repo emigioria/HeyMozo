@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.Transition;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -38,9 +41,44 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
         linkearVista();
 
         if (savedInstanceState == null) {
+            setearAnimaciones();
             listarMisPedidosTask = new ListarMisPedidosTask(this, this);
             listarMisPedidosTask.execute();
         }
+    }
+
+    private void setearAnimaciones() {
+        Slide entrada = new Slide();
+        getWindow().setEnterTransition(entrada);
+        getWindow().setExitTransition(new Fade());
+
+        listaPedidos.setVisibility(View.GONE);
+        getWindow().getEnterTransition().addListener(new Transition.TransitionListener() {
+            @Override
+            public void onTransitionStart(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionEnd(Transition transition) {
+                listaPedidos.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onTransitionCancel(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionPause(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionResume(Transition transition) {
+
+            }
+        });
     }
 
     @Override

@@ -10,6 +10,8 @@ import android.widget.TextView;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
 class ViewHolderRestaurante extends RecyclerView.ViewHolder {
+
+    final View row;
     final ImageView imageViewFotoRestaurante;
     final TextView textViewNombreRestaurante;
     final TextView textViewDireccion;
@@ -20,6 +22,7 @@ class ViewHolderRestaurante extends RecyclerView.ViewHolder {
 
     ViewHolderRestaurante(View viewBase) {
         super(viewBase);
+        this.row = viewBase;
         this.imageViewFotoRestaurante = (ImageView) viewBase.findViewById(R.id.imageViewFotoRestaurante);
         this.textViewNombreRestaurante = (TextView) viewBase.findViewById(R.id.textViewNombreRestaurante);
         this.textViewDireccion = (TextView) viewBase.findViewById(R.id.textViewDireccion);

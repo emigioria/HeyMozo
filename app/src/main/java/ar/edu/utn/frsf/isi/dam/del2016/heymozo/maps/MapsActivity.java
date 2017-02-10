@@ -19,6 +19,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.transition.Fade;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -78,6 +79,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        getWindow().setEnterTransition(new Fade());
+        getWindow().setExitTransition(new Fade());
 
         buscar = savedInstanceState == null;
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.

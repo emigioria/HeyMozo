@@ -5,6 +5,7 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,8 @@ class PedidoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             public void onClick(View view) {
                 Intent i = new Intent(context, PedidoActivity.class);
                 i.putExtra("pedido", pedido.toJSONObject());
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context);
+                ActivityOptions options = ActivityOptions
+                        .makeSceneTransitionAnimation((Activity) context, new Pair<>(holder.row, context.getString(R.string.transition_card_pedido)));
                 context.startActivity(i, options.toBundle());
             }
         });

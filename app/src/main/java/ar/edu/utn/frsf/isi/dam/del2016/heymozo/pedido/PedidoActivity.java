@@ -8,6 +8,8 @@ import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -20,6 +22,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.target.ImageViewTarget;
 import com.google.gson.Gson;
 
 import java.util.Date;
@@ -73,7 +77,11 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         setSupportActionBar(toolbar);
         setTitle(getString(R.string.title_activity_pedido));
         linkearVista();
+        Slide entrada = new Slide();
+        entrada.setSlideEdge(Gravity.TOP);
+        getWindow().setEnterTransition(entrada);
 
+        //Setear header a la lista y un efecto parallax
         listaProductos.addHeaderView(layoutHeader, null, false);
         listaProductos.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int lastTopValueAssigned;
@@ -81,6 +89,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
 
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
+
             }
 
             @Override
@@ -146,7 +155,12 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
                     .placeholder(getBaseContext().getDrawable(R.drawable.ic_loading))
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imagenComedor);
+                    .into(new ImageViewTarget<GlideDrawable>(imagenComedor) { //Necesario para dibujar bien el CenterCrop
+                        @Override
+                        protected void setResource(GlideDrawable resource) {
+                            imagenComedor.setImageDrawable(resource);
+                        }
+                    });
         } else {
             imagenComedor.setVisibility(View.GONE);
         }

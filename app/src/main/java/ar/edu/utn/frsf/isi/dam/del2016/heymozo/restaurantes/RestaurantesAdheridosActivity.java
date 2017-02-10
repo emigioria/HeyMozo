@@ -8,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.util.Pair;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -34,6 +38,7 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
     private SolicitarCartaTask solicitarCartaTask;
     private RelativeLayout loadingPanel;
     private List<Restaurante> restaurantes;
+    private View cardRestaruranteCarta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +50,44 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
         linkearVista();
 
         if (savedInstanceState == null) {
+            setearAnimaciones();
             listarRestaurantesTask = new ListarRestaurantesTask(this, this);
             listarRestaurantesTask.execute();
         }
+    }
+
+    private void setearAnimaciones() {
+        Slide entrada = new Slide();
+        getWindow().setEnterTransition(entrada);
+        getWindow().setExitTransition(new Fade());
+
+        listaRestaurantesAdheridos.setVisibility(View.GONE);
+        getWindow().getEnterTransition().addListener(new Transition.TransitionListener() {
+            @Override
+            public void onTransitionStart(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionEnd(Transition transition) {
+                listaRestaurantesAdheridos.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onTransitionCancel(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionPause(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionResume(Transition transition) {
+
+            }
+        });
     }
 
     @Override
@@ -127,7 +167,8 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
                     extras.putString("mesa", mesaJSON);
                     extras.putBoolean("noHacerPedidos", true);
                     i.putExtras(extras);
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RestaurantesAdheridosActivity.this);
+                    ActivityOptions options = ActivityOptions
+                            .makeSceneTransitionAnimation(RestaurantesAdheridosActivity.this, new Pair<>(cardRestaruranteCarta, getString(R.string.transition_card_restaurante)));
                     startActivity(i, options.toBundle());
                 } else {
                     Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_LONG).show();
@@ -144,7 +185,8 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void mostrarCarta(Restaurante restaurante) {
+    public void mostrarCarta(Restaurante restaurante, View card) {
+        this.cardRestaruranteCarta = card;
         solicitarCartaTask = new SolicitarCartaTask(this, this);
         solicitarCartaTask.execute(restaurante.getId(), "");
     }

@@ -59,4 +59,6 @@
     <string name="title_activity_detalle_producto">DetalleProductoActivity</string>
     <string name="calificaciones">Caificaciones: Muy buenas!</string>
     <string name="transition_photo_producto">transition_photo_producto</string>
+    <string name="transition_card_pedido">transition_card_pedido</string>
+    <string name="transition_card_restaurante">transition_card_restaurante</string>
 </resources>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:transitionName="@string/transition_card_restaurante"
     tools:context="ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -43,9 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_check_black_24dp"
-        app:rippleColor="@android:color/white"
         android:tint="@color/white"
-        app:borderWidth="0dp" />
+        app:borderWidth="0dp"
+        app:rippleColor="@android:color/white"
+        app:srcCompat="@drawable/ic_check_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
