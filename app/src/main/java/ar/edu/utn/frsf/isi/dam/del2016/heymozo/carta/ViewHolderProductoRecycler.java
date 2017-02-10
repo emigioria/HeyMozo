@@ -17,9 +17,11 @@ class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
     final TextView moneda;
     final TextView precio;
     final LinearLayout secondLayout;
+    final TextView descripcionCorta;
     final ImageButton agregar;
     final ImageButton quitar;
     final ImageView imagenProducto;
+    final ImageView imagenMasInformacion;
 
     ViewHolderProductoRecycler(View viewBase) {
         super(viewBase);
@@ -29,8 +31,10 @@ class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
         this.moneda = (TextView) viewBase.findViewById(R.id.moneda_textview);
         this.precio = (TextView) viewBase.findViewById(R.id.precio_textview);
         this.secondLayout = (LinearLayout) viewBase.findViewById(R.id.second_layout);
+        this.descripcionCorta = (TextView) viewBase.findViewById(R.id.descripcion_textview);
         this.agregar = (ImageButton) secondLayout.findViewById(R.id.agregar_imageview);
         this.quitar = (ImageButton) secondLayout.findViewById(R.id.quitar_imageview);
-        this.imagenProducto = (ImageView) viewBase.findViewById(R.id.imagenProducto);
+        this.imagenProducto = (ImageView) viewBase.findViewById(R.id.imagen_producto);
+        this.imagenMasInformacion = (ImageView) viewBase.findViewById(R.id.mas_informacion_imageview);
     }
 }

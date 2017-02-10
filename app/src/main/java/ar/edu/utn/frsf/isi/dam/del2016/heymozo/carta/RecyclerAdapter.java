@@ -57,6 +57,17 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.moneda.setText(moneda.getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(), "%.2f", producto.getPrecio()));
 
+        if(producto.getDescripcion()!=null){
+            holder.descripcionCorta.setText(producto.getDescripcion());
+        }
+        else{
+            holder.descripcionCorta.setVisibility(View.GONE);
+        }
+
+        if(producto.getDescripcionLarga()==null){
+            holder.imagenMasInformacion.setVisibility(View.GONE);
+        }
+
         holder.nombreProducto.setText(producto.getNombre());
         LinearLayout.LayoutParams paramsNombreProducto = (LinearLayout.LayoutParams) holder.nombreProducto.getLayoutParams();
         if (producto.getCantidad() > 0) {
@@ -126,13 +137,12 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         });
 
-        holder.view.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.imagenMasInformacion.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 Intent i = new Intent(context, DetalleProductoActivity.class);
                 i.putExtra("producto", producto.toJSONObject());
                 context.startActivity(i);
-                return true;
             }
         });
 

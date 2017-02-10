@@ -18,12 +18,26 @@
         android:orientation="vertical"
         android:padding="4dp">
 
-        <ImageView
-            android:id="@+id/imagenProducto"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/imagen_del_producto"
-            android:scaleType="centerCrop" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imagen_producto"
+                android:layout_width="match_parent"
+                android:layout_height="199dp"
+                android:contentDescription="@string/imagen_del_producto"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                card_view:srcCompat="@drawable/ic_info"
+                android:id="@+id/mas_informacion_imageview"
+                android:layout_gravity="top|end"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:alpha="0.7" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

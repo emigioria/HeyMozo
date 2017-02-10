@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class ProductoDetallado extends Producto {
     private static final String IMAGEN = "imagen";
-    private static final String DESCRIPCION = "descripcion";
+    private static final String DESCRIPCION_CORTA = "descripcion_corta";
     private static final String DESCRIPCION_LARGA = "descripcion_larga";
 
     @SerializedName(IMAGEN)
     private Imagen imagen;
 
-    @SerializedName(DESCRIPCION)
+    @SerializedName(DESCRIPCION_CORTA)
     private String descripcion;
 
     @SerializedName(DESCRIPCION_LARGA)
