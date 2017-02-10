@@ -234,7 +234,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     public void guardadoFinalizado(int resultCode) {
         switch (resultCode) {
             case GuardarPedidoTask.OK:
-                Toast.makeText(this, getString(R.string.pedido_guardado_correcto), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.pedido_guardado_correcto), Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK);
                 break;
             case GuardarPedidoTask.CANCELADO:

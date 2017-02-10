@@ -137,7 +137,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
                     //ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(BarcodeCaptureActivity.this);
                     startActivity(i);
                 } else {
-                    Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_SHORT).show();
                 }
                 finish();
                 break;

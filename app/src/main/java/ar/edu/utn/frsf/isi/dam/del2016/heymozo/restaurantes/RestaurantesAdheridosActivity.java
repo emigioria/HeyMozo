@@ -170,7 +170,7 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
                             .makeSceneTransitionAnimation(RestaurantesAdheridosActivity.this, new Pair<>(cardRestaruranteCarta, getString(R.string.transition_card_restaurante)));
                     startActivity(i, options.toBundle());
                 } else {
-                    Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case SolicitarCartaTask.CANCELADO:

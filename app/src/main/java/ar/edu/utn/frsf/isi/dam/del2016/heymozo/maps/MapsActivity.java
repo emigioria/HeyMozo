@@ -304,7 +304,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 //Cambiar por actividad para ver calificaciones en el futurooooo
-                Toast.makeText(getBaseContext(), "Caificaciones: Muy buenas!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Caificaciones: Muy buenas!", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -399,7 +399,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MapsActivity.this);
                     startActivity(i, options.toBundle());
                 } else {
-                    Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case SolicitarCartaTask.CANCELADO:

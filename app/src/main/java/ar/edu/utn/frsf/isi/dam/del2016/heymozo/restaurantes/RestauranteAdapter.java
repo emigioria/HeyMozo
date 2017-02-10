@@ -87,7 +87,7 @@ class RestauranteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 //Cambiar por actividad para ver calificaciones en el futurooooo
-                Toast.makeText(contexto, R.string.calificaciones, Toast.LENGTH_LONG).show();
+                Toast.makeText(contexto, R.string.calificaciones, Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
