@@ -337,6 +337,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .zoom(15)
                         .build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            } else {
+                CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(new LatLng(-41.07957936537341, -62.32715908437967))
+                        .zoom(4.203145f)
+                        .build();
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
         } else {
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(positionSaved));
