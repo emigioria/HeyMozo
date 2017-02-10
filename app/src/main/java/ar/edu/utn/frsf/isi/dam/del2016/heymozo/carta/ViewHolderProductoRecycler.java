@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
@@ -22,6 +23,7 @@ class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
     final ImageButton quitar;
     final ImageView imagenProducto;
     final ImageView imagenMasInformacion;
+    final ProgressBar progressBar;
 
     ViewHolderProductoRecycler(View viewBase) {
         super(viewBase);
@@ -36,5 +38,6 @@ class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
         this.quitar = (ImageButton) secondLayout.findViewById(R.id.quitar_imageview);
         this.imagenProducto = (ImageView) viewBase.findViewById(R.id.imagen_producto);
         this.imagenMasInformacion = (ImageView) viewBase.findViewById(R.id.mas_informacion_imageview);
+        this.progressBar = (ProgressBar) viewBase.findViewById(R.id.progressBar);
     }
 }
