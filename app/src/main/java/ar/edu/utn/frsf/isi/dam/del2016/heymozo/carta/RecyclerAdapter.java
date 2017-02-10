@@ -113,6 +113,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         //Carga la foto del producto
         if (producto.getImagen() != null && producto.getImagen().getUrlImagen(context) != null) {
             holder.imagenProducto.setVisibility(View.VISIBLE);
+            holder.progressBar.setVisibility(View.VISIBLE);
             Glide.with(context).load(producto.getImagen().getUrlImagen(context))
                     .error(context.getDrawable(R.drawable.ic_broken_image_black_24dp))
                     .thumbnail(0.5f)
@@ -139,6 +140,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         }
                     });
         } else {
+            holder.progressBar.setVisibility(View.GONE);
             holder.imagenProducto.setVisibility(View.GONE);
         }
 
