@@ -29,8 +29,7 @@
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 android:fitsSystemWindows="true"
-                android:transitionName="@string/transition_photo"
-                />
+                android:transitionName="@string/transition_photo_producto" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

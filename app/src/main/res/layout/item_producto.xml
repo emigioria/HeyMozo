@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginBottom="4dp"
-    android:layout_marginTop="4dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
+    android:layout_marginTop="4dp"
+    card_view:cardBackgroundColor="@color/white"
     card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="4dp"
-    card_view:cardBackgroundColor="@color/white">
+    card_view:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,17 +28,16 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/imagen_del_producto"
                 android:scaleType="centerCrop"
-                android:transitionName="@string/transition_photo"
-                />
+                android:transitionName="@string/transition_photo_producto" />
 
             <ImageView
-                card_view:srcCompat="@drawable/ic_info"
                 android:id="@+id/mas_informacion_imageview"
-                android:layout_gravity="top|end"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_gravity="top|end"
                 android:layout_margin="8dp"
-                android:alpha="0.7" />
+                android:alpha="0.7"
+                card_view:srcCompat="@drawable/ic_info" />
         </FrameLayout>
 
         <LinearLayout
@@ -53,8 +52,8 @@
                 android:layout_gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="normal"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/nombre_producto_textview"
@@ -73,32 +72,32 @@
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/precio_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|end"
+                android:layout_marginStart="8dp"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="normal"
-                android:layout_marginStart="8dp" />
+                android:textStyle="normal" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/descripcion_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/descripcion_textview"
-                android:textAppearance="@android:style/TextAppearance.Material.Notification.Info"
-                android:paddingBottom="4dp" />
+                android:paddingBottom="4dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Info" />
 
             <LinearLayout
                 android:id="@+id/second_layout"
@@ -112,9 +111,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/white"
-                    card_view:srcCompat="@drawable/ic_minus"
+                    android:scaleType="centerInside"
                     android:tint="@color/cardview_dark_background"
-                    android:scaleType="centerInside"/>
+                    card_view:srcCompat="@drawable/ic_minus" />
 
                 <ImageButton
                     android:id="@+id/agregar_imageview"
@@ -122,9 +121,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/white"
+                    android:scaleType="centerInside"
                     android:tint="@color/colorPrimary"
-                    card_view:srcCompat="@drawable/ic_plus"
-                    android:scaleType="centerInside" />
+                    card_view:srcCompat="@drawable/ic_plus" />
 
             </LinearLayout>
         </LinearLayout>

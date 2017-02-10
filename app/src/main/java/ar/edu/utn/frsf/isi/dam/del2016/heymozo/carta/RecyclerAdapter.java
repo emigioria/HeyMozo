@@ -148,7 +148,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             public void onClick(View v) {
                 Intent i = new Intent(context, DetalleProductoActivity.class);
                 ActivityOptions options = ActivityOptions
-                        .makeSceneTransitionAnimation((Activity) context, new Pair<View, String>(holder.imagenProducto, context.getString(R.string.transition_photo)));
+                        .makeSceneTransitionAnimation((Activity) context, new Pair<View, String>(holder.imagenProducto, context.getString(R.string.transition_photo_producto)));
                 i.putExtra("producto", producto.toJSONObject());
                 context.startActivity(i, options.toBundle());
             }

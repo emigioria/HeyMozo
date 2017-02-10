@@ -58,5 +58,5 @@
     <string name="imagen_del_producto">Imagen del producto</string>
     <string name="title_activity_detalle_producto">DetalleProductoActivity</string>
     <string name="calificaciones">Caificaciones: Muy buenas!</string>
-    <string name="transition_photo">transition_photo</string>
+    <string name="transition_photo_producto">transition_photo_producto</string>
 </resources>
