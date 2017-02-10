@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.ImageViewTarget;
+import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
@@ -30,6 +34,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         final ImageView imagen = (ImageView) findViewById(R.id.detalle_imageview);
         final TextView detallesTextView = (TextView) findViewById(R.id.detalles_textview);
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         setSupportActionBar(toolbar);
 
@@ -45,9 +50,22 @@ public class DetalleProductoActivity extends AppCompatActivity {
 
         Glide.with(getApplicationContext()).load(producto.getImagen().getUrlImagen(getApplicationContext()))
                 .error(getApplicationContext().getDrawable(R.drawable.ic_broken_image_black_24dp))
-                .placeholder(getApplicationContext().getDrawable(R.drawable.ic_loading))
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .listener(new RequestListener<String, GlideDrawable>() {
+                              @Override
+                              public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                                  progressBar.setVisibility(View.GONE);
+                                  return false;
+                              }
+
+                              @Override
+                              public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                  progressBar.setVisibility(View.GONE);
+                                  return false;
+                              }
+                          }
+                )
                 .into(new ImageViewTarget<GlideDrawable>(imagen) { //Necesario para dibujar bien el CenterCrop
                     @Override
                     protected void setResource(GlideDrawable resource) {

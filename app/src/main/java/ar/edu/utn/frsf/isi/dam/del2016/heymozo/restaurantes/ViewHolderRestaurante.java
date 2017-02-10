@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -11,7 +12,6 @@ import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 
 class ViewHolderRestaurante extends RecyclerView.ViewHolder {
 
-    final View row;
     final ImageView imageViewFotoRestaurante;
     final TextView textViewNombreRestaurante;
     final TextView textViewDireccion;
@@ -19,10 +19,10 @@ class ViewHolderRestaurante extends RecyclerView.ViewHolder {
     final TextView textViewPaginaWeb;
     final RatingBar ratingBar;
     final Button buttonVerCarta;
+    final ProgressBar progressBar;
 
     ViewHolderRestaurante(View viewBase) {
         super(viewBase);
-        this.row = viewBase;
         this.imageViewFotoRestaurante = (ImageView) viewBase.findViewById(R.id.imageViewFotoRestaurante);
         this.textViewNombreRestaurante = (TextView) viewBase.findViewById(R.id.textViewNombreRestaurante);
         this.textViewDireccion = (TextView) viewBase.findViewById(R.id.textViewDireccion);
@@ -30,5 +30,6 @@ class ViewHolderRestaurante extends RecyclerView.ViewHolder {
         this.textViewPaginaWeb = (TextView) viewBase.findViewById(R.id.textViewPaginaWeb);
         this.ratingBar = (RatingBar) viewBase.findViewById(R.id.ratingBar);
         this.buttonVerCarta = (Button) viewBase.findViewById(R.id.buttonVerCarta);
+        this.progressBar = (ProgressBar) viewBase.findViewById(R.id.progressBar);
     }
 }

@@ -25,6 +25,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,8 +33,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -257,6 +261,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
 
         View v = View.inflate(getBaseContext(), R.layout.custom_map_dialog, null);
+        final ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         ImageView imageViewFotoRestaurante = (ImageView) v.findViewById(R.id.imageViewFotoRestaurante);
         TextView textViewNombreRestaurante = (TextView) v.findViewById(R.id.textViewNombreRestaurante);
         TextView textViewTelefono = (TextView) v.findViewById(R.id.textViewTelefono);
@@ -268,10 +273,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (restaurante.getImagen() != null && restaurante.getImagen().getUrlImagen(getBaseContext()) != null) {
             Glide.with(getBaseContext()).load(restaurante.getImagen().getUrlImagen(getBaseContext()))
                     .error(getBaseContext().getDrawable(R.drawable.ic_broken_image_black_24dp))
-                    .placeholder(getBaseContext().getDrawable(R.drawable.ic_loading))
                     .thumbnail(0.5f)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                                  @Override
+                                  public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                                      progressBar.setVisibility(View.GONE);
+                                      return false;
+                                  }
+
+                                  @Override
+                                  public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                      progressBar.setVisibility(View.GONE);
+                                      return false;
+                                  }
+                              }
+                    )
                     .into(imageViewFotoRestaurante);
         }
 

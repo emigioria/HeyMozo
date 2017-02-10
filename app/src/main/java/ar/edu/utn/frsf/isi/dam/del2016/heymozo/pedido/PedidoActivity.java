@@ -16,6 +16,7 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +24,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.ImageViewTarget;
+import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 
 import java.util.Date;
@@ -45,6 +48,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
     private View layoutEstado;
     private View layoutTiempo;
     private View layoutPedido;
+    private ProgressBar progressBar;
     private ImageView imagenComedor;
     private Button buttonConfirmar;
     private RelativeLayout loadingPanel;
@@ -65,6 +69,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         loadingPanel = (RelativeLayout) findViewById(R.id.loadingPanel);
 
         layoutHeader = (ViewGroup) getLayoutInflater().inflate(R.layout.header_list_pedido, listaProductos, false);
+        progressBar = (ProgressBar) layoutHeader.findViewById(R.id.progressBar);
         imagenComedor = (ImageView) layoutHeader.findViewById(R.id.imagenComedor);
         textViewNombreComedor = (TextView) layoutHeader.findViewById(R.id.textViewNombreComedor);
     }
@@ -152,9 +157,22 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         if (pedido.getRestaurante().getImagen() != null && pedido.getRestaurante().getImagen().getUrlImagen(getBaseContext()) != null) {
             Glide.with(getBaseContext()).load(pedido.getRestaurante().getImagen().getUrlImagen(getBaseContext()))
                     .error(getBaseContext().getDrawable(R.drawable.ic_broken_image_black_24dp))
-                    .placeholder(getBaseContext().getDrawable(R.drawable.ic_loading))
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                                  @Override
+                                  public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                                      progressBar.setVisibility(View.GONE);
+                                      return false;
+                                  }
+
+                                  @Override
+                                  public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                      progressBar.setVisibility(View.GONE);
+                                      return false;
+                                  }
+                              }
+                    )
                     .into(new ImageViewTarget<GlideDrawable>(imagenComedor) { //Necesario para dibujar bien el CenterCrop
                         @Override
                         protected void setResource(GlideDrawable resource) {
