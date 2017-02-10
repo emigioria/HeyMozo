@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ar.edu.utn.frsf.isi.dam.del2016.heymozo">
+          package="ar.edu.utn.frsf.isi.dam.del2016.heymozo">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <application
         android:allowBackup="true"
@@ -25,12 +25,12 @@
             android:name=".inicio.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".inicio.MainActivity" />
+        <activity android:name=".inicio.MainActivity"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -42,7 +42,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="@string/google_maps_key"/>
 
         <activity
             android:name=".maps.MapsActivity"
@@ -51,18 +51,18 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ar.edu.utn.frsf.isi.dam.del2016.heymozo.inicio.MainActivity" />
+                android:value="ar.edu.utn.frsf.isi.dam.del2016.heymozo.inicio.MainActivity"/>
         </activity>
         <activity
             android:name=".barcode.BarcodeCaptureActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <service
             android:name=".notifications.FirebaseService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
         <service
@@ -70,14 +70,14 @@
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
         <activity
             android:name=".carta.CartaActivity"
             android:label="@string/title_activity_carta"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".pedido.PedidoActivity"
             android:label="@string/title_activity_pedido"
@@ -85,16 +85,16 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".inicio.MainActivity" />
+                android:value=".inicio.MainActivity"/>
         </activity>
         <activity
             android:name=".pedidos.MisPedidosActivity"
             android:label="@string/title_activity_mis_pedidos"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".restaurantes.RestaurantesAdheridosActivity"
             android:label="@string/title_activity_restaurantes_adheridos"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".carta.DetalleProductoActivity"
             android:label="@string/title_activity_detalle_producto"
@@ -102,7 +102,15 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity" />
+                android:value="ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity"/>
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".inicio.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ar.edu.utn.frsf.isi.dam.del2016.heymozo.inicio.MainActivity"/>
         </activity>
     </application>
 

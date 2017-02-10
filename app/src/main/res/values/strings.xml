@@ -43,4 +43,45 @@
     <string name="calificaciones">Caificaciones: Muy buenas!</string>
     <string name="transition_photo_producto">transition_photo_producto</string>
     <string name="transition_card_pedido">transition_card_pedido</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notificaciones</string>
+
+    <string name="pref_title_new_message_notifications">Activar notificaciones</string>
+
+    <string name="pref_title_ringtone">Tono de notificación</string>
+    <string name="pref_ringtone_silent">Ninguno</string>
+
+    <string name="pref_title_vibrate">Vibrar</string>
+    <string name="pref_title_light">Luz</string>
+    <string name="notifications_new_message_ringtone">notifications_new_message_ringtone</string>
+    <string name="notifications_new_message_vibrate">notifications_new_message_vibrate</string>
+    <string name="notifications_new_message_light">notifications_new_message_light</string>
+    <string name="notifications_new_message">notifications_new_message</string>
+    <string name="pref_animaciones">pref_animaciones</string>
+    <string-array name="pref_light_titles">
+        <item>Ninguno</item>
+        <item>Naranja</item>
+        <item>Blanco</item>
+        <item>Rojo</item>
+        <item>Amarillo</item>
+        <item>Verde</item>
+        <item>Cian</item>
+        <item>Azul</item>
+        <item>Morado</item>
+    </string-array>
+    <string-array name="pref_light_values">
+        <item>-1</item>
+        <item>#ffff9800</item>
+        <item>white</item>
+        <item>red</item>
+        <item>yellow</item>
+        <item>green</item>
+        <item>cyan</item>
+        <item>blue</item>
+        <item>purple</item>
+    </string-array>
 </resources>
