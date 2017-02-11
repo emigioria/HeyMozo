@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.SettingsActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.maps.MapsActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.notifications.FirebaseService;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         CustomGrid adapter = new CustomGrid(MainActivity.this, text, imageId);
         GridView grid = (GridView) findViewById(R.id.grid);
@@ -93,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         intent = new Intent(MainActivity.this, RestaurantesAdheridosActivity.class);
+                        startActivity(intent, options.toBundle());
+                        break;
+                    case 4:
+                        intent = new Intent(MainActivity.this, SettingsActivity.class);
                         startActivity(intent, options.toBundle());
                         break;
                     default:
