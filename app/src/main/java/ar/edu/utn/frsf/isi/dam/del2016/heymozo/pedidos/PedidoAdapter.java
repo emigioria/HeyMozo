@@ -56,7 +56,7 @@ class PedidoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         holder.buttonEvaluarExp.setVisibility(View.GONE);
         holder.buttonGracias.setVisibility(View.GONE);
-        if (pedido.getCalificacion() != null) {
+        if (pedido.getCalificacionId() != null) {
             holder.buttonGracias.setVisibility(View.VISIBLE);
         } else {
             if (pedido.getEstado().equals(context.getString(R.string.estado_pedido_terminado))) {
@@ -77,7 +77,7 @@ class PedidoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.buttonEvaluarExp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pedido.setCalificacion("Muy buena");
+                pedido.setCalificacionId("1");
                 notifyItemChanged(position);
             }
         });

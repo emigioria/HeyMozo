@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 public class Carta {
-    private static final String RESTAURANT = "nombre_restaurant";
+    private static final String RESTAURANT = "restaurante";
     private static final String SECCIONES = "secciones";
 
     @SerializedName(RESTAURANT)

@@ -15,7 +15,7 @@ public class Pedido {
     private static final String ESTADO = "estado";
     private static final String FECHA_PEDIDO = "fecha_pedido";
     private static final String TOTAL = "total";
-    private static final String CALIFICACION = "calificacion";
+    private static final String CALIFICACION_ID = "calificacion_id";
 
     @SerializedName(USUARIO)
     private String userID;
@@ -41,8 +41,8 @@ public class Pedido {
     @SerializedName(TOTAL)
     private Double total;
 
-    @SerializedName(CALIFICACION)
-    private String calificacion;
+    @SerializedName(CALIFICACION_ID)
+    private String calificacionId;
 
     public Pedido() {
 
@@ -92,15 +92,15 @@ public class Pedido {
         return finaliza;
     }
 
+    public Pedido setFinaliza(Long finaliza) {
+        this.finaliza = finaliza;
+        return this;
+    }
+
     public Pedido setFinaliza(Date finaliza) {
         if (finaliza != null) {
             this.finaliza = finaliza.getTime();
         }
-        return this;
-    }
-
-    public Pedido setFinaliza(Long finaliza) {
-        this.finaliza = finaliza;
         return this;
     }
 
@@ -148,6 +148,11 @@ public class Pedido {
         return fechaPedido;
     }
 
+    public Pedido setFechaPedido(Long fechaPedido) {
+        this.fechaPedido = fechaPedido;
+        return this;
+    }
+
     public Pedido setFechaPedido(Date fechaPedido) {
         if (fechaPedido != null) {
             this.fechaPedido = fechaPedido.getTime();
@@ -155,17 +160,12 @@ public class Pedido {
         return this;
     }
 
-    public Pedido setFechaPedido(Long fechaPedido) {
-        this.fechaPedido = fechaPedido;
-        return this;
+    public String getCalificacionId() {
+        return calificacionId;
     }
 
-    public String getCalificacion() {
-        return calificacion;
-    }
-
-    public Pedido setCalificacion(String calificacion) {
-        this.calificacion = calificacion;
+    public Pedido setCalificacionId(String calificacionId) {
+        this.calificacionId = calificacionId;
         return this;
     }
 }
