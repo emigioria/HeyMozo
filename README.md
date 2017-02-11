@@ -16,13 +16,13 @@ Funcionalidades
 * Notificar el estado de una orden
 * Permitir localizar restaurantes cercanos adheridos a la aplicación
 
-![Main page](doc/1.png)
- ![Main page](doc/2.png)
- ![Main page](doc/3.png)
-
-![Main page](doc/4.png)
- ![Main page](doc/5.png)
-
-![Main page](doc/7.png)
- ![Main page](doc/8.png)
- ![Main page](doc/9.png)
+Capturas de pantalla
+----------
+* Pantalla de inicio<br/>
+<img src="doc/1.png" width="200"><br/>
+* Hacer un pedido<br/>
+<img src="doc/2.png" width="200">   <img src="doc/3.png" width="200"><br/>
+* Ver pedidos realizados<br/>
+<img src="doc/4.png" width="200">   <img src="doc/5.png" width="200"><br/>
+* Ver restaurantes adheridos<br/>
+<img src="doc/7.png" width="200">   <img src="doc/8.png" width="200">   <img src="doc/9.png" width="200"><br/>
