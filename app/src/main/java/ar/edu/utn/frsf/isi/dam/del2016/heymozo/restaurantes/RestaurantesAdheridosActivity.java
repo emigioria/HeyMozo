@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.Transition;
+import android.util.Pair;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -38,6 +39,7 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
     private SolicitarCartaTask solicitarCartaTask;
     private RelativeLayout loadingPanel;
     private List<Restaurante> restaurantes;
+    private View cardRestauranteAMostrarCarta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +147,8 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
                     extras.putString("mesa", mesaJSON);
                     extras.putBoolean("noHacerPedidos", true);
                     i.putExtras(extras);
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RestaurantesAdheridosActivity.this);
+                    ActivityOptions options = ActivityOptions
+                            .makeSceneTransitionAnimation(RestaurantesAdheridosActivity.this, new Pair<>(cardRestauranteAMostrarCarta, getString(R.string.transition_card_restaurante)));
                     startActivity(i, options.toBundle());
                 } else {
                     Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_SHORT).show();
@@ -162,7 +165,8 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
     }
 
     @Override
-    public void mostrarCarta(Restaurante restaurante) {
+    public void mostrarCarta(Restaurante restaurante, View card) {
+        this.cardRestauranteAMostrarCarta = card;
         solicitarCartaTask = new SolicitarCartaTask(this, this);
         solicitarCartaTask.execute(restaurante.getId(), "");
     }

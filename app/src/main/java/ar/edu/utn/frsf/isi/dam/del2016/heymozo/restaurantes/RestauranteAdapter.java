@@ -110,7 +110,7 @@ class RestauranteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.buttonVerCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarCartaListener.mostrarCarta(restaurante);
+                mostrarCartaListener.mostrarCarta(restaurante, holder.itemView);
             }
         });
     }
