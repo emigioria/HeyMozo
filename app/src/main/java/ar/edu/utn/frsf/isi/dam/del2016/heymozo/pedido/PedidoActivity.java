@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
+import android.transition.Transition;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,9 +83,9 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         setSupportActionBar(toolbar);
         setTitle(getString(R.string.title_activity_pedido));
         linkearVista();
-        Slide entrada = new Slide();
-        entrada.setSlideEdge(Gravity.TOP);
-        getWindow().setEnterTransition(entrada);
+        if (savedInstanceState == null) {
+            setearAnimaciones();
+        }
 
         //Setear header a la lista y un efecto parallax
         listaProductos.addHeaderView(layoutHeader, null, false);
@@ -127,6 +128,40 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
                 this.finish();
             }
         }
+    }
+
+    private void setearAnimaciones() {
+        Slide entrada = new Slide();
+        entrada.setSlideEdge(Gravity.TOP);
+        getWindow().setEnterTransition(entrada);
+
+        getWindow().getEnterTransition().addListener(new Transition.TransitionListener() {
+            @Override
+            public void onTransitionStart(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionEnd(Transition transition) {
+                //Arregla bug gráfico entre las animaciones y el efecto parallax del listView
+                imagenComedor.setY(0);
+            }
+
+            @Override
+            public void onTransitionCancel(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionPause(Transition transition) {
+
+            }
+
+            @Override
+            public void onTransitionResume(Transition transition) {
+
+            }
+        });
     }
 
     @Override
