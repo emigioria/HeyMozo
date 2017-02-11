@@ -34,6 +34,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.TransitionListenerAdapter;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
 public class PedidoActivity extends AppCompatActivity implements GuardarPedidoListener, CargarPedidoListener {
@@ -135,31 +136,11 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         entrada.setSlideEdge(Gravity.TOP);
         getWindow().setEnterTransition(entrada);
 
-        getWindow().getEnterTransition().addListener(new Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(Transition transition) {
-
-            }
-
+        getWindow().getEnterTransition().addListener(new TransitionListenerAdapter() {
             @Override
             public void onTransitionEnd(Transition transition) {
                 //Arregla bug gráfico entre las animaciones y el efecto parallax del listView
                 imagenComedor.setY(0);
-            }
-
-            @Override
-            public void onTransitionCancel(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-
             }
         });
     }

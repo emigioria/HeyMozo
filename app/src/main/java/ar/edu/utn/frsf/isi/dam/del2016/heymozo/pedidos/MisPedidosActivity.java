@@ -22,6 +22,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.TransitionListenerAdapter;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.modelo.Pedido;
 
 public class MisPedidosActivity extends AppCompatActivity implements ListarMisPedidosListener {
@@ -53,30 +54,10 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
         getWindow().setExitTransition(new Fade());
 
         listaPedidos.setVisibility(View.GONE);
-        getWindow().getEnterTransition().addListener(new Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(Transition transition) {
-
-            }
-
+        getWindow().getEnterTransition().addListener(new TransitionListenerAdapter() {
             @Override
             public void onTransitionEnd(Transition transition) {
                 listaPedidos.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onTransitionCancel(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-
             }
         });
     }

@@ -22,6 +22,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.TransitionListenerAdapter;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.CartaActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaListener;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta.SolicitarCartaTask;
@@ -60,30 +61,10 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
         getWindow().setExitTransition(new Fade());
 
         listaRestaurantesAdheridos.setVisibility(View.GONE);
-        getWindow().getEnterTransition().addListener(new Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(Transition transition) {
-
-            }
-
+        getWindow().getEnterTransition().addListener(new TransitionListenerAdapter() {
             @Override
             public void onTransitionEnd(Transition transition) {
                 listaRestaurantesAdheridos.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onTransitionCancel(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
-
             }
         });
     }
