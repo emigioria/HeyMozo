@@ -5,4 +5,8 @@
         android:fragment="ar.edu.utn.frsf.isi.dam.del2016.heymozo.SettingsActivity$NotificationPreferenceFragment"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/pref_header_notifications" />
+
+    <header
+        android:id="@+id/clearImageCache"
+        android:title="@string/pref_header_clear_image_cache" />
 </preference-headers>

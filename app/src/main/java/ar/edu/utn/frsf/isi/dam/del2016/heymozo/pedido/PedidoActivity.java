@@ -126,7 +126,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
                     cargarPedidoTask.execute(pedidoId);
                 }
             } else {
-                this.finish();
+                this.finishAfterTransition();
             }
         }
     }
@@ -278,7 +278,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
                 Toast.makeText(this, getString(R.string.error_servidor) + "\n" + getString(R.string.pedido_no_guardado), Toast.LENGTH_LONG).show();
                 break;
         }
-        finish();
+        finishAfterTransition();
     }
 
     @Override
@@ -291,7 +291,7 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
         switch (resultCode) {
             case CargarPedidoTask.OK:
                 if (pedido == null) {
-                    finish();
+                    finishAfterTransition();
                     return;
                 }
                 this.pedido = pedido;
@@ -299,11 +299,11 @@ public class PedidoActivity extends AppCompatActivity implements GuardarPedidoLi
                 break;
             case CargarPedidoTask.CANCELADO:
                 Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
-                finish();
+                finishAfterTransition();
                 break;
             case CargarPedidoTask.ERROR:
                 Toast.makeText(this, getString(R.string.error_servidor), Toast.LENGTH_LONG).show();
-                finish();
+                finishAfterTransition();
                 break;
         }
         loadingPanel.setVisibility(View.GONE);

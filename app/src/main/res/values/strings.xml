@@ -33,7 +33,7 @@
     <string name="btnMapa">Ver restaurantes\n cercanos</string>
     <string name="btnPedidos">Ver mis pedidos\n </string>
     <string name="btnRestaurantesAdheridos">Ver restaurantes adheridos</string>
-    <string name="btnConfiguracion">Configuración</string>
+    <string name="btnConfiguracion">Configuraciones</string>
     <string name="btnAyuda">Ayuda</string>
     <string name="buttonVerCarta">Ver Carta</string>
     <string name="restaurante_sin_carta">El restaurante seleccionado no posee una carta actualmente.</string>
@@ -44,12 +44,13 @@
     <string name="transition_photo_producto">transition_photo_producto</string>
     <string name="transition_card_pedido">transition_card_pedido</string>
     <string name="transition_card_restaurante">transition_card_restaurante</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Configuraciones</string>
 
     <!-- Strings related to Settings -->
 
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notificaciones</string>
+    <string name="pref_header_clear_image_cache">Borrar cache de imágenes</string>
 
     <string name="pref_title_new_message_notifications">Activar notificaciones</string>
 
@@ -63,6 +64,7 @@
     <string name="notifications_new_message_light">notifications_new_message_light</string>
     <string name="notifications_new_message">notifications_new_message</string>
     <string name="pref_animaciones">pref_animaciones</string>
+    <string name="cache_imagenes_borrado">Cache de imágenes borrado</string>
     <string-array name="pref_light_titles">
         <item>Ninguno</item>
         <item>Naranja</item>

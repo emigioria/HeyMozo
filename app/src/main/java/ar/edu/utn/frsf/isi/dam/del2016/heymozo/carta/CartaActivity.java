@@ -56,7 +56,7 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         mesa = gson.fromJson(getIntent().getExtras().getString("mesa"), Mesa.class);
         noHacerPedidos = getIntent().getExtras().getBoolean("noHacerPedidos");
         if (carta == null || mesa == null) {
-            finish();
+            finishAfterTransition();
             return;
         }
 
@@ -145,7 +145,7 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         switch (requestCode) {
             case CODIGO_PEDIDO:
                 if (resultCode == RESULT_OK) {
-                    finish();
+                    finishAfterTransition();
                 }
                 break;
             default:

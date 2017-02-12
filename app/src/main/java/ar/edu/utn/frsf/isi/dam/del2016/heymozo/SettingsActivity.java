@@ -20,6 +20,9 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -170,6 +173,28 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || NotificationPreferenceFragment.class.getName().equals(fragmentName);
+    }
+
+    @Override
+    public void onHeaderClick(Header header, int position) {
+        super.onHeaderClick(header, position);
+        if (header.id == R.id.clearImageCache) {
+            //Borrar cache de Glide
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Glide.get(getBaseContext()).clearDiskCache();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Glide.get(getBaseContext()).clearMemory();
+                        }
+                    });
+                }
+            }).start();
+            Glide.get(getBaseContext()).clearMemory();
+            Toast.makeText(getBaseContext(), R.string.cache_imagenes_borrado, Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

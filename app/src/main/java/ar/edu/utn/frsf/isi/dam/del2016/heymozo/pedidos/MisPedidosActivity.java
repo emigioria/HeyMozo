@@ -95,7 +95,7 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
         switch (resultCode) {
             case ListarMisPedidosTask.OK:
                 if (pedidos == null) {
-                    finish();
+                    finishAfterTransition();
                     return;
                 }
                 Collections.sort(pedidos, new Comparator<Pedido>() {
@@ -109,11 +109,11 @@ public class MisPedidosActivity extends AppCompatActivity implements ListarMisPe
                 break;
             case ListarMisPedidosTask.CANCELADO:
                 Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
-                finish();
+                finishAfterTransition();
                 break;
             case ListarMisPedidosTask.ERROR:
                 Toast.makeText(this, getString(R.string.error_servidor), Toast.LENGTH_LONG).show();
-                finish();
+                finishAfterTransition();
                 break;
         }
         loadingPanel.setVisibility(View.GONE);

@@ -106,14 +106,20 @@ public class RestaurantesAdheridosActivity extends AppCompatActivity implements 
     public void busquedaRestauranteFinalizada(List<Restaurante> restaurantes, int resultCode) {
         switch (resultCode) {
             case ListarRestaurantesTask.OK:
+                if (restaurantes == null) {
+                    finishAfterTransition();
+                    return;
+                }
                 this.restaurantes = restaurantes;
                 listarRestaurantes();
                 break;
             case ListarRestaurantesTask.CANCELADO:
                 Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
+                finishAfterTransition();
                 break;
             case ListarRestaurantesTask.ERROR:
                 Toast.makeText(this, getString(R.string.error_servidor), Toast.LENGTH_LONG).show();
+                finishAfterTransition();
                 break;
         }
         loadingPanel.setVisibility(View.GONE);

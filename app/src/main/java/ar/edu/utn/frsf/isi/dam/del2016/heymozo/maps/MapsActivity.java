@@ -188,7 +188,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     setMyLocation();
                 } else {
-                    finish();
+                    finishAfterTransition();
                     Toast.makeText(this, R.string.no_permission_fine_location, Toast.LENGTH_SHORT).show();
                 }
             }

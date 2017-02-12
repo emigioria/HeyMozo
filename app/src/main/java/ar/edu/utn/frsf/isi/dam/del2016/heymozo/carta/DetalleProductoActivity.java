@@ -44,7 +44,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
             producto = new Gson().fromJson(savedInstanceState.getString("producto"), ProductoDetallado.class);
         }
         if (producto == null) {
-            finish();
+            finishAfterTransition();
             return;
         }
 

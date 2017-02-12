@@ -139,7 +139,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
                 } else {
                     Toast.makeText(this, R.string.restaurante_sin_carta, Toast.LENGTH_SHORT).show();
                 }
-                finish();
+                finishAfterTransition();
                 break;
             case SolicitarCartaTask.CANCELADO:
                 Toast.makeText(this, R.string.mensaje_solicitud_cancelada, Toast.LENGTH_LONG).show();
@@ -301,7 +301,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
 
         DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                finish();
+                finishAfterTransition();
             }
         };
 

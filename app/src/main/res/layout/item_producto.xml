@@ -94,45 +94,39 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/descripcion_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:paddingBottom="4dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Notification.Info" />
 
-            <TextView
-                android:id="@+id/descripcion_textview"
+        <LinearLayout
+            android:id="@+id/second_layout"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/quitar_imageview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
-                android:textAppearance="@android:style/TextAppearance.Material.Notification.Info" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:scaleType="centerInside"
+                android:tint="@color/cardview_dark_background"
+                card_view:srcCompat="@drawable/ic_minus" />
 
-            <LinearLayout
-                android:id="@+id/second_layout"
+            <ImageButton
+                android:id="@+id/agregar_imageview"
                 android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:scaleType="centerInside"
+                android:tint="@color/colorPrimary"
+                card_view:srcCompat="@drawable/ic_plus" />
 
-                <ImageButton
-                    android:id="@+id/quitar_imageview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:scaleType="centerInside"
-                    android:tint="@color/cardview_dark_background"
-                    card_view:srcCompat="@drawable/ic_minus" />
-
-                <ImageButton
-                    android:id="@+id/agregar_imageview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:scaleType="centerInside"
-                    android:tint="@color/colorPrimary"
-                    card_view:srcCompat="@drawable/ic_plus" />
-
-            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
