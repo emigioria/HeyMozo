@@ -65,6 +65,8 @@
     <string name="notifications_new_message">notifications_new_message</string>
     <string name="pref_animaciones">pref_animaciones</string>
     <string name="cache_imagenes_borrado">Cache de imágenes borrado</string>
+    <string name="ayuda_qr_mensaje">Captura el código QR que se encuentra en la mesa o en la carta</string>
+    <string name="ayuda_qr_button_entendido">Entendido</string>
     <string-array name="pref_light_titles">
         <item>Ninguno</item>
         <item>Naranja</item>

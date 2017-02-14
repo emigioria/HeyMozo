@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.AsyncTask;
@@ -37,6 +38,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -72,6 +75,10 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     private CameraSourcePreview mPreview;
     private RelativeLayout loadingPanelCarta;
     private SolicitarCartaTask solicitarCartaTask;
+    private LinearLayout mensajeAyuda;
+    private Button btnEntendido;
+
+    private SharedPreferences preferenciasAyuda;
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -83,6 +90,10 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         loadingPanelCarta = (RelativeLayout) findViewById(R.id.loadingPanelCarta);
+        mensajeAyuda = (LinearLayout) findViewById(R.id.ayuda_qr_mensaje);
+        btnEntendido = (Button) findViewById(R.id.entendido_ayuda_qr_button);
+
+        preferenciasAyuda = getApplicationContext().getSharedPreferences("ayuda",Context.MODE_PRIVATE);
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -92,6 +103,26 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         } else {
             requestCameraPermission();
         }
+
+        if(preferenciasAyuda.getBoolean("ayuda_qr",true)){
+            mensajeAyuda.setVisibility(View.VISIBLE);
+        }
+        else{
+            mensajeAyuda.setVisibility(View.GONE);
+        }
+
+        btnEntendido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editorPreferencias = preferenciasAyuda.edit();
+                editorPreferencias.putBoolean("ayuda_qr",false);
+                editorPreferencias.apply();
+
+                mensajeAyuda.setVisibility(View.GONE);
+            }
+        });
+
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/topLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +10,46 @@
     <ar.edu.utn.frsf.isi.dam.del2016.heymozo.camera.CameraSourcePreview
         android:id="@+id/preview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_gravity="end" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundAyuda"
+        android:layout_gravity="end"
+        android:padding="8dp"
+        android:id="@+id/ayuda_qr_mensaje">
+
+        <TextView
+            android:text="@string/ayuda_qr_mensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ayuda_qr_textview"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="textStart"
+            android:textSize="18sp" />
+
+        <Button
+            android:text="@string/ayuda_qr_button_entendido"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:id="@+id/entendido_ayuda_qr_button"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary"
+            android:gravity="end|center_vertical"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cuadrado_qr"
+        android:id="@+id/imageView"
+        android:background="@android:color/transparent"
+        android:layout_gravity="center" />
 
     <RelativeLayout
         android:id="@+id/loadingPanelCarta"
@@ -26,4 +66,4 @@
             android:visibility="visible" />
     </RelativeLayout>
 
-</merge>
+</FrameLayout>
