@@ -24,6 +24,7 @@ class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
     final ImageView imagenProducto;
     final ImageView imagenMasInformacion;
     final ProgressBar progressBar;
+    final TextView mensajeAyudaInformacion;
 
     ViewHolderProductoRecycler(View viewBase) {
         super(viewBase);
@@ -39,5 +40,6 @@ class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
         this.imagenProducto = (ImageView) viewBase.findViewById(R.id.imagen_producto);
         this.imagenMasInformacion = (ImageView) viewBase.findViewById(R.id.mas_informacion_imageview);
         this.progressBar = (ProgressBar) viewBase.findViewById(R.id.progressBar);
+        this.mensajeAyudaInformacion = (TextView) viewBase.findViewById(R.id.ayuda_item_informacion_mensaje);
     }
 }

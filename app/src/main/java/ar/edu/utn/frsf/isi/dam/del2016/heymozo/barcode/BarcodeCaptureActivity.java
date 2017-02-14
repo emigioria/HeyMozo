@@ -38,6 +38,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -87,13 +89,14 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.barcode_capture);
+        setStatusBarTranslucent();
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         loadingPanelCarta = (RelativeLayout) findViewById(R.id.loadingPanelCarta);
         mensajeAyuda = (LinearLayout) findViewById(R.id.ayuda_qr_mensaje);
         btnEntendido = (Button) findViewById(R.id.entendido_ayuda_qr_button);
 
-        preferenciasAyuda = getApplicationContext().getSharedPreferences("ayuda",Context.MODE_PRIVATE);
+        preferenciasAyuda = getApplicationContext().getSharedPreferences("ayuda", Context.MODE_PRIVATE);
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -104,10 +107,9 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
             requestCameraPermission();
         }
 
-        if(preferenciasAyuda.getBoolean("ayuda_qr",true)){
+        if (preferenciasAyuda.getBoolean("ayuda_qr", true)) {
             mensajeAyuda.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             mensajeAyuda.setVisibility(View.GONE);
         }
 
@@ -115,14 +117,16 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editorPreferencias = preferenciasAyuda.edit();
-                editorPreferencias.putBoolean("ayuda_qr",false);
+                editorPreferencias.putBoolean(getString(R.string.key_ayuda_qr), false);
                 editorPreferencias.apply();
 
                 mensajeAyuda.setVisibility(View.GONE);
             }
         });
+    }
 
-
+    protected void setStatusBarTranslucent() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
     @Override

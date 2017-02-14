@@ -1,7 +1,9 @@
 package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +20,8 @@ import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 
@@ -38,12 +42,18 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
     private Mesa mesa;
     private Boolean noHacerPedidos;
     private FloatingActionButton fab;
+    private SharedPreferences preferenciasAyuda;
+    private LinearLayout mensajeAyudaRealizarPedido;
+    private Button btnAyudaRealizarPedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mensajeAyudaRealizarPedido = (LinearLayout) findViewById(R.id.ayuda_realizar_pedido_mensaje);
+        btnAyudaRealizarPedido = (Button) findViewById(R.id.entendido_ayuda_realizar_pedido_button);
+        preferenciasAyuda = getSharedPreferences("ayuda", Context.MODE_PRIVATE);
         setSupportActionBar(toolbar);
         getWindow().setExitTransition(new Fade());
 
@@ -84,6 +94,17 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        mensajeAyudaRealizarPedido.setVisibility(View.GONE);
+        btnAyudaRealizarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editorPreferencias = preferenciasAyuda.edit();
+                editorPreferencias.putBoolean(getString(R.string.key_ayuda_realizar_pedido),false);
+                editorPreferencias.apply();
+                mensajeAyudaRealizarPedido.setVisibility(View.GONE);
+            }
+        });
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,10 +128,14 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(CartaActivity.this);
                     startActivityForResult(intent, CODIGO_PEDIDO, options.toBundle());
                 }
+                else{
+                    //TODO mensaje ayuda selecionar productos
+                }
             }
         });
         if (noHacerPedidos != null && noHacerPedidos) {
             ((ViewGroup) fab.getParent()).removeView(fab);
+            mensajeAyudaRealizarPedido.setVisibility(View.GONE);
         }
     }
 
@@ -141,6 +166,11 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
     }
 
     @Override
+    public LinearLayout getMensajeAyudaRealizarPedido() {
+        return mensajeAyudaRealizarPedido;
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case CODIGO_PEDIDO:
@@ -163,6 +193,8 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private LinearLayout mensajeAyudaRealizarPedido;
+        private static SharedPreferences preferenciasAyuda;
 
         public PlaceholderFragment() {
         }
@@ -194,20 +226,29 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
             final Carta carta = cartaListener.getCarta();
             final Boolean noHacerPedidos = cartaListener.getNoHacerPedidos();
             final FloatingActionButton fab = cartaListener.getFab();
+            preferenciasAyuda = recyclerView.getContext().getSharedPreferences("ayuda", Context.MODE_PRIVATE);
+            mensajeAyudaRealizarPedido = cartaListener.getMensajeAyudaRealizarPedido();
 
-            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(carta.getRestaurante().getMoneda(), noHacerPedidos, carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
+            final RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), carta.getRestaurante().getMoneda(), noHacerPedidos, carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
             recyclerView.setAdapter(recyclerAdapter);
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    if (dy > 0 || dy < 0 && fab.isShown())
+                    if (dy > 0 || dy < 0 && fab.isShown()) {
+                        mensajeAyudaRealizarPedido.setVisibility(View.GONE);
                         fab.hide();
+                    }
                 }
 
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 
                     if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        mensajeAyudaRealizarPedido.setVisibility(View.GONE);
+                        if(!noHacerPedidos && preferenciasAyuda.getBoolean(getString(R.string.key_ayuda_realizar_pedido),true)){
+                            mensajeAyudaRealizarPedido.setVisibility(View.VISIBLE);
+                        }
+
                         fab.show();
                     }
                     super.onScrollStateChanged(recyclerView, newState);

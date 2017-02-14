@@ -11,7 +11,7 @@
         android:id="@+id/preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="end" />
+        android:layout_gravity="end"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -32,7 +32,7 @@
             android:textSize="18sp" />
 
         <Button
-            android:text="@string/ayuda_qr_button_entendido"
+            android:text="@string/ayuda_button_entendido"
             android:layout_width="match_parent"
             android:layout_height="33dp"
             android:id="@+id/entendido_ayuda_qr_button"

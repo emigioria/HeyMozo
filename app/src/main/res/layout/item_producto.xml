@@ -22,6 +22,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="@string/ayuda_mas_informacion"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/ayuda_item_informacion_mensaje"
+                    android:background="@drawable/mensaje"
+                    android:backgroundTint="@color/colorBackgroundAyuda"
+                    android:layout_height="48dp"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/mas_informacion_imageview"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:alpha="0.7"
+                    card_view:srcCompat="@drawable/ic_info"
+                    android:layout_gravity="end"
+                    android:layout_weight="0.3" />
+            </LinearLayout>
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleSmall"
@@ -37,14 +63,6 @@
                 android:scaleType="centerCrop"
                 android:transitionName="@string/transition_photo_producto" />
 
-            <ImageView
-                android:id="@+id/mas_informacion_imageview"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="top|end"
-                android:layout_margin="8dp"
-                android:alpha="0.7"
-                card_view:srcCompat="@drawable/ic_info" />
         </FrameLayout>
 
         <LinearLayout

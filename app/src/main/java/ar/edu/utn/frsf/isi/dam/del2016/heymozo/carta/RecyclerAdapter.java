@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -35,8 +36,10 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<ProductoDetallado> productos;
     private Moneda moneda;
     private int posicionConBotones = -1;
+    private SharedPreferences preferenciasAyuda;
 
-    RecyclerAdapter(Moneda moneda, Boolean noHacerPedidos, List<ProductoDetallado> itemList) {
+    RecyclerAdapter(Context context, Moneda moneda, Boolean noHacerPedidos, List<ProductoDetallado> itemList) {
+        this.context = context;
         if (itemList != null) {
             productos = itemList;
         } else {
@@ -44,6 +47,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         this.moneda = moneda;
         this.noHacerPedidos = noHacerPedidos;
+        preferenciasAyuda = context.getSharedPreferences("ayuda",Context.MODE_PRIVATE);
     }
 
     @Override
@@ -61,6 +65,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         holder.moneda.setText(moneda.getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(), "%.2f", producto.getPrecio()));
+        holder.mensajeAyudaInformacion.setVisibility(View.GONE);
 
         if (producto.getDescripcion() != null) {
             holder.descripcionCorta.setVisibility(View.VISIBLE);
@@ -102,6 +107,11 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             //Muestra la imagen de producto de forma expandida
             paramsImagenProducto.height = (int) (ALTURA_EXTENDIDO * scale + 0.5f);
+
+            //Muestra el mensaje de ayuda si corresponde
+            if(producto.getDescripcionLarga() != null && preferenciasAyuda.getBoolean(context.getString(R.string.key_ayuda_item_mas_informacion),true)){
+                holder.mensajeAyudaInformacion.setVisibility(View.VISIBLE);
+            }
         } else {
             //Muestra la imagen de producto de forma contraida
             holder.secondLayout.setVisibility(LinearLayout.GONE);
@@ -162,6 +172,11 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.imagenMasInformacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Modificamos las preferencias para que el mensaje de ayuda no se muestre más
+                SharedPreferences.Editor editorPreferencias = preferenciasAyuda.edit();
+                editorPreferencias.putBoolean(context.getString(R.string.key_ayuda_item_mas_informacion),false);
+                editorPreferencias.apply();
+
                 Intent i = new Intent(context, DetalleProductoActivity.class);
                 ActivityOptions options = ActivityOptions
                         .makeSceneTransitionAnimation((Activity) context, new Pair<View, String>(holder.imagenProducto, context.getString(R.string.transition_photo_producto)));
@@ -193,5 +208,4 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getItemCount() {
         return productos.size();
     }
-
 }

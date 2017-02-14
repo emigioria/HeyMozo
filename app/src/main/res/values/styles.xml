@@ -20,8 +20,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="SplashTheme" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/background_splash</item>
+    <style name="AppTheme.TranslucentStatusBar" parent="AppTheme.Base">
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
 </resources>

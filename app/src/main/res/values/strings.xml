@@ -40,7 +40,6 @@
     <string name="title_activity_restaurantes_adheridos">Restaurantes Adheridos</string>
     <string name="imagen_del_producto">Imagen del producto</string>
     <string name="title_activity_detalle_producto">DetalleProductoActivity</string>
-    <string name="calificaciones">Caificaciones: Muy buenas!</string>
     <string name="transition_photo_producto">transition_photo_producto</string>
     <string name="transition_card_pedido">transition_card_pedido</string>
     <string name="transition_card_restaurante">transition_card_restaurante</string>
@@ -65,8 +64,6 @@
     <string name="notifications_new_message">notifications_new_message</string>
     <string name="pref_animaciones">pref_animaciones</string>
     <string name="cache_imagenes_borrado">Cache de imágenes borrado</string>
-    <string name="ayuda_qr_mensaje">Captura el código QR que se encuentra en la mesa o en la carta</string>
-    <string name="ayuda_qr_button_entendido">Entendido</string>
     <string-array name="pref_light_titles">
         <item>Ninguno</item>
         <item>Naranja</item>
@@ -89,4 +86,14 @@
         <item>blue</item>
         <item>purple</item>
     </string-array>
+
+    <string name="ayuda_qr_mensaje">Captura el código QR que se encuentra en la mesa o en la carta</string>
+    <string name="ayuda_realizar_pedido_mensaje">Confirmá tu pedido</string>
+    <string name="ayuda_button_entendido">Entendido</string>
+
+    <!-- Claves de preferencias para mensajes de ayuda -->
+    <string name="key_ayuda_qr">ayuda_qr</string>
+    <string name="key_ayuda_item_mas_informacion">ayuda_item_mas_informacion</string>
+    <string name="key_ayuda_realizar_pedido">ayuda_realizar_pedido</string>
+    <string name="ayuda_mas_informacion">Más información</string>
 </resources>
