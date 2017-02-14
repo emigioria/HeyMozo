@@ -38,7 +38,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -91,12 +90,19 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         setContentView(R.layout.barcode_capture);
         setStatusBarTranslucent();
 
+
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         loadingPanelCarta = (RelativeLayout) findViewById(R.id.loadingPanelCarta);
         mensajeAyuda = (LinearLayout) findViewById(R.id.ayuda_qr_mensaje);
         btnEntendido = (Button) findViewById(R.id.entendido_ayuda_qr_button);
 
         preferenciasAyuda = getApplicationContext().getSharedPreferences("ayuda", Context.MODE_PRIVATE);
+        float scale = getResources().getDisplayMetrics().density;
+        int paddingBottom = (int) (mensajeAyuda.getPaddingBottom() * scale + 0.5f);
+        int paddingTop = (int) ((mensajeAyuda.getPaddingTop() + getStatusBarHeight()) * scale + 0.5f);
+        int paddingLeft = (int) (mensajeAyuda.getPaddingLeft() * scale + 0.5f);
+        int paddingRight = (int) (mensajeAyuda.getPaddingRight() * scale + 0.5f);
+        mensajeAyuda.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -123,6 +129,15 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
                 mensajeAyuda.setVisibility(View.GONE);
             }
         });
+    }
+
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
     protected void setStatusBarTranslucent() {
