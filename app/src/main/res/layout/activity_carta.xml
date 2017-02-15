@@ -50,37 +50,37 @@
         app:srcCompat="@drawable/ic_check_black_24dp" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/ayuda_realizar_pedido_mensaje"
         android:layout_width="220dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="80dp"
-        android:background="@drawable/background_mensaje_ayuda_arriba"
         android:layout_gravity="bottom|end"
-        android:padding="8dp"
-        android:id="@+id/ayuda_realizar_pedido_mensaje"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/background_mensaje_ayuda_arriba"
         android:backgroundTint="@color/colorBackgroundAyuda"
-        android:backgroundTintMode="multiply">
+        android:backgroundTintMode="multiply"
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <TextView
-            android:text="@string/ayuda_realizar_pedido_mensaje"
+            android:id="@+id/ayuda_realizar_pedido_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ayuda_realizar_pedido_textview"
-            android:textColor="@color/colorPrimary"
+            android:text="@string/ayuda_realizar_pedido_mensaje"
             android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
 
         <Button
-            android:text="@string/ayuda_button_entendido"
+            android:id="@+id/entendido_ayuda_realizar_pedido_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/entendido_ayuda_realizar_pedido_button"
+            android:layout_gravity="end"
             android:background="@android:color/transparent"
-            android:textColor="@color/colorPrimary"
             android:gravity="center_vertical|end"
-            android:textSize="18sp"
-            android:layout_gravity="end" />
+            android:text="@string/ayuda_button_entendido"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

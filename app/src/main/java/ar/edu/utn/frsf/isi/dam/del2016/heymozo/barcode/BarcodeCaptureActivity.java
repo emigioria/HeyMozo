@@ -95,7 +95,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         mensajeAyuda = (LinearLayout) findViewById(R.id.ayuda_qr_mensaje);
         Button btnEntendido = (Button) findViewById(R.id.entendido_ayuda_qr_button);
 
-        preferenciasAyuda = getApplicationContext().getSharedPreferences("ayuda", Context.MODE_PRIVATE);
+        preferenciasAyuda = getApplicationContext().getSharedPreferences(getString(R.string.preferencia_ayuda), Context.MODE_PRIVATE);
         float scale = getResources().getDisplayMetrics().density;
         int paddingBottom = (int) (mensajeAyuda.getPaddingBottom() * scale + 0.5f);
         int paddingTop = (int) ((mensajeAyuda.getPaddingTop() + getStatusBarHeight()) * scale + 0.5f);

@@ -10,4 +10,9 @@
         android:id="@+id/clearImageCache"
         android:icon="@drawable/ic_limpiar_icon"
         android:title="@string/pref_header_clear_image_cache" />
+
+    <header
+        android:id="@+id/clearHelpPreference"
+        android:icon="@drawable/helpw"
+        android:title="@string/pref_header_clear_help_preference" />
 </preference-headers>

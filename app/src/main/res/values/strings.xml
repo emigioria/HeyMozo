@@ -49,6 +49,7 @@
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notificaciones</string>
     <string name="pref_header_clear_image_cache">Borrar cache de imágenes</string>
+    <string name="pref_header_clear_help_preference">Volver a mostrar mensajes de ayuda</string>
 
     <string name="pref_title_new_message_notifications">Activar notificaciones</string>
 
@@ -92,6 +93,7 @@
     <string name="ayuda_button_entendido">Entendido</string>
 
     <!-- Claves de preferencias para mensajes de ayuda -->
+    <string name="preferencia_ayuda">ayuda</string>
     <string name="key_ayuda_qr">ayuda_qr</string>
     <string name="key_ayuda_item_mas_informacion">ayuda_item_mas_informacion</string>
     <string name="key_ayuda_realizar_pedido">ayuda_realizar_pedido</string>

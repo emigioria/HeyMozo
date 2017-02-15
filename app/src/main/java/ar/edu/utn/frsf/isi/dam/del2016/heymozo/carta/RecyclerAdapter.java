@@ -47,7 +47,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         this.moneda = moneda;
         this.noHacerPedidos = noHacerPedidos;
-        preferenciasAyuda = context.getSharedPreferences("ayuda",Context.MODE_PRIVATE);
+        preferenciasAyuda = context.getSharedPreferences(context.getString(R.string.preferencia_ayuda), Context.MODE_PRIVATE);
     }
 
     @Override

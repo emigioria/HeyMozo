@@ -4,6 +4,7 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -178,22 +179,35 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     public void onHeaderClick(Header header, int position) {
         super.onHeaderClick(header, position);
-        if (header.id == R.id.clearImageCache) {
-            //Borrar cache de Glide
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Glide.get(getBaseContext()).clearDiskCache();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Glide.get(getBaseContext()).clearMemory();
-                        }
-                    });
-                }
-            }).start();
-            Glide.get(getBaseContext()).clearMemory();
-            Toast.makeText(getBaseContext(), R.string.cache_imagenes_borrado, Toast.LENGTH_SHORT).show();
+        switch ((int) header.id) {
+            case R.id.clearImageCache:
+                //Borrar cache de Glide
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Glide.get(getBaseContext()).clearDiskCache();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Glide.get(getBaseContext()).clearMemory();
+                            }
+                        });
+                    }
+                }).start();
+                Glide.get(getBaseContext()).clearMemory();
+                Toast.makeText(getBaseContext(), R.string.cache_imagenes_borrado, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.clearHelpPreference:
+                SharedPreferences preferenciasAyuda = getBaseContext().getSharedPreferences(getBaseContext().getString(R.string.preferencia_ayuda), Context.MODE_PRIVATE);
+                //Modificamos las preferencias para que el mensaje de ayuda no se muestre más
+                SharedPreferences.Editor editorPreferencias = preferenciasAyuda.edit();
+                editorPreferencias.putBoolean(getBaseContext().getString(R.string.key_ayuda_qr), true);
+                editorPreferencias.putBoolean(getBaseContext().getString(R.string.key_ayuda_item_mas_informacion), true);
+                editorPreferencias.putBoolean(getBaseContext().getString(R.string.key_ayuda_realizar_pedido), true);
+                editorPreferencias.putBoolean(getBaseContext().getString(R.string.key_ayuda_item_agregar_quitar), true);
+                editorPreferencias.apply();
+                Toast.makeText(getBaseContext(), "Mensajes de ayuda restaurados", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 

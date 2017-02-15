@@ -52,7 +52,7 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         mensajeAyudaRealizarPedido = (LinearLayout) findViewById(R.id.ayuda_realizar_pedido_mensaje);
         Button btnAyudaRealizarPedido = (Button) findViewById(R.id.entendido_ayuda_realizar_pedido_button);
-        preferenciasAyuda = getSharedPreferences("ayuda", Context.MODE_PRIVATE);
+        preferenciasAyuda = getSharedPreferences(getString(R.string.preferencia_ayuda), Context.MODE_PRIVATE);
         setSupportActionBar(toolbar);
         getWindow().setExitTransition(new Fade());
 
@@ -67,6 +67,9 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         if (carta == null || mesa == null) {
             finishAfterTransition();
             return;
+        }
+        if (noHacerPedidos == null) {
+            noHacerPedidos = false;
         }
 
         setTitle(carta.getRestaurante().getNombre());
@@ -93,7 +96,9 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        mensajeAyudaRealizarPedido.setVisibility(View.GONE);
+        if (!preferenciasAyuda.getBoolean(getString(R.string.key_ayuda_realizar_pedido), true)) {
+            mensajeAyudaRealizarPedido.setVisibility(View.GONE);
+        }
         btnAyudaRealizarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,12 +132,9 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(CartaActivity.this);
                     startActivityForResult(intent, CODIGO_PEDIDO, options.toBundle());
                 }
-                else{
-                    //TODO mensaje ayuda selecionar productos
-                }
             }
         });
-        if (noHacerPedidos != null && noHacerPedidos) {
+        if (noHacerPedidos) {
             ((ViewGroup) fab.getParent()).removeView(fab);
             mensajeAyudaRealizarPedido.setVisibility(View.GONE);
         }
@@ -192,7 +194,6 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-        private static SharedPreferences preferenciasAyuda;
         private LinearLayout mensajeAyudaRealizarPedido;
 
         public PlaceholderFragment() {
@@ -225,7 +226,7 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
             final Carta carta = cartaListener.getCarta();
             final Boolean noHacerPedidos = cartaListener.getNoHacerPedidos();
             final FloatingActionButton fab = cartaListener.getFab();
-            preferenciasAyuda = recyclerView.getContext().getSharedPreferences("ayuda", Context.MODE_PRIVATE);
+            final SharedPreferences preferenciasAyuda = recyclerView.getContext().getSharedPreferences("ayuda", Context.MODE_PRIVATE);
             mensajeAyudaRealizarPedido = cartaListener.getMensajeAyudaRealizarPedido();
 
             final RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), carta.getRestaurante().getMoneda(), noHacerPedidos, carta.getSecciones().get(getArguments().getInt(ARG_SECTION_NUMBER) - 1).getProductos());
@@ -243,7 +244,6 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 
                     if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                        mensajeAyudaRealizarPedido.setVisibility(View.GONE);
                         if(!noHacerPedidos && preferenciasAyuda.getBoolean(getString(R.string.key_ayuda_realizar_pedido),true)){
                             mensajeAyudaRealizarPedido.setVisibility(View.VISIBLE);
                         }
