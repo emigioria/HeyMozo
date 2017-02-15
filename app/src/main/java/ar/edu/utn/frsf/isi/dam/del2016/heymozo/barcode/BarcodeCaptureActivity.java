@@ -146,6 +146,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     @Override
     public void onDetectedQrCode(Barcode barcode) {
         Log.d(TAG, "onDetectedQrCode: " + barcode.displayValue);
+
         if (barcode != null) {
             solicitarCartaTask = new SolicitarCartaTask(this, this);
 

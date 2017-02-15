@@ -16,7 +16,7 @@
     <string name="no_permission_fine_location">No permission for access fine location</string>
     <string name="pedido_permiso_titulo">Permisos Peligrosos!!!</string>
     <string name="pedido_permiso_mensaje">Puedo acceder a un permiso peligroso???</string>
-    <string name="ip_server">192.168.0.104</string>
+    <string name="ip_server">gioria.dlinkddns.com</string>
     <string name="port_server_db">3000</string>
     <string name="pedido_guardado_correcto">Pedido guardado con éxito!</string>
     <string name="pedido_no_guardado">Pedido no guardado.</string>
