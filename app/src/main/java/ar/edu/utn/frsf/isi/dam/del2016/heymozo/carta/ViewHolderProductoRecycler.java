@@ -2,6 +2,7 @@ package ar.edu.utn.frsf.isi.dam.del2016.heymozo.carta;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +26,8 @@ class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
     final ImageView imagenMasInformacion;
     final ProgressBar progressBar;
     final TextView mensajeAyudaInformacion;
+    final LinearLayout mensajeAyudaAgregarQuitar;
+    final Button entendidoButton;
 
     ViewHolderProductoRecycler(View viewBase) {
         super(viewBase);
@@ -41,5 +44,7 @@ class ViewHolderProductoRecycler extends RecyclerView.ViewHolder {
         this.imagenMasInformacion = (ImageView) viewBase.findViewById(R.id.mas_informacion_imageview);
         this.progressBar = (ProgressBar) viewBase.findViewById(R.id.progressBar);
         this.mensajeAyudaInformacion = (TextView) viewBase.findViewById(R.id.ayuda_item_informacion_mensaje);
+        this.mensajeAyudaAgregarQuitar = (LinearLayout) viewBase.findViewById(R.id.ayuda_agregar_quitar_mensaje);
+        this.entendidoButton = (Button) viewBase.findViewById(R.id.entendido_ayuda_agregar_quitar_button);
     }
 }

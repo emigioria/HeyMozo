@@ -66,6 +66,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         holder.moneda.setText(moneda.getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(), "%.2f", producto.getPrecio()));
         holder.mensajeAyudaInformacion.setVisibility(View.INVISIBLE);
+        holder.mensajeAyudaAgregarQuitar.setVisibility(View.GONE);
 
         if (producto.getDescripcion() != null) {
             holder.descripcionCorta.setVisibility(View.VISIBLE);
@@ -111,6 +112,10 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //Muestra el mensaje de ayuda si corresponde
             if(producto.getDescripcionLarga() != null && preferenciasAyuda.getBoolean(context.getString(R.string.key_ayuda_item_mas_informacion),true)){
                 holder.mensajeAyudaInformacion.setVisibility(View.VISIBLE);
+            }
+
+            if(!noHacerPedidos && preferenciasAyuda.getBoolean(context.getString(R.string.key_ayuda_item_agregar_quitar),true)){
+                holder.mensajeAyudaAgregarQuitar.setVisibility(View.VISIBLE);
             }
         } else {
             //Muestra la imagen de producto de forma contraida
@@ -200,6 +205,16 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 Integer cantidad = producto.getCantidad() - 1;
                 producto.setCantidad((cantidad > 0) ? (cantidad) : (0));
                 notifyItemChanged(position);
+            }
+        });
+
+        holder.entendidoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editorPreferencias = preferenciasAyuda.edit();
+                editorPreferencias.putBoolean(context.getString(R.string.key_ayuda_item_agregar_quitar),false);
+                editorPreferencias.apply();
+                holder.mensajeAyudaAgregarQuitar.setVisibility(View.GONE);
             }
         });
     }

@@ -12,141 +12,185 @@
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="4dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="4dp">
+        android:layout_height="match_parent">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-
-            <ImageView
-                android:id="@+id/imagen_producto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/imagen_del_producto"
-                android:scaleType="centerCrop"
-                android:transitionName="@string/transition_photo_producto" />
-
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
                 <ImageView
-                    android:id="@+id/mas_informacion_imageview"
-                    android:alpha="0.7"
-                    card_view:srcCompat="@drawable/ic_info"
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_margin="8dp" />
+                    android:id="@+id/imagen_producto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/imagen_del_producto"
+                    android:scaleType="centerCrop"
+                    android:transitionName="@string/transition_photo_producto" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/mas_informacion_imageview"
+                        android:alpha="0.7"
+                        card_view:srcCompat="@drawable/ic_info"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_margin="8dp" />
+
+                    <TextView
+                        android:text="@string/ayuda_mas_informacion"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/ayuda_item_informacion_mensaje"
+                        android:background="@drawable/background_mensaje_ayuda_izquierda"
+                        android:backgroundTint="@color/colorBackgroundAyuda"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/mas_informacion_imageview"
+                        android:gravity="center_vertical"
+                        android:backgroundTintMode="multiply"
+                        android:layout_height="56dp"
+                        android:paddingStart="8dp"
+                        android:paddingBottom="4dp" />
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="@string/ayuda_mas_informacion"
-                    android:layout_width="241dp"
-                    android:id="@+id/ayuda_item_informacion_mensaje"
-                    android:background="@drawable/mensaje"
-                    android:backgroundTint="@color/colorBackgroundAyuda"
-                    android:layout_height="48dp"
-                    android:padding="8dp"
+                    android:id="@+id/cantidad_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/mas_informacion_imageview" />
-            </RelativeLayout>
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
 
-        </FrameLayout>
+                <TextView
+                    android:id="@+id/nombre_producto_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textSize="16sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/moneda_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="normal" />
 
-            <TextView
-                android:id="@+id/cantidad_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/precio_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginStart="8dp"
+                    android:textAlignment="textEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="normal" />
 
-            <TextView
-                android:id="@+id/nombre_producto_textview"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/moneda_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|end"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="normal" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/precio_textview"
-                android:layout_width="wrap_content"
+                android:id="@+id/descripcion_textview"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|end"
-                android:layout_marginStart="8dp"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="normal" />
+                android:paddingBottom="4dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Notification.Info" />
+
+            <LinearLayout
+                android:id="@+id/second_layout"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/quitar_imageview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:scaleType="centerInside"
+                    android:tint="@color/cardview_dark_background"
+                    card_view:srcCompat="@drawable/ic_minus" />
+
+                <ImageButton
+                    android:id="@+id/agregar_imageview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    card_view:srcCompat="@drawable/ic_plus" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/descripcion_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="4dp"
-            android:textAppearance="@android:style/TextAppearance.Material.Notification.Info" />
-
         <LinearLayout
-            android:id="@+id/second_layout"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_width="213dp"
+            android:layout_height="117dp"
+            android:background="@drawable/background_mensaje_ayuda_arriba"
+            android:padding="8dp"
+            android:id="@+id/ayuda_agregar_quitar_mensaje"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="35dp"
+            android:backgroundTint="@color/colorBackgroundAyuda"
+            android:backgroundTintMode="multiply">
 
-            <ImageButton
-                android:id="@+id/quitar_imageview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:scaleType="centerInside"
-                android:tint="@color/cardview_dark_background"
-                card_view:srcCompat="@drawable/ic_minus" />
+            <TextView
+                android:text="@string/ayuda_agregar_quitar_mensaje"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ayuda_realizar_pedido_textview"
+                android:textColor="@color/colorPrimary"
+                android:textAlignment="textStart"
+                android:textSize="18sp" />
 
-            <ImageButton
-                android:id="@+id/agregar_imageview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:scaleType="centerInside"
-                android:tint="@color/colorPrimary"
-                card_view:srcCompat="@drawable/ic_plus" />
+            <Button
+                android:text="@string/ayuda_button_entendido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/entendido_ayuda_agregar_quitar_button"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:gravity="center_vertical|end"
+                android:layout_gravity="end" />
 
         </LinearLayout>
 
-    </LinearLayout>
+    </FrameLayout>
+
 </android.support.v7.widget.CardView>

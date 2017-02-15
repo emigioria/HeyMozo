@@ -13,10 +13,10 @@
     <string name="gracias_por_su_feedback">¡GRACIAS POR SU FEEDBACK!</string>
     <string name="evalua_tu_experiencia">EVALÚA TU EXPERIENCIA</string>
     <string name="title_activity_mis_pedidos">Mis pedidos</string>
-    <string name="ip_server">gioria.dlinkddns.com</string>
     <string name="no_permission_fine_location">No permission for access fine location</string>
     <string name="pedido_permiso_titulo">Permisos Peligrosos!!!</string>
     <string name="pedido_permiso_mensaje">Puedo acceder a un permiso peligroso???</string>
+    <string name="ip_server">192.168.0.104</string>
     <string name="port_server_db">3000</string>
     <string name="pedido_guardado_correcto">Pedido guardado con éxito!</string>
     <string name="pedido_no_guardado">Pedido no guardado.</string>
@@ -87,11 +87,13 @@
 
     <string name="ayuda_qr_mensaje">Captura el código QR que se encuentra en la mesa o en la carta</string>
     <string name="ayuda_realizar_pedido_mensaje">Confirmá tu pedido</string>
+    <string name="ayuda_agregar_quitar_mensaje">Agregá o quitá el producto de tu pedido</string>
+    <string name="ayuda_mas_informacion">Más información</string>
     <string name="ayuda_button_entendido">Entendido</string>
 
     <!-- Claves de preferencias para mensajes de ayuda -->
     <string name="key_ayuda_qr">ayuda_qr</string>
     <string name="key_ayuda_item_mas_informacion">ayuda_item_mas_informacion</string>
     <string name="key_ayuda_realizar_pedido">ayuda_realizar_pedido</string>
-    <string name="ayuda_mas_informacion">Más información</string>
+    <string name="key_ayuda_item_agregar_quitar">ayuda_item_agregar_quitar</string>
 </resources>
