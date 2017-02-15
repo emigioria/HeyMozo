@@ -53,7 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textViewNombreRestaurante" />
+            android:layout_below="@+id/textViewNombreRestaurante"
+            android:paddingStart="4dp" />
 
         <TextView
             android:id="@+id/textViewTelefono"
@@ -62,7 +63,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textViewDireccion"
-            android:autoLink="phone" />
+            android:autoLink="phone"
+            android:paddingStart="4dp" />
 
         <TextView
             android:id="@+id/textViewPaginaWeb"
@@ -71,7 +73,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textViewTelefono"
-            android:autoLink="web" />
+            android:autoLink="web"
+            android:paddingStart="4dp" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -83,6 +86,7 @@
             android:clickable="false"
             android:isIndicator="true"
             android:progressTint="@color/colorAccent"
+            android:layout_margin="4dp"
             android:rating="5" />
 
         <Button

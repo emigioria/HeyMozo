@@ -127,9 +127,6 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(CartaActivity.this);
                     startActivityForResult(intent, CODIGO_PEDIDO, options.toBundle());
                 }
-                else{
-                    //TODO mensaje ayuda selecionar productos
-                }
             }
         });
         if (noHacerPedidos != null && noHacerPedidos) {

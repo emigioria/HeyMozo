@@ -318,14 +318,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             ratingBar.setVisibility(View.GONE);
         }
-        ratingBar.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                //Cambiar por actividad para ver calificaciones en el futurooooo
-                Toast.makeText(getBaseContext(), "Caificaciones: Muy buenas!", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
         buttonVerCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
