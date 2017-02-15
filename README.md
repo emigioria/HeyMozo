@@ -1,5 +1,11 @@
 Aplicación Android para el TP final de la materia Desarrollo de Aplicaciones Móviles de la UTN-FRSF.
 
+## Autores
+
+* **Daniel Campodonico** - [DCampodonico](https://github.com/dcampodonico)
+* **Emiliano Gioria** - [emigioria](https://github.com/emigioria)
+* **Lucas Moretti** - [morettilucas](https://github.com/morettilucas)
+
 Introducción
 ----------
 

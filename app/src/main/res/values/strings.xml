@@ -2,7 +2,6 @@
     <string name="app_name">Hey, Mozo!</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_carta">CartaActivity</string>
-    <string name="cargando_ubicaciones">Cargando ubicaciones…</string>
     <string name="error_servidor">No se ha podido establecer la conexión con el servidor</string>
     <string name="title_activity_pedido">Su pedido</string>
     <string name="totalStr">Total</string>
@@ -62,7 +61,6 @@
     <string name="notifications_new_message_vibrate">notifications_new_message_vibrate</string>
     <string name="notifications_new_message_light">notifications_new_message_light</string>
     <string name="notifications_new_message">notifications_new_message</string>
-    <string name="pref_animaciones">pref_animaciones</string>
     <string name="cache_imagenes_borrado">Cache de imágenes borrado</string>
     <string-array name="pref_light_titles">
         <item>Ninguno</item>

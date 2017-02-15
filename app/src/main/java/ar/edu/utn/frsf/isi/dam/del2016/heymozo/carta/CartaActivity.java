@@ -44,7 +44,6 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
     private FloatingActionButton fab;
     private SharedPreferences preferenciasAyuda;
     private LinearLayout mensajeAyudaRealizarPedido;
-    private Button btnAyudaRealizarPedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
         setContentView(R.layout.activity_carta);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         mensajeAyudaRealizarPedido = (LinearLayout) findViewById(R.id.ayuda_realizar_pedido_mensaje);
-        btnAyudaRealizarPedido = (Button) findViewById(R.id.entendido_ayuda_realizar_pedido_button);
+        Button btnAyudaRealizarPedido = (Button) findViewById(R.id.entendido_ayuda_realizar_pedido_button);
         preferenciasAyuda = getSharedPreferences("ayuda", Context.MODE_PRIVATE);
         setSupportActionBar(toolbar);
         getWindow().setExitTransition(new Fade());
@@ -193,8 +192,8 @@ public class CartaActivity extends AppCompatActivity implements CartaListener {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-        private LinearLayout mensajeAyudaRealizarPedido;
         private static SharedPreferences preferenciasAyuda;
+        private LinearLayout mensajeAyudaRealizarPedido;
 
         public PlaceholderFragment() {
         }

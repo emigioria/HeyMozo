@@ -77,7 +77,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
     private RelativeLayout loadingPanelCarta;
     private SolicitarCartaTask solicitarCartaTask;
     private LinearLayout mensajeAyuda;
-    private Button btnEntendido;
 
     private SharedPreferences preferenciasAyuda;
 
@@ -94,7 +93,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         loadingPanelCarta = (RelativeLayout) findViewById(R.id.loadingPanelCarta);
         mensajeAyuda = (LinearLayout) findViewById(R.id.ayuda_qr_mensaje);
-        btnEntendido = (Button) findViewById(R.id.entendido_ayuda_qr_button);
+        Button btnEntendido = (Button) findViewById(R.id.entendido_ayuda_qr_button);
 
         preferenciasAyuda = getApplicationContext().getSharedPreferences("ayuda", Context.MODE_PRIVATE);
         float scale = getResources().getDisplayMetrics().density;
@@ -102,7 +101,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity
         int paddingTop = (int) ((mensajeAyuda.getPaddingTop() + getStatusBarHeight()) * scale + 0.5f);
         int paddingLeft = (int) (mensajeAyuda.getPaddingLeft() * scale + 0.5f);
         int paddingRight = (int) (mensajeAyuda.getPaddingRight() * scale + 0.5f);
-        mensajeAyuda.setPadding(paddingLeft,paddingTop,paddingRight,paddingBottom);
+        mensajeAyuda.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
