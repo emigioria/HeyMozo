@@ -65,7 +65,7 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         holder.moneda.setText(moneda.getSimbolo());
         holder.precio.setText(String.format(Locale.getDefault(), "%.2f", producto.getPrecio()));
-        holder.mensajeAyudaInformacion.setVisibility(View.INVISIBLE);
+        holder.mensajeAyudaInformacion.setVisibility(View.GONE);
         holder.mensajeAyudaAgregarQuitar.setVisibility(View.GONE);
 
         if (producto.getDescripcion() != null) {
