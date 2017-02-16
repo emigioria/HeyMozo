@@ -112,6 +112,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ar.edu.utn.frsf.isi.dam.del2016.heymozo.inicio.MainActivity" />
         </activity>
+        <activity
+            android:name=".AcercaDeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

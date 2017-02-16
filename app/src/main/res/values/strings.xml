@@ -33,7 +33,7 @@
     <string name="btnPedidos">Ver mis pedidos\n </string>
     <string name="btnRestaurantesAdheridos">Ver restaurantes adheridos</string>
     <string name="btnConfiguracion">Configuraciones</string>
-    <string name="btnAyuda">Ayuda</string>
+    <string name="btnAyuda">Acerca De</string>
     <string name="buttonVerCarta">Ver Carta</string>
     <string name="restaurante_sin_carta">El restaurante seleccionado no posee una carta actualmente.</string>
     <string name="title_activity_restaurantes_adheridos">Restaurantes Adheridos</string>
@@ -43,6 +43,10 @@
     <string name="transition_card_pedido">transition_card_pedido</string>
     <string name="transition_card_restaurante">transition_card_restaurante</string>
     <string name="title_activity_settings">Configuraciones</string>
+
+    <string name="version">Versión 1.0</string>
+    <string name="licencia">© 2017 iTEK Software.</string>
+    <string name="todos_los_derechos_reservados">Todos los derechos reservados.</string>
 
     <!-- Strings related to Settings -->
 

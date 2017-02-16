@@ -17,6 +17,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import ar.edu.utn.frsf.isi.dam.del2016.heymozo.AcercaDeActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.R;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.SettingsActivity;
 import ar.edu.utn.frsf.isi.dam.del2016.heymozo.barcode.BarcodeCaptureActivity;
@@ -99,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(intent, options.toBundle());
+                        break;
+                    case 5:
+                        intent = new Intent(MainActivity.this, AcercaDeActivity.class);
                         startActivity(intent, options.toBundle());
                         break;
                     default:
